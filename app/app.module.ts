@@ -8,6 +8,9 @@ import {HttpModule} from '@angular/http';
 import {AppRoutingModule} from "./app-routing.module";
 
 import {AppComponent} from './app.component';
+import {SearchBarComponent} from "./header/search-bar/search-bar.component";
+import {UserSearchService} from "./shared/user-search.service";
+import {HeaderComponent} from "./header/header.component";
 
 @NgModule({
     imports: [
@@ -17,9 +20,12 @@ import {AppComponent} from './app.component';
         AppRoutingModule
     ],
     declarations: [
-        AppComponent
+        AppComponent,
+        HeaderComponent,
+        SearchBarComponent
     ],
     providers: [
+        UserSearchService
     ],
     bootstrap: [AppComponent]
 })

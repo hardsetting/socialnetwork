@@ -9,19 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
+var http_1 = require("@angular/http");
+var UserSearchService = (function () {
+    function UserSearchService(http) {
+        this.http = http;
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'sn-app',
-            templateUrl: 'app.component.html',
-            styleUrls: ['app.component.css']
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    UserSearchService.prototype.search = function (term) {
+        return this.http
+            .get("api/users/search?name=" + term)
+            .map(function (r) { return r.json(); });
+    };
+    UserSearchService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], UserSearchService);
+    return UserSearchService;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.UserSearchService = UserSearchService;
+//# sourceMappingURL=user-search.service.js.map

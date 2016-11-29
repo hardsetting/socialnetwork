@@ -1,0 +1,45 @@
+$header-height: 50px
+$header-margin: 25px
+
+.header
+  width: calc(100% - #{2 * $header-margin})
+  height: $header-height
+  padding: 0 $header-margin
+
+  background-color: #404257
+
+  display: flex
+  flex-wrap: nowrap
+  justify-content: space-around
+
+  .page-name
+    padding: 0 20px
+    line-height: $header-height
+    width: 300px
+
+  sn-search-bar
+    display: block
+    width: 300px
+
+    flex: 1 0
+
+  .find-friends
+    padding: 0 20px
+    line-height: $header-height
+
+  .buttons
+    padding: 10px 20px
+    button
+      width: 30px
+      height: 30px
+      margin: 0 5px
+
+  .user
+    padding: 10px 10px
+    img
+      height: 30px
+      width: 30px
+      vertical-align: middle
+    span.name
+      margin-left: 5px
+      vertical-align: middle

@@ -15,6 +15,9 @@ var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 var app_routing_module_1 = require("./app-routing.module");
 var app_component_1 = require('./app.component');
+var search_bar_component_1 = require("./header/search-bar/search-bar.component");
+var user_search_service_1 = require("./shared/user-search.service");
+var header_component_1 = require("./header/header.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -27,9 +30,13 @@ var AppModule = (function () {
                 app_routing_module_1.AppRoutingModule
             ],
             declarations: [
-                app_component_1.AppComponent
+                app_component_1.AppComponent,
+                header_component_1.HeaderComponent,
+                search_bar_component_1.SearchBarComponent
             ],
-            providers: [],
+            providers: [
+                user_search_service_1.UserSearchService
+            ],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])
