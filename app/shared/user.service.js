@@ -9,23 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var profile_component_1 = require("./profile/profile.component");
-var routes = [
-    //{ path: '', redirectTo: '/profile/:', pathMatch: 'full' },
-    { path: 'profile/:id', component: profile_component_1.ProfileComponent }
-];
-var AppRoutingModule = (function () {
-    function AppRoutingModule() {
+var http_1 = require("@angular/http");
+var UserService = (function () {
+    function UserService(http) {
+        this.http = http;
     }
-    AppRoutingModule = __decorate([
-        core_1.NgModule({
-            imports: [router_1.RouterModule.forRoot(routes)],
-            exports: [router_1.RouterModule]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppRoutingModule);
-    return AppRoutingModule;
+    UserService.prototype.getUser = function (id) {
+        return this.http
+            .get("api/users/" + id)
+            .map(function (r) { return r.json(); });
+    };
+    UserService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], UserService);
+    return UserService;
 }());
-exports.AppRoutingModule = AppRoutingModule;
-//# sourceMappingURL=app-routing.module.js.map
+exports.UserService = UserService;
+//# sourceMappingURL=user.service.js.map

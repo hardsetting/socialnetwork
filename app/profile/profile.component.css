@@ -1,0 +1,9 @@
+.cover {
+  padding: 40px 30px;
+  width: calc(100% - 60px);
+  height: 300px; }
+  .cover img {
+    width: 100%;
+    height: 100%; }
+
+/*# sourceMappingURL=profile.component.css.map */

@@ -16,8 +16,10 @@ var http_1 = require('@angular/http');
 var app_routing_module_1 = require("./app-routing.module");
 var app_component_1 = require('./app.component');
 var search_bar_component_1 = require("./header/search-bar/search-bar.component");
-var user_search_service_1 = require("./shared/user-search.service");
 var header_component_1 = require("./header/header.component");
+var profile_component_1 = require("./profile/profile.component");
+var user_service_1 = require("./shared/user.service");
+var user_search_service_1 = require("./shared/user-search.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -32,9 +34,11 @@ var AppModule = (function () {
             declarations: [
                 app_component_1.AppComponent,
                 header_component_1.HeaderComponent,
-                search_bar_component_1.SearchBarComponent
+                search_bar_component_1.SearchBarComponent,
+                profile_component_1.ProfileComponent
             ],
             providers: [
+                user_service_1.UserService,
                 user_search_service_1.UserSearchService
             ],
             bootstrap: [app_component_1.AppComponent]

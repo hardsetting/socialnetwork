@@ -9,8 +9,11 @@ import {AppRoutingModule} from "./app-routing.module";
 
 import {AppComponent} from './app.component';
 import {SearchBarComponent} from "./header/search-bar/search-bar.component";
-import {UserSearchService} from "./shared/user-search.service";
 import {HeaderComponent} from "./header/header.component";
+import {ProfileComponent} from "./profile/profile.component";
+
+import {UserService} from "./shared/user.service";
+import {UserSearchService} from "./shared/user-search.service";
 
 @NgModule({
     imports: [
@@ -22,9 +25,11 @@ import {HeaderComponent} from "./header/header.component";
     declarations: [
         AppComponent,
         HeaderComponent,
-        SearchBarComponent
+        SearchBarComponent,
+        ProfileComponent
     ],
     providers: [
+        UserService,
         UserSearchService
     ],
     bootstrap: [AppComponent]
