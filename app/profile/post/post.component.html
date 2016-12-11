@@ -1,0 +1,18 @@
+<div class="box post">
+    <div class="info">
+        <img class="face" src="/img/face.jpg">
+        <div class="text">
+            <div class="name">Alex Donovan</div>
+            <div class="relative-time">{{ post.created_at | amTimeAgo }}</div>
+        </div>
+        <div class="more">
+            <span (click)="toggleOptions()"></span>
+            <ul class="options" [class.show]="showOptions">
+                <li (click)="edit()">Edit</li>
+                <li (click)="delete()">Delete</li>
+            </ul>
+        </div>
+
+    </div>
+    {{post.content}}
+</div>

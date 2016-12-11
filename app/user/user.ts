@@ -1,3 +1,5 @@
+import {Post} from "../post/post";
+
 export class User {
     id: number;
     name: string;
@@ -10,4 +12,6 @@ export class User {
     dorm: number;
     year: number;
     high_school: number;
+
+    posts: Post[]
 }

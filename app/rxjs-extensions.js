@@ -2,6 +2,7 @@
 // Observable class extensions
 require('rxjs/add/observable/of');
 require('rxjs/add/observable/throw');
+require('rxjs/add/observable/forkJoin');
 // Observable operators
 require('rxjs/add/operator/catch');
 require('rxjs/add/operator/debounceTime');

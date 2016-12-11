@@ -1,0 +1,45 @@
+.post {
+  padding: 25px;
+  overflow: visible; }
+  .post .info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px; }
+    .post .info .face {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%; }
+    .post .info .text {
+      padding: 0 10px;
+      flex-grow: 1; }
+      .post .info .text .name {
+        color: #878897;
+        font-size: 12px; }
+      .post .info .text .relative-time {
+        font-size: 10px; }
+    .post .info .more {
+      position: relative; }
+      .post .info .more span {
+        display: block;
+        height: 30px;
+        width: 30px;
+        background: url("../../../img/icon-more.png");
+        cursor: pointer; }
+      .post .info .more .options {
+        position: absolute;
+        right: 0;
+        top: 30px;
+        border: 1px solid #c2cadb;
+        background-color: white;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+        display: none; }
+        .post .info .more .options.show {
+          display: block; }
+        .post .info .more .options li {
+          padding: 10px 20px;
+          border-bottom: 1px solid #e2e6ee;
+          cursor: pointer; }
+          .post .info .more .options li:last-child {
+            border-bottom: none; }
+
+/*# sourceMappingURL=post.component.css.map */

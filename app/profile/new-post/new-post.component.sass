@@ -1,0 +1,49 @@
+@import ../../../variables
+
+$new-post-face-size: 50px
+$new-post-btn-color: #fe5e3a
+$new-post-btn-text-color: white
+
+.body
+  padding: $box-padding
+  .face
+    display: inline-block
+    margin-right: #{$box-padding - 4px}
+    vertical-align: top
+    width: $new-post-face-size
+    height: $new-post-face-size
+    border-radius: 50%
+  textarea
+    padding: 15px
+    display: inline-block
+    width: calc(100% - #{$new-post-face-size + $box-padding})
+    min-height: 100px
+    border: 1px solid $border-color
+    resize: none
+    &:focus
+      outline: none
+
+.buttons
+  display: flex
+  justify-content: flex-end
+  align-items: center
+
+  height: 50px
+  padding: 0 20px
+
+  border-top: 1px solid $border-color
+  button.post
+    width: 80px
+    height: 30px
+    padding: 0
+
+    border: none
+    border-radius: 5px
+    background-color: $new-post-btn-color
+    color: $new-post-btn-text-color
+    cursor: pointer
+    &:focus
+      outline: none
+
+    &:disabled
+      color: red

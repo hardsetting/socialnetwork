@@ -11,16 +11,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var user_service_1 = require("../shared/user.service");
+var post_service_1 = require("../shared/post.service");
+var Observable_1 = require("rxjs/Observable");
 var ProfileComponent = (function () {
-    function ProfileComponent(route, userService) {
+    function ProfileComponent(route, userService, postService) {
         this.route = route;
         this.userService = userService;
+        this.postService = postService;
     }
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.route.params
-            .switchMap(function (params) { return _this.userService.getUser(+params['id']); })
-            .subscribe(function (user) { return _this.user = user; });
+        this.route.params.switchMap(function (params) {
+            return Observable_1.Observable.forkJoin([
+                _this.userService.getUser(+params['id']),
+                _this.postService.getUserPosts(+params['id'])
+            ]);
+        }).subscribe(function (results) {
+            _this.user = results[0];
+            _this.posts = results[1];
+        });
+    };
+    ProfileComponent.prototype.onPost = function (post) {
+        this.posts.unshift(post);
     };
     ProfileComponent = __decorate([
         core_1.Component({
@@ -28,9 +40,12 @@ var ProfileComponent = (function () {
             selector: 'sn-profile',
             templateUrl: 'profile.component.html',
             styleUrls: ['profile.component.css'],
-            providers: [user_service_1.UserService]
+            providers: [
+                user_service_1.UserService,
+                post_service_1.PostService
+            ]
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, user_service_1.UserService])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, user_service_1.UserService, post_service_1.PostService])
     ], ProfileComponent);
     return ProfileComponent;
 }());

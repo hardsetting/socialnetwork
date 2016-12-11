@@ -1,0 +1,60 @@
+@import ../../../variables
+
+$thumb-size: 40px
+
+.post
+  padding: $box-padding
+  overflow: visible
+
+  .info
+    display: flex
+    align-items: center
+    margin-bottom: $box-padding
+
+    .face
+      height: $thumb-size
+      width: $thumb-size
+      border-radius: 50%
+
+    .text
+      padding: 0 10px
+      flex-grow: 1
+      .name
+        color: $bold-color
+        font-size: 12px
+      .relative-time
+        font-size: 10px
+
+    .more
+      position: relative
+
+      span
+        display: block
+        height: 30px
+        width: 30px
+        background: url("../../../img/icon-more.png")
+        cursor: pointer
+
+      .options
+        position: absolute
+        right: 0
+        top: 30px
+        //padding: 15px
+        border: 1px solid darken($border-color, 10)
+        background-color: white
+        box-shadow: 0 3px 8px rgba(0, 0, 0, .3)
+
+        display: none
+        &.show
+          display: block
+
+        li
+          padding: 10px 20px
+          border-bottom: 1px solid $border-color
+          cursor: pointer
+
+          //&:hover
+
+
+          &:last-child
+            border-bottom: none
