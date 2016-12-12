@@ -3,7 +3,7 @@ import {Http, Response} from "@angular/http";
 
 import {Observable} from 'rxjs/Observable';
 
-import {User} from "../user/user";
+import {User} from "../models/user";
 
 @Injectable()
 export class UserSearchService {

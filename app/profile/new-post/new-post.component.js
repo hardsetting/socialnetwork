@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var user_1 = require("../../user/user");
+var user_1 = require("../../models/user");
 var post_service_1 = require("../../shared/post.service");
 var NewPostComponent = (function () {
     function NewPostComponent(postService) {
@@ -26,7 +26,10 @@ var NewPostComponent = (function () {
             _this.submitting = false;
             // Reset new post content
             _this.content = "";
-        }, function (err) { return console.log("error posting"); });
+        }, function (err) {
+            console.error("Couldn't post content.");
+            _this.submitting = false;
+        });
     };
     __decorate([
         core_1.Input(), 

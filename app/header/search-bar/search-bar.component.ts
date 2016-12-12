@@ -3,7 +3,7 @@ import {Component} from '@angular/core';
 import {Subject} from "rxjs/Subject";
 import {Observable} from "rxjs/Observable";
 
-import {User} from "../../user/user";
+import {User} from "../../models/user";
 import {UserSearchService} from "../../shared/user-search.service";
 
 @Component({

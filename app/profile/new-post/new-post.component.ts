@@ -1,9 +1,9 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 
-import {User} from "../../user/user";
+import {User} from "../../models/user";
 
 import {PostService} from "../../shared/post.service";
-import {Post} from "../../post/post";
+import {Post} from "../../models/post";
 
 @Component({
     moduleId: module.id,
@@ -36,7 +36,10 @@ export class NewPostComponent {
                     // Reset new post content
                     this.content = "";
                 },
-                err => console.log("error posting")
+                err => {
+                    console.error("Couldn't post content.");
+                    this.submitting = false;
+                }
             );
     }
 }

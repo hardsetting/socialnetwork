@@ -20,10 +20,10 @@ var search_bar_component_1 = require("./header/search-bar/search-bar.component")
 var header_component_1 = require("./header/header.component");
 var profile_component_1 = require("./profile/profile.component");
 var user_service_1 = require("./shared/user.service");
-var user_search_service_1 = require("./shared/user-search.service");
 var post_service_1 = require("./shared/post.service");
 var new_post_component_1 = require("./profile/new-post/new-post.component");
 var post_component_1 = require("./profile/post/post.component");
+var oauth_http_service_1 = require("./shared/oauth-http.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -45,9 +45,9 @@ var AppModule = (function () {
                 post_component_1.PostComponent
             ],
             providers: [
+                { provide: http_1.Http, useClass: oauth_http_service_1.OAuthHttp, deps: [http_1.XHRBackend, http_1.RequestOptions] },
                 user_service_1.UserService,
-                post_service_1.PostService,
-                user_search_service_1.UserSearchService
+                post_service_1.PostService
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

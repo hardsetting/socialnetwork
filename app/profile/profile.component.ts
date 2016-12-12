@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {UserService} from "../shared/user.service";
 
-import {User} from "../user/user";
-import {Post} from "../post/post";
+import {User} from "../models/user";
+import {Post} from "../models/post";
 
 import {PostService} from "../shared/post.service";
 import {Observable} from "rxjs/Observable";

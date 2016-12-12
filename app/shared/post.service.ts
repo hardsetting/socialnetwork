@@ -3,7 +3,7 @@ import {Http, Response} from "@angular/http";
 
 import {Observable} from 'rxjs/Observable';
 
-import {Post} from "../post/post";
+import {Post} from "../models/post";
 
 @Injectable()
 export class PostService {
