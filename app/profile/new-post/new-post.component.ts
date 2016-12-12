@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 
 import {User} from "../../user/user";
 
@@ -18,15 +18,25 @@ export class NewPostComponent {
     @Output() onPost = new EventEmitter<Post>();
 
     content: string;
+    submitting: boolean = false;
 
     constructor(
         private postService: PostService
     ) {}
 
     create(): void {
-        this.postService.create(this.user.id, this.content)
-            .subscribe(post => this.onPost.emit(post));
+        this.submitting = true;
 
-        this.content = "";
+        this.postService.create(this.user.id, this.content)
+            .subscribe(
+                post => {
+                    this.onPost.emit(post);
+                    this.submitting = false;
+
+                    // Reset new post content
+                    this.content = "";
+                },
+                err => console.log("error posting")
+            );
     }
 }

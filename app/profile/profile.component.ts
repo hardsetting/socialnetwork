@@ -45,4 +45,11 @@ export class ProfileComponent implements OnInit {
     onPost(post: Post): void {
         this.posts.unshift(post);
     }
+
+    onDelete(post: Post): void {
+        let index = this.posts.indexOf(post);
+        if (index >= 0) {
+            this.posts.splice(index, 1);
+        }
+    }
 }

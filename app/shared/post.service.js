@@ -26,6 +26,9 @@ var PostService = (function () {
             .post("api/posts", post)
             .map(function (r) { return r.json(); });
     };
+    PostService.prototype.delete = function (id) {
+        return this.http.delete("api/posts/" + id);
+    };
     PostService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

@@ -13,6 +13,13 @@ $new-post-btn-text-color: white
     width: $new-post-face-size
     height: $new-post-face-size
     border-radius: 50%
+    overflow: hidden
+
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
+      object-position: 50% 50%
   textarea
     padding: 15px
     display: inline-block
@@ -42,8 +49,13 @@ $new-post-btn-text-color: white
     background-color: $new-post-btn-color
     color: $new-post-btn-text-color
     cursor: pointer
+    user-select: none
+
     &:focus
       outline: none
 
     &:disabled
-      color: red
+      background-color: lighten($new-post-btn-color, 20)
+      color: lighten($new-post-btn-text-color, 20)
+      cursor: auto
+

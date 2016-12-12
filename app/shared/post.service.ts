@@ -22,4 +22,8 @@ export class PostService {
             .post(`api/posts`, post)
             .map((r: Response) => r.json() as Post);
     }
+
+    delete(id: number): Observable<Response> {
+        return this.http.delete(`api/posts/${id}`);
+    }
 }

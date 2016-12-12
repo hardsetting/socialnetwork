@@ -1,20 +1,21 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Post} from "../../post/post";
+import {PostService} from "../../shared/post.service";
 
 @Component({
     moduleId: module.id,
     selector: 'sn-post',
     templateUrl: 'post.component.html',
-    styleUrls: ['post.component.css']
+    styleUrls: ['post.component.css'],
+    providers: [PostService]
 })
-export class PostComponent implements OnInit {
+export class PostComponent {
     @Input() post: Post;
+    @Output() onDelete = new EventEmitter<Post>();
 
     showOptions: boolean = false;
 
-    ngOnInit(): void {
-
-    }
+    constructor(private postService: PostService) {}
 
     toggleOptions(): void {
         this.showOptions = !this.showOptions;
@@ -26,5 +27,8 @@ export class PostComponent implements OnInit {
 
     delete(): void {
         this.toggleOptions();
+        this.postService.delete(this.post.id).subscribe(() => {
+            this.onDelete.emit(this.post);
+        });
     }
 }

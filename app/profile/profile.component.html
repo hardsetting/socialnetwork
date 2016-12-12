@@ -34,6 +34,6 @@
 
     <div class="posts">
         <sn-new-post [user]="user" (onPost)="onPost($event)"></sn-new-post>
-        <sn-post *ngFor="let post of posts" [post]="post"></sn-post>
+        <sn-post *ngFor="let post of posts" [post]="post" (onDelete)="onDelete($event)"></sn-post>
     </div>
 </div>

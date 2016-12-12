@@ -34,6 +34,12 @@ var ProfileComponent = (function () {
     ProfileComponent.prototype.onPost = function (post) {
         this.posts.unshift(post);
     };
+    ProfileComponent.prototype.onDelete = function (post) {
+        var index = this.posts.indexOf(post);
+        if (index >= 0) {
+            this.posts.splice(index, 1);
+        }
+    };
     ProfileComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

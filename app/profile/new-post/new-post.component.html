@@ -1,9 +1,11 @@
 <div class="box">
     <div class="body">
-        <img class="face" src="/img/face.jpg" />
-        <textarea [(ngModel)]="content" placeholder="Share your thoughts with everyone.."></textarea>
+        <div class="face"><img src="/img/face.jpg" /></div>
+        <textarea [(ngModel)]="content"
+                  [disabled]="submitting"
+                  placeholder="Share your thoughts with everyone.."></textarea>
     </div>
     <div class="buttons">
-        <button class="post" [disabled]="!content" (click)="create(content)">Post</button>
+        <button class="post" [disabled]="!content || submitting" (click)="create(content)">Post</button>
     </div>
 </div>

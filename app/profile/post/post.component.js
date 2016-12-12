@@ -10,12 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var post_1 = require("../../post/post");
+var post_service_1 = require("../../shared/post.service");
 var PostComponent = (function () {
-    function PostComponent() {
+    function PostComponent(postService) {
+        this.postService = postService;
+        this.onDelete = new core_1.EventEmitter();
         this.showOptions = false;
     }
-    PostComponent.prototype.ngOnInit = function () {
-    };
     PostComponent.prototype.toggleOptions = function () {
         this.showOptions = !this.showOptions;
     };
@@ -23,20 +24,29 @@ var PostComponent = (function () {
         this.toggleOptions();
     };
     PostComponent.prototype.delete = function () {
+        var _this = this;
         this.toggleOptions();
+        this.postService.delete(this.post.id).subscribe(function () {
+            _this.onDelete.emit(_this.post);
+        });
     };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', post_1.Post)
     ], PostComponent.prototype, "post", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], PostComponent.prototype, "onDelete", void 0);
     PostComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'sn-post',
             templateUrl: 'post.component.html',
-            styleUrls: ['post.component.css']
+            styleUrls: ['post.component.css'],
+            providers: [post_service_1.PostService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [post_service_1.PostService])
     ], PostComponent);
     return PostComponent;
 }());

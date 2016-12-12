@@ -15,12 +15,18 @@ var NewPostComponent = (function () {
     function NewPostComponent(postService) {
         this.postService = postService;
         this.onPost = new core_1.EventEmitter();
+        this.submitting = false;
     }
     NewPostComponent.prototype.create = function () {
         var _this = this;
+        this.submitting = true;
         this.postService.create(this.user.id, this.content)
-            .subscribe(function (post) { return _this.onPost.emit(post); });
-        this.content = "";
+            .subscribe(function (post) {
+            _this.onPost.emit(post);
+            _this.submitting = false;
+            // Reset new post content
+            _this.content = "";
+        }, function (err) { return console.log("error posting"); });
     };
     __decorate([
         core_1.Input(), 
