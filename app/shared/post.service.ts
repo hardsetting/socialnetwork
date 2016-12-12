@@ -4,11 +4,12 @@ import {Http, Response} from "@angular/http";
 import {Observable} from 'rxjs/Observable';
 
 import {Post} from "../models/post";
+import {AuthHttp} from "angular2-jwt";
 
 @Injectable()
 export class PostService {
 
-    constructor(private http: Http) {}
+    constructor(private http: Http, private authHttp: AuthHttp) {}
 
     getUserPosts(userId: number): Observable<Post[]> {
         return this.http
@@ -18,7 +19,7 @@ export class PostService {
 
     create(userId: number, content: string): Observable<Post> {
         let post = new Post(userId, content);
-        return this.http
+        return this.authHttp
             .post(`api/posts`, post)
             .map((r: Response) => r.json() as Post);
     }

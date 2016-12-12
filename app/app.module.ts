@@ -19,6 +19,9 @@ import {NewPostComponent} from "./profile/new-post/new-post.component";
 import {PostComponent} from "./profile/post/post.component";
 import {OAuthHttp} from "./shared/oauth-http.service";
 
+import {AUTH_PROVIDERS} from 'angular2-jwt';
+import {provideAuth} from 'angular2-jwt';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -36,7 +39,10 @@ import {OAuthHttp} from "./shared/oauth-http.service";
         PostComponent
     ],
     providers: [
-        { provide: Http, useClass: OAuthHttp, deps: [XHRBackend, RequestOptions] },
+        provideAuth({
+            tokenGetter: () => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ'
+        }),
+        //{ provide: Http, useClass: OAuthHttp, deps: [XHRBackend, RequestOptions] },
         UserService,
         PostService
     ],

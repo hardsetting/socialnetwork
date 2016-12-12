@@ -27,7 +27,8 @@
             'rxjs':                      'npm:rxjs',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
             'moment': 'npm:moment',
-            'angular2-moment': 'npm:angular2-moment'
+            'angular2-moment': 'npm:angular2-moment',
+            'angular2-jwt': 'npm:angular2-jwt'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -44,6 +45,10 @@
             },
             'angular2-moment': {
                 main: 'index.js',
+                defaultExtension: 'js'
+            },
+            'angular2-jwt': {
+                main: 'angular2-jwt.js',
                 defaultExtension: 'js'
             }
         }

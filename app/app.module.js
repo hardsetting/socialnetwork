@@ -23,7 +23,7 @@ var user_service_1 = require("./shared/user.service");
 var post_service_1 = require("./shared/post.service");
 var new_post_component_1 = require("./profile/new-post/new-post.component");
 var post_component_1 = require("./profile/post/post.component");
-var oauth_http_service_1 = require("./shared/oauth-http.service");
+var angular2_jwt_1 = require('angular2-jwt');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -45,7 +45,10 @@ var AppModule = (function () {
                 post_component_1.PostComponent
             ],
             providers: [
-                { provide: http_1.Http, useClass: oauth_http_service_1.OAuthHttp, deps: [http_1.XHRBackend, http_1.RequestOptions] },
+                angular2_jwt_1.provideAuth({
+                    tokenGetter: function () { return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ'; }
+                }),
+                //{ provide: Http, useClass: OAuthHttp, deps: [XHRBackend, RequestOptions] },
                 user_service_1.UserService,
                 post_service_1.PostService
             ],

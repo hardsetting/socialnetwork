@@ -11,9 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require("@angular/http");
 var post_1 = require("../models/post");
+var angular2_jwt_1 = require("angular2-jwt");
 var PostService = (function () {
-    function PostService(http) {
+    function PostService(http, authHttp) {
         this.http = http;
+        this.authHttp = authHttp;
     }
     PostService.prototype.getUserPosts = function (userId) {
         return this.http
@@ -22,7 +24,7 @@ var PostService = (function () {
     };
     PostService.prototype.create = function (userId, content) {
         var post = new post_1.Post(userId, content);
-        return this.http
+        return this.authHttp
             .post("api/posts", post)
             .map(function (r) { return r.json(); });
     };
@@ -31,7 +33,7 @@ var PostService = (function () {
     };
     PostService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, angular2_jwt_1.AuthHttp])
     ], PostService);
     return PostService;
 }());
