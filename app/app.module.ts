@@ -39,10 +39,10 @@ import {provideAuth} from 'angular2-jwt';
         PostComponent
     ],
     providers: [
-        provideAuth({
+        /*provideAuth({
             tokenGetter: () => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ'
-        }),
-        //{ provide: Http, useClass: OAuthHttp, deps: [XHRBackend, RequestOptions] },
+        }),*/
+        { provide: Http, useClass: OAuthHttp, deps: [XHRBackend, RequestOptions] },
         UserService,
         PostService
     ],

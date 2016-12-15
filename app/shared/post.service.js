@@ -8,14 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
+var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var post_1 = require("../models/post");
-var angular2_jwt_1 = require("angular2-jwt");
 var PostService = (function () {
-    function PostService(http, authHttp) {
+    function PostService(http) {
         this.http = http;
-        this.authHttp = authHttp;
     }
     PostService.prototype.getUserPosts = function (userId) {
         return this.http
@@ -24,18 +22,18 @@ var PostService = (function () {
     };
     PostService.prototype.create = function (userId, content) {
         var post = new post_1.Post(userId, content);
-        return this.authHttp
+        return this.http
             .post("api/posts", post)
             .map(function (r) { return r.json(); });
     };
     PostService.prototype.delete = function (id) {
         return this.http.delete("api/posts/" + id);
     };
-    PostService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http, angular2_jwt_1.AuthHttp])
-    ], PostService);
     return PostService;
 }());
+PostService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], PostService);
 exports.PostService = PostService;
 //# sourceMappingURL=post.service.js.map

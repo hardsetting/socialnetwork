@@ -13,24 +13,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
 var OAuthHttp = (function (_super) {
     __extends(OAuthHttp, _super);
     function OAuthHttp(backend, options) {
-        _super.call(this, backend, options);
+        return _super.call(this, backend, options) || this;
     }
     OAuthHttp.prototype.request = function (url, options) {
-        return _super.prototype.request.call(this, url, options) /*.catch(err => {
-            console.log("we got problem", err);
-            return Observable.throw(err);
-        })*/;
+        options = options ? options : {};
+        if (!options.headers) {
+            options.headers = new http_1.Headers();
+        }
+        options.headers.append('Authorization', 'Bearer b994befa-9646-4fbb-83dc-58a33dd28d0a');
+        console.log(options);
+        console.log('requesting');
+        return _super.prototype.request.call(this, url, options);
     };
-    OAuthHttp = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.XHRBackend, http_1.RequestOptions])
-    ], OAuthHttp);
+    OAuthHttp.prototype.get = function (url, options) {
+        console.log('getting');
+        return _super.prototype.get.call(this, url, options);
+    };
     return OAuthHttp;
 }(http_1.Http));
+OAuthHttp = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.XHRBackend, http_1.RequestOptions])
+], OAuthHttp);
 exports.OAuthHttp = OAuthHttp;
 //# sourceMappingURL=oauth-http.service.js.map

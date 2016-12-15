@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
+var core_1 = require("@angular/core");
 var Subject_1 = require("rxjs/Subject");
 var Observable_1 = require("rxjs/Observable");
 var user_search_service_1 = require("../../shared/user-search.service");
@@ -31,17 +31,17 @@ var SearchBarComponent = (function () {
     SearchBarComponent.prototype.search = function (term) {
         this.searchTerms.next(term);
     };
-    SearchBarComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'sn-search-bar',
-            templateUrl: 'search-bar.component.html',
-            styleUrls: ['search-bar.component.css'],
-            providers: [user_search_service_1.UserSearchService]
-        }), 
-        __metadata('design:paramtypes', [user_search_service_1.UserSearchService])
-    ], SearchBarComponent);
     return SearchBarComponent;
 }());
+SearchBarComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'sn-search-bar',
+        templateUrl: 'search-bar.component.html',
+        styleUrls: ['search-bar.component.css'],
+        providers: [user_search_service_1.UserSearchService]
+    }),
+    __metadata("design:paramtypes", [user_search_service_1.UserSearchService])
+], SearchBarComponent);
 exports.SearchBarComponent = SearchBarComponent;
 //# sourceMappingURL=search-bar.component.js.map

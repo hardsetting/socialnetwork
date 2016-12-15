@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
+var core_1 = require("@angular/core");
 var post_1 = require("../../models/post");
 var post_service_1 = require("../../shared/post.service");
 var PostComponent = (function () {
@@ -30,25 +30,25 @@ var PostComponent = (function () {
             _this.onDelete.emit(_this.post);
         });
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', post_1.Post)
-    ], PostComponent.prototype, "post", void 0);
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', Object)
-    ], PostComponent.prototype, "onDelete", void 0);
-    PostComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'sn-post',
-            templateUrl: 'post.component.html',
-            styleUrls: ['post.component.css'],
-            providers: [post_service_1.PostService]
-        }), 
-        __metadata('design:paramtypes', [post_service_1.PostService])
-    ], PostComponent);
     return PostComponent;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", post_1.Post)
+], PostComponent.prototype, "post", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], PostComponent.prototype, "onDelete", void 0);
+PostComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'sn-post',
+        templateUrl: 'post.component.html',
+        styleUrls: ['post.component.css'],
+        providers: [post_service_1.PostService]
+    }),
+    __metadata("design:paramtypes", [post_service_1.PostService])
+], PostComponent);
 exports.PostComponent = PostComponent;
 //# sourceMappingURL=post.component.js.map

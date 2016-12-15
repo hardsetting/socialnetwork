@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
+var core_1 = require("@angular/core");
 var user_1 = require("../../models/user");
 var post_service_1 = require("../../shared/post.service");
 var NewPostComponent = (function () {
@@ -31,25 +31,25 @@ var NewPostComponent = (function () {
             _this.submitting = false;
         });
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', user_1.User)
-    ], NewPostComponent.prototype, "user", void 0);
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', Object)
-    ], NewPostComponent.prototype, "onPost", void 0);
-    NewPostComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'sn-new-post',
-            templateUrl: 'new-post.component.html',
-            styleUrls: ['new-post.component.css'],
-            providers: [post_service_1.PostService]
-        }), 
-        __metadata('design:paramtypes', [post_service_1.PostService])
-    ], NewPostComponent);
     return NewPostComponent;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", user_1.User)
+], NewPostComponent.prototype, "user", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], NewPostComponent.prototype, "onPost", void 0);
+NewPostComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'sn-new-post',
+        templateUrl: 'new-post.component.html',
+        styleUrls: ['new-post.component.css'],
+        providers: [post_service_1.PostService]
+    }),
+    __metadata("design:paramtypes", [post_service_1.PostService])
+], NewPostComponent);
 exports.NewPostComponent = NewPostComponent;
 //# sourceMappingURL=new-post.component.js.map
