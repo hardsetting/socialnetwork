@@ -9,25 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var profile_component_1 = require("./profile/profile.component");
-var login_component_1 = require("./login/login.component");
-var routes = [
-    //{ path: '', redirectTo: '/profile/:', pathMatch: 'full' },
-    { path: 'login', component: login_component_1.LoginComponent },
-    { path: 'profile/:id', component: profile_component_1.ProfileComponent }
-];
-var AppRoutingModule = (function () {
-    function AppRoutingModule() {
+var user_1 = require("../../models/user");
+var UserPicComponent = (function () {
+    function UserPicComponent() {
     }
-    return AppRoutingModule;
+    return UserPicComponent;
 }());
-AppRoutingModule = __decorate([
-    core_1.NgModule({
-        imports: [router_1.RouterModule.forRoot(routes)],
-        exports: [router_1.RouterModule]
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", user_1.User)
+], UserPicComponent.prototype, "user", void 0);
+UserPicComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'sn-user-pic',
+        templateUrl: 'user-pic.component.html',
+        styleUrls: ['user-pic.component.css']
     }),
     __metadata("design:paramtypes", [])
-], AppRoutingModule);
-exports.AppRoutingModule = AppRoutingModule;
-//# sourceMappingURL=app-routing.module.js.map
+], UserPicComponent);
+exports.UserPicComponent = UserPicComponent;
+//# sourceMappingURL=user-pic.component.js.map

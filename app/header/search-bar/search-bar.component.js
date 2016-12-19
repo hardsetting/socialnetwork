@@ -12,9 +12,11 @@ var core_1 = require("@angular/core");
 var Subject_1 = require("rxjs/Subject");
 var Observable_1 = require("rxjs/Observable");
 var user_search_service_1 = require("../../shared/user-search.service");
+var router_1 = require("@angular/router");
 var SearchBarComponent = (function () {
-    function SearchBarComponent(userSearchService) {
+    function SearchBarComponent(userSearchService, router) {
         this.userSearchService = userSearchService;
+        this.router = router;
         this.searchTerms = new Subject_1.Subject();
     }
     SearchBarComponent.prototype.ngOnInit = function () {
@@ -28,8 +30,12 @@ var SearchBarComponent = (function () {
             return Observable_1.Observable.of([]);
         });
     };
-    SearchBarComponent.prototype.search = function (term) {
-        this.searchTerms.next(term);
+    SearchBarComponent.prototype.search = function () {
+        this.searchTerms.next(this.searchTerm);
+    };
+    SearchBarComponent.prototype.gotoUser = function (user) {
+        this.searchTerm = '';
+        this.router.navigate(['/profile', user.id]);
     };
     return SearchBarComponent;
 }());
@@ -41,7 +47,8 @@ SearchBarComponent = __decorate([
         styleUrls: ['search-bar.component.css'],
         providers: [user_search_service_1.UserSearchService]
     }),
-    __metadata("design:paramtypes", [user_search_service_1.UserSearchService])
+    __metadata("design:paramtypes", [user_search_service_1.UserSearchService,
+        router_1.Router])
 ], SearchBarComponent);
 exports.SearchBarComponent = SearchBarComponent;
 //# sourceMappingURL=search-bar.component.js.map

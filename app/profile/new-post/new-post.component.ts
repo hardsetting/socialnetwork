@@ -27,7 +27,7 @@ export class NewPostComponent {
     create(): void {
         this.submitting = true;
 
-        this.postService.create(this.user.id, this.content)
+        this.postService.create(this.content)
             .subscribe(
                 post => {
                     this.onPost.emit(post);

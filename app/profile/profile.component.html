@@ -3,13 +3,10 @@
     <div class="menu">
         <div class=""></div>
         <div class="info">
-            <div class="face">
-                <div class="inner-face">
-                    <img src="/img/face.jpg"/>
-                </div>
-            </div>
+            <!-- div class="face"><div class="inner-face"><img src="/img/face.jpg" /></div></div -->
+            <sn-user-pic [user]="user"></sn-user-pic>
 
-            <div class="name">Alex Donovan</div>
+            <div class="name">{{ user?.name }} {{ user?.surname }}</div>
             <div class="city">San Francisco, CA</div>
         </div>
         <div class=""></div>

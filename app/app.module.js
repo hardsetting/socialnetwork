@@ -16,6 +16,7 @@ var http_1 = require("@angular/http");
 var angular2_moment_1 = require("angular2-moment");
 var app_routing_module_1 = require("./app-routing.module");
 var app_component_1 = require("./app.component");
+var login_component_1 = require("./login/login.component");
 var search_bar_component_1 = require("./header/search-bar/search-bar.component");
 var header_component_1 = require("./header/header.component");
 var profile_component_1 = require("./profile/profile.component");
@@ -23,7 +24,9 @@ var user_service_1 = require("./shared/user.service");
 var post_service_1 = require("./shared/post.service");
 var new_post_component_1 = require("./profile/new-post/new-post.component");
 var post_component_1 = require("./profile/post/post.component");
-var oauth_http_service_1 = require("./shared/oauth-http.service");
+var auth_http_service_1 = require("./shared/auth-http.service");
+var router_1 = require("@angular/router");
+var user_pic_component_1 = require("./shared/user-pic/user-pic.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -40,17 +43,19 @@ AppModule = __decorate([
         ],
         declarations: [
             app_component_1.AppComponent,
+            login_component_1.LoginComponent,
             header_component_1.HeaderComponent,
             search_bar_component_1.SearchBarComponent,
             profile_component_1.ProfileComponent,
             new_post_component_1.NewPostComponent,
-            post_component_1.PostComponent
+            post_component_1.PostComponent,
+            user_pic_component_1.UserPicComponent
         ],
         providers: [
             /*provideAuth({
                 tokenGetter: () => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ'
             }),*/
-            { provide: http_1.Http, useClass: oauth_http_service_1.OAuthHttp, deps: [http_1.XHRBackend, http_1.RequestOptions] },
+            { provide: http_1.Http, useClass: auth_http_service_1.AuthHttp, deps: [http_1.XHRBackend, http_1.RequestOptions, router_1.Router] },
             user_service_1.UserService,
             post_service_1.PostService
         ],

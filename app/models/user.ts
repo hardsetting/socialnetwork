@@ -1,3 +1,4 @@
+import {Upload} from "./upload";
 import {Post} from "./post";
 
 export class User {
@@ -13,5 +14,8 @@ export class User {
     year: number;
     high_school: number;
 
-    posts: Post[]
+    profile_picture_id: number;
+
+    profile_picture?: Upload;
+    posts?: Post[]
 }

@@ -17,8 +17,8 @@ export class PostService {
             .map((r: Response) => r.json() as Post[]);
     }
 
-    create(userId: number, content: string): Observable<Post> {
-        let post = new Post(userId, content);
+    create(content: string): Observable<Post> {
+        let post = new Post(content);
         return this.http
             .post(`api/posts`, post)
             .map((r: Response) => r.json() as Post);

@@ -1,10 +1,11 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {Subject} from "rxjs/Subject";
 import {Observable} from "rxjs/Observable";
 
 import {User} from "../../models/user";
 import {UserSearchService} from "../../shared/user-search.service";
+import {Router} from "@angular/router";
 
 @Component({
     moduleId: module.id,
@@ -13,12 +14,15 @@ import {UserSearchService} from "../../shared/user-search.service";
     styleUrls: ['search-bar.component.css'],
     providers: [UserSearchService]
 })
-export class SearchBarComponent {
+export class SearchBarComponent implements OnInit {
     users: Observable<User[]>;
+    searchTerm: string;
+
     private searchTerms = new Subject<string>();
 
     constructor(
-        private userSearchService: UserSearchService
+        private userSearchService: UserSearchService,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -32,7 +36,12 @@ export class SearchBarComponent {
             });
     }
 
-    search(term: string): void {
-        this.searchTerms.next(term);
+    search(): void {
+        this.searchTerms.next(this.searchTerm);
+    }
+
+    gotoUser(user: User): void {
+        this.searchTerm = '';
+        this.router.navigate(['/profile', user.id]);
     }
 }

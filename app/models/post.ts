@@ -1,3 +1,4 @@
+import {User} from "./user";
 export class Post {
     id: number;
     creator_user_id: number;
@@ -5,8 +6,9 @@ export class Post {
     created_at: string;
     updated_at: string;
 
-    constructor(creatorUserId: number, content: string) {
-        this.creator_user_id = creatorUserId;
+    creator_user?: User;
+
+    constructor(content: string) {
         this.content = content;
     }
 }

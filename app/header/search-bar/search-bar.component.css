@@ -6,7 +6,29 @@ input {
   background-color: #4a4c63;
   color: #686c87; }
 
-::-webkit-input-placeholder, :-ms-input-placeholder {
-  color: #686c87; }
+.search-results {
+  position: absolute;
+  width: 100%;
+  z-index: 5; }
+  .search-results li {
+    width: 100%;
+    height: 61px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #878897;
+    background-color: white;
+    border: 1px solid #878897;
+    border-top: none;
+    cursor: pointer; }
+    .search-results li sn-user-pic {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      margin-right: 15px; }
+    .search-results li:hover {
+      background-color: #cbd9e5;
+      color: #3b5c76; }
 
 /*# sourceMappingURL=search-bar.component.css.map */

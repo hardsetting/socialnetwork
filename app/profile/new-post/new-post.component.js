@@ -20,7 +20,7 @@ var NewPostComponent = (function () {
     NewPostComponent.prototype.create = function () {
         var _this = this;
         this.submitting = true;
-        this.postService.create(this.user.id, this.content)
+        this.postService.create(this.content)
             .subscribe(function (post) {
             _this.onPost.emit(post);
             _this.submitting = false;

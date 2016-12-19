@@ -1,7 +1,6 @@
 "use strict";
 var Post = (function () {
-    function Post(creatorUserId, content) {
-        this.creator_user_id = creatorUserId;
+    function Post(content) {
         this.content = content;
     }
     return Post;

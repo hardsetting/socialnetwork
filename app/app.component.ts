@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {OAuthHttp} from "./shared/oauth-http.service";
+import {AuthHttp} from "./shared/auth-http.service";
 
 @Component({
     moduleId: module.id,

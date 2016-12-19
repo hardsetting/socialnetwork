@@ -5,6 +5,7 @@ require("rxjs/add/observable/throw");
 require("rxjs/add/observable/forkJoin");
 // Observable operators
 require("rxjs/add/operator/catch");
+require("rxjs/add/operator/finally");
 require("rxjs/add/operator/debounceTime");
 require("rxjs/add/operator/distinctUntilChanged");
 require("rxjs/add/operator/do");

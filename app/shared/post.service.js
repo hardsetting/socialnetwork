@@ -20,8 +20,8 @@ var PostService = (function () {
             .get("api/users/" + userId + "/posts")
             .map(function (r) { return r.json(); });
     };
-    PostService.prototype.create = function (userId, content) {
-        var post = new post_1.Post(userId, content);
+    PostService.prototype.create = function (content) {
+        var post = new post_1.Post(content);
         return this.http
             .post("api/posts", post)
             .map(function (r) { return r.json(); });

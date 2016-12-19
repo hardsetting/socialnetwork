@@ -1,3 +1,11 @@
+@import ../../../variables
+
+$result-height: 60px
+$user-pic-size: 40px
+
+$result-vertical-padding: ($result-height - $user-pic-size) / 2
+$result-horizontal-padding: 20px
+
 input
   width: 100%
   height: 100%
@@ -7,5 +15,32 @@ input
   background-color: #4a4c63
   color: #686c87
 
-::-webkit-input-placeholder, :-ms-input-placeholder
-  color: #686c87
+.search-results
+  position: absolute
+  width: 100%
+  z-index: 5
+
+  li
+    width: 100%
+    height: $result-height + 1px // account for border
+
+    padding: $result-vertical-padding $result-horizontal-padding
+    display: flex
+    flex-direction: row
+    align-items: center
+
+    color: $bold-color
+    background-color: white
+    border: 1px solid $bold-color
+    border-top: none
+    cursor: pointer
+
+    sn-user-pic
+      display: inline-block
+      width: $user-pic-size
+      height: $user-pic-size
+      margin-right: 15px
+
+    &:hover
+      background-color: darken($page-background-color, 10)
+      color: darken($page-background-color, 60)

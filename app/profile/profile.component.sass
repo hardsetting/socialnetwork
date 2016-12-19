@@ -33,7 +33,19 @@ $info-width: 300px
       display: flex
       flex-direction: column
       justify-content: center
-      .face
+
+      sn-user-pic
+        position: absolute
+        width: $cover-face-size
+        height: $cover-face-size
+        top: $cover-face-offset
+        left: calc(50% - #{$cover-face-size / 2})
+
+        background-color: white
+        padding: $cover-face-border
+        border-radius: 50%
+
+      //.face
         position: absolute
         width: $cover-face-size
         height: $cover-face-size

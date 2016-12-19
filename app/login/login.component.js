@@ -9,25 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var profile_component_1 = require("./profile/profile.component");
-var login_component_1 = require("./login/login.component");
-var routes = [
-    //{ path: '', redirectTo: '/profile/:', pathMatch: 'full' },
-    { path: 'login', component: login_component_1.LoginComponent },
-    { path: 'profile/:id', component: profile_component_1.ProfileComponent }
-];
-var AppRoutingModule = (function () {
-    function AppRoutingModule() {
+var user_service_1 = require("../shared/user.service");
+var post_service_1 = require("../shared/post.service");
+var LoginComponent = (function () {
+    function LoginComponent() {
     }
-    return AppRoutingModule;
+    LoginComponent.prototype.ngOnInit = function () {
+    };
+    return LoginComponent;
 }());
-AppRoutingModule = __decorate([
-    core_1.NgModule({
-        imports: [router_1.RouterModule.forRoot(routes)],
-        exports: [router_1.RouterModule]
+LoginComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'sn-profile',
+        templateUrl: 'login.component.html',
+        styleUrls: ['login.component.css'],
+        providers: [
+            user_service_1.UserService,
+            post_service_1.PostService
+        ]
     }),
     __metadata("design:paramtypes", [])
-], AppRoutingModule);
-exports.AppRoutingModule = AppRoutingModule;
-//# sourceMappingURL=app-routing.module.js.map
+], LoginComponent);
+exports.LoginComponent = LoginComponent;
+//# sourceMappingURL=login.component.js.map
