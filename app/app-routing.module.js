@@ -15,7 +15,8 @@ var login_component_1 = require("./login/login.component");
 var routes = [
     //{ path: '', redirectTo: '/profile/:', pathMatch: 'full' },
     { path: 'login', component: login_component_1.LoginComponent },
-    { path: 'profile/:id', component: profile_component_1.ProfileComponent }
+    //{ path: 'profile/:id', component: ProfileComponent },
+    { path: 'profile/:username', component: profile_component_1.ProfileComponent }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

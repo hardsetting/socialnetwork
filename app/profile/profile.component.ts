@@ -33,8 +33,8 @@ export class ProfileComponent implements OnInit {
 
         this.route.params.switchMap((params: Params) => {
             return Observable.forkJoin([
-                this.userService.getUser(+params['id']),
-                this.postService.getUserPosts(+params['id'])
+                this.userService.getUser(params['username']),
+                this.postService.getUserPosts(params['username'])
             ]);
         }).subscribe(results => {
             this.user = results[0];

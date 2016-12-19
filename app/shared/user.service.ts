@@ -10,7 +10,7 @@ export class UserService {
 
     constructor(private http: Http) {}
 
-    getUser(id: number): Observable<User> {
+    getUser(id: number|string): Observable<User> {
         return this.http
             .get(`api/users/${id}`)
             .map((r: Response) => r.json() as User);

@@ -42,6 +42,6 @@ export class SearchBarComponent implements OnInit {
 
     gotoUser(user: User): void {
         this.searchTerm = '';
-        this.router.navigate(['/profile', user.id]);
+        this.router.navigate(['/profile', user.username]);
     }
 }

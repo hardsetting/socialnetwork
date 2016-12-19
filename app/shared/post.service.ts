@@ -11,7 +11,7 @@ export class PostService {
 
     constructor(private http: Http) {}
 
-    getUserPosts(userId: number): Observable<Post[]> {
+    getUserPosts(userId: number|string): Observable<Post[]> {
         return this.http
             .get(`api/users/${userId}/posts`)
             .map((r: Response) => r.json() as Post[]);

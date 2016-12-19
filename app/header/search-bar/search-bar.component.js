@@ -35,7 +35,7 @@ var SearchBarComponent = (function () {
     };
     SearchBarComponent.prototype.gotoUser = function (user) {
         this.searchTerm = '';
-        this.router.navigate(['/profile', user.id]);
+        this.router.navigate(['/profile', user.username]);
     };
     return SearchBarComponent;
 }());

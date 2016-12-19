@@ -23,8 +23,8 @@ var ProfileComponent = (function () {
         var _this = this;
         this.route.params.switchMap(function (params) {
             return Observable_1.Observable.forkJoin([
-                _this.userService.getUser(+params['id']),
-                _this.postService.getUserPosts(+params['id'])
+                _this.userService.getUser(params['username']),
+                _this.postService.getUserPosts(params['username'])
             ]);
         }).subscribe(function (results) {
             _this.user = results[0];
