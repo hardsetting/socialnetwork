@@ -2,12 +2,17 @@ import {Injectable} from '@angular/core';
 import {Http, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {Router} from "@angular/router";
-import {Auth} from "../models/auth";
+import {AuthService} from "./auth.service";
 
 @Injectable()
 export class AuthHttp extends Http {
 
-    constructor (backend: XHRBackend, options: RequestOptions, private router: Router) {
+    constructor (
+        backend: XHRBackend,
+        options: RequestOptions,
+        private router: Router,
+        private authService: AuthService
+    ) {
         super(backend, options);
     }
 
@@ -36,7 +41,7 @@ export class AuthHttp extends Http {
             }
 
             // Redirect to login immediately if refresh token not available
-            if (Auth.refreshToken == null) {
+            if (this.authService.refreshToken == null) {
                 return this.redirectToLogin(err);
             }
 
@@ -58,8 +63,8 @@ export class AuthHttp extends Http {
             request.headers = new Headers();
         }
 
-        if (Auth.token != null) {
-            request.headers.set('Authorization', 'Bearer ' + Auth.token);
+        if (this.authService.token != null) {
+            request.headers.set('Authorization', 'Bearer ' + this.authService.token);
         }
 
         return super.request(request);
@@ -68,14 +73,14 @@ export class AuthHttp extends Http {
     private requestRefresh(): void {
         let options = new RequestOptions({
             method: 'post',
-            body: {refresh_token: Auth.refreshToken}
+            body: {refresh_token: this.authService.refreshToken}
         });
 
         // Request a token refresh and update auth data if successful,
         // redirect to login if refresh token expired or blacklisted
         this.authRequest = super
             .request('/api/auth/refresh', options)
-            .do((response: Response) => Auth.data = response.json())
+            .do((response: Response) => this.authService.data = response.json())
             .catch(err => this.redirectToLogin(err))
             .finally(() => this.authRequest = null);
     }

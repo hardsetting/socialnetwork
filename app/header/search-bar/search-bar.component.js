@@ -17,6 +17,7 @@ var SearchBarComponent = (function () {
     function SearchBarComponent(userSearchService, router) {
         this.userSearchService = userSearchService;
         this.router = router;
+        this.dropdownOpen = false;
         this.searchTerms = new Subject_1.Subject();
     }
     SearchBarComponent.prototype.ngOnInit = function () {
@@ -33,9 +34,16 @@ var SearchBarComponent = (function () {
     SearchBarComponent.prototype.search = function () {
         this.searchTerms.next(this.searchTerm);
     };
+    SearchBarComponent.prototype.open = function () {
+        this.dropdownOpen = true;
+    };
+    SearchBarComponent.prototype.close = function () {
+        this.dropdownOpen = false;
+    };
     SearchBarComponent.prototype.gotoUser = function (user) {
         this.searchTerm = '';
         this.router.navigate(['/profile', user.username]);
+        this.close();
     };
     return SearchBarComponent;
 }());

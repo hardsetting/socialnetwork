@@ -17,12 +17,13 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
 var router_1 = require("@angular/router");
-var auth_1 = require("../models/auth");
+var auth_service_1 = require("./auth.service");
 var AuthHttp = (function (_super) {
     __extends(AuthHttp, _super);
-    function AuthHttp(backend, options, router) {
+    function AuthHttp(backend, options, router, authService) {
         var _this = _super.call(this, backend, options) || this;
         _this.router = router;
+        _this.authService = authService;
         _this.authRequest = null;
         return _this;
     }
@@ -46,7 +47,7 @@ var AuthHttp = (function (_super) {
                 return Observable_1.Observable.throw(err);
             }
             // Redirect to login immediately if refresh token not available
-            if (auth_1.Auth.refreshToken == null) {
+            if (_this.authService.refreshToken == null) {
                 return _this.redirectToLogin(err);
             }
             // Request a token refresh if needed.
@@ -63,8 +64,8 @@ var AuthHttp = (function (_super) {
         if (request.headers == null) {
             request.headers = new http_1.Headers();
         }
-        if (auth_1.Auth.token != null) {
-            request.headers.set('Authorization', 'Bearer ' + auth_1.Auth.token);
+        if (this.authService.token != null) {
+            request.headers.set('Authorization', 'Bearer ' + this.authService.token);
         }
         return _super.prototype.request.call(this, request);
     };
@@ -72,12 +73,12 @@ var AuthHttp = (function (_super) {
         var _this = this;
         var options = new http_1.RequestOptions({
             method: 'post',
-            body: { refresh_token: auth_1.Auth.refreshToken }
+            body: { refresh_token: this.authService.refreshToken }
         });
         // Request a token refresh and update auth data if successful,
         // redirect to login if refresh token expired or blacklisted
         this.authRequest = _super.prototype.request.call(this, '/api/auth/refresh', options)
-            .do(function (response) { return auth_1.Auth.data = response.json(); })
+            .do(function (response) { return _this.authService.data = response.json(); })
             .catch(function (err) { return _this.redirectToLogin(err); })
             .finally(function () { return _this.authRequest = null; });
     };
@@ -90,7 +91,10 @@ var AuthHttp = (function (_super) {
 }(http_1.Http));
 AuthHttp = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.XHRBackend, http_1.RequestOptions, router_1.Router])
+    __metadata("design:paramtypes", [http_1.XHRBackend,
+        http_1.RequestOptions,
+        router_1.Router,
+        auth_service_1.AuthService])
 ], AuthHttp);
 exports.AuthHttp = AuthHttp;
 //# sourceMappingURL=auth-http.service.js.map

@@ -20,10 +20,10 @@ import {NewPostComponent} from "./profile/new-post/new-post.component";
 import {PostComponent} from "./profile/post/post.component";
 import {AuthHttp} from "./shared/auth-http.service";
 
-import {AUTH_PROVIDERS} from 'angular2-jwt';
-import {provideAuth} from 'angular2-jwt';
 import {Router} from "@angular/router";
 import {UserPicComponent} from "./shared/user-pic/user-pic.component";
+import {ClickOutsideDirective} from "./shared/click-outside.directive";
+import {AuthService} from "./shared/auth.service";
 
 @NgModule({
     imports: [
@@ -42,13 +42,12 @@ import {UserPicComponent} from "./shared/user-pic/user-pic.component";
         NewPostComponent,
         PostComponent,
 
-        UserPicComponent
+        UserPicComponent,
+        ClickOutsideDirective
     ],
     providers: [
-        /*provideAuth({
-            tokenGetter: () => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ'
-        }),*/
-        { provide: Http, useClass: AuthHttp, deps: [XHRBackend, RequestOptions, Router] },
+        AuthService,
+        { provide: Http, useClass: AuthHttp, deps: [XHRBackend, RequestOptions, Router, AuthService] },
         UserService,
         PostService
     ],

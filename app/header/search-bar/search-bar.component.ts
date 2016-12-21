@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, HostListener} from '@angular/core';
 
 import {Subject} from "rxjs/Subject";
 import {Observable} from "rxjs/Observable";
@@ -16,7 +16,9 @@ import {Router} from "@angular/router";
 })
 export class SearchBarComponent implements OnInit {
     users: Observable<User[]>;
+
     searchTerm: string;
+    dropdownOpen: boolean = false;
 
     private searchTerms = new Subject<string>();
 
@@ -40,8 +42,23 @@ export class SearchBarComponent implements OnInit {
         this.searchTerms.next(this.searchTerm);
     }
 
+    open(): void {
+        this.dropdownOpen = true;
+    }
+
+    close(): void {
+        this.dropdownOpen = false;
+    }
+
     gotoUser(user: User): void {
         this.searchTerm = '';
         this.router.navigate(['/profile', user.username]);
+
+        this.close();
     }
+
+    /*@HostListener('clickOutside', ['$event.target'])
+    public onClickOutside(test) {
+        console.log('clickedoutside', test);
+    }*/
 }

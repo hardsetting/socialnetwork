@@ -1,8 +1,10 @@
-<input [(ngModel)]="searchTerm" (ngModelChange)="search()" placeholder="Search for people.." />
+<div (clickOutside)="close()">
+    <input [(ngModel)]="searchTerm" (ngModelChange)="search()" (focus)="open()" placeholder="Search for people.." />
 
-<ul class="search-results">
-    <li *ngFor="let user of (users | async)" (click)="gotoUser(user)">
-        <sn-user-pic [user]="user"></sn-user-pic>
-        <span>{{user.name}} {{user.surname}}</span>
-    </li>
-</ul>
+    <ul class="search-results" [hidden]="!dropdownOpen">
+        <li *ngFor="let user of (users | async)" (click)="gotoUser(user)">
+            <sn-user-pic [user]="user"></sn-user-pic>
+            <span>{{user.name}} {{user.surname}}</span>
+        </li>
+    </ul>
+</div>
