@@ -25,7 +25,6 @@ var post_service_1 = require("./shared/post.service");
 var new_post_component_1 = require("./profile/new-post/new-post.component");
 var post_component_1 = require("./profile/post/post.component");
 var auth_http_service_1 = require("./shared/auth-http.service");
-var router_1 = require("@angular/router");
 var user_pic_component_1 = require("./shared/user-pic/user-pic.component");
 var click_outside_directive_1 = require("./shared/click-outside.directive");
 var auth_service_1 = require("./shared/auth.service");
@@ -56,7 +55,7 @@ AppModule = __decorate([
         ],
         providers: [
             auth_service_1.AuthService,
-            { provide: http_1.Http, useClass: auth_http_service_1.AuthHttp, deps: [http_1.XHRBackend, http_1.RequestOptions, router_1.Router, auth_service_1.AuthService] },
+            auth_http_service_1.AuthHttp,
             user_service_1.UserService,
             post_service_1.PostService
         ],

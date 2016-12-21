@@ -13,14 +13,20 @@ var router_1 = require("@angular/router");
 var user_service_1 = require("../shared/user.service");
 var post_service_1 = require("../shared/post.service");
 var Observable_1 = require("rxjs/Observable");
+var auth_service_1 = require("../shared/auth.service");
 var ProfileComponent = (function () {
-    function ProfileComponent(route, userService, postService) {
+    function ProfileComponent(route, authService, userService, postService) {
         this.route = route;
+        this.authService = authService;
         this.userService = userService;
         this.postService = postService;
     }
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
+        var x;
+        this.currentUser = this.authService.currentUser;
+        /*this.authService.currentUser
+            .subscribe((currentUser: User) => this.currentUser = currentUser);*/
         this.route.params.switchMap(function (params) {
             return Observable_1.Observable.forkJoin([
                 _this.userService.getUser(params['username']),
@@ -54,6 +60,7 @@ ProfileComponent = __decorate([
         ]
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute,
+        auth_service_1.AuthService,
         user_service_1.UserService,
         post_service_1.PostService])
 ], ProfileComponent);

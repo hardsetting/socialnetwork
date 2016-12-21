@@ -47,7 +47,7 @@ import {AuthService} from "./shared/auth.service";
     ],
     providers: [
         AuthService,
-        { provide: Http, useClass: AuthHttp, deps: [XHRBackend, RequestOptions, Router, AuthService] },
+        AuthHttp,
         UserService,
         PostService
     ],

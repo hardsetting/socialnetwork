@@ -7,6 +7,7 @@ import {Post} from "../models/post";
 
 import {PostService} from "../shared/post.service";
 import {Observable} from "rxjs/Observable";
+import {AuthService} from "../shared/auth.service";
 
 @Component({
     moduleId: module.id,
@@ -20,16 +21,25 @@ import {Observable} from "rxjs/Observable";
 })
 export class ProfileComponent implements OnInit {
 
+    currentUser: Observable<User>;
+
     user: User;
     posts: Post[];
 
     constructor(
         private route: ActivatedRoute,
+        private authService: AuthService,
         private userService: UserService,
         private postService: PostService
     ) {}
 
     ngOnInit(): void {
+
+        let x: Observable<User>;
+
+        this.currentUser = this.authService.currentUser;
+        /*this.authService.currentUser
+            .subscribe((currentUser: User) => this.currentUser = currentUser);*/
 
         this.route.params.switchMap((params: Params) => {
             return Observable.forkJoin([

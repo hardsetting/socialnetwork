@@ -14,7 +14,7 @@ export class AuthService {
     private static readonly KEY_REFRESH_TOKEN = 'auth_refresh_token';
     private static readonly KEY_EXPIRES_AT = 'auth_expires_at';
 
-    private currentUser: Subject<User> = new BehaviorSubject<User>(null);
+    currentUser: Subject<User> = new BehaviorSubject<User>(null);
 
     constructor(private http: Http) {
         // todo query user data if needed
@@ -32,7 +32,9 @@ export class AuthService {
     }
 
     refresh() {
-
+        return this.http
+            .post('/api/auth/refresh', {refresh_token: this.refreshToken})
+            .do((response: Response) => this.data = response.json());
     }
 
     get token(): string {

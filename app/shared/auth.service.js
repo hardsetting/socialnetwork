@@ -28,6 +28,10 @@ var AuthService = AuthService_1 = (function () {
         this.data = {};
     };
     AuthService.prototype.refresh = function () {
+        var _this = this;
+        return this.http
+            .post('/api/auth/refresh', { refresh_token: this.refreshToken })
+            .do(function (response) { return _this.data = response.json(); });
     };
     Object.defineProperty(AuthService.prototype, "token", {
         get: function () {

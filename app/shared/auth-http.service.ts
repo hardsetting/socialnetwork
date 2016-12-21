@@ -1,22 +1,90 @@
 import {Injectable} from '@angular/core';
-import {Http, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response, Headers} from '@angular/http';
+import {
+    Http, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response, Headers,
+    RequestMethod
+} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {Router} from "@angular/router";
 import {AuthService} from "./auth.service";
 
 @Injectable()
-export class AuthHttp extends Http {
+export class AuthHttp {
 
     constructor (
-        backend: XHRBackend,
-        options: RequestOptions,
+        private http: Http,
         private router: Router,
         private authService: AuthService
-    ) {
-        super(backend, options);
-    }
+    ) { }
 
     private authRequest: Observable<Response> = null;
+
+    // Case 1
+
+    get(url: string, options?: RequestOptions): Observable<Response> {
+        return this.http.get(url, this.setAuthHeader(options))
+            .catch(err => {
+                // Retry after the token has been refreshed
+                return this.manageAuthError(err)
+                    .flatMap(() => this.http.get(url, this.setAuthHeader(options)));
+
+                // Notice that no error is caught here, the request had is chance but got a 401.
+                // The failed auth request will take care of redirecting to the login page and the
+                // error is propagated to the caller
+            });
+    }
+
+    post(url: string, body: any, options?: RequestOptions): Observable<Response> {
+        return this.http.post(url, body, this.setAuthHeader(options))
+            .catch(err => {
+                // Retry after the token has been refreshed
+                return this.manageAuthError(err)
+                    .flatMap(() => this.http.post(url, body, this.setAuthHeader(options)));
+
+                // Notice that no error is caught here, the request had is chance but got a 401.
+                // The failed auth request will take care of redirecting to the login page and the
+                // error is propagated to the caller
+            });
+    }
+
+    // ecc..
+
+    private setAuthHeader(options?: RequestOptions): RequestOptions {
+        if (options == null) {
+            options = new RequestOptions();
+        }
+
+        if (options.headers == null) {
+            options.headers = new Headers();
+        }
+
+        if (this.authService.token != null) {
+            options.headers.set('Authorization', 'Bearer ' + this.authService.token);
+        }
+
+        return options;
+    }
+
+    private manageAuthError(err): Observable<Response> {
+        // Rethrow if not authentication error
+        if (err.status != 401) {
+            return Observable.throw(err);
+        }
+
+        // Redirect to login immediately if refresh token not available
+        if (this.authService.refreshToken == null) {
+            return this.redirectToLogin(err);
+        }
+
+        // Request a token refresh if needed.
+        if (this.authRequest == null) {
+            this.requestRefresh();
+        }
+
+        // Retry after the token has been refreshed
+        return this.authRequest;
+    }
+
+    // Case 2
 
     request(url: string|Request, options?: RequestOptionsArgs): Observable<Response> {
         let request: Request;
@@ -34,28 +102,19 @@ export class AuthHttp extends Http {
         }
 
         return this.authenticatedRequest(request).catch(err => {
-
-            // Rethrow if not authentication error
-            if (err.status != 401) {
-                return Observable.throw(err);
-            }
-
-            // Redirect to login immediately if refresh token not available
-            if (this.authService.refreshToken == null) {
-                return this.redirectToLogin(err);
-            }
-
-            // Request a token refresh if needed.
-            if (this.authRequest == null) {
-                this.requestRefresh();
-            }
-
             // Retry after the token has been refreshed
-            return this.authRequest.flatMap(() => this.authenticatedRequest(request));
+            return this.manageAuthError(err)
+                .flatMap(() => this.authenticatedRequest(request));
 
             // Notice that no error is caught here, the request had is chance but got a 401.
-            // The failed auth request will take care of redirecting to the login page.
+            // The failed auth request will take care of redirecting to the login page and the
+            // error is propagated to the caller
         });
+    }
+
+    get2(url: string, options?: RequestOptions): Observable<Response> {
+        let request = new Request(new RequestOptions({method: RequestMethod.Get, url: url}).merge(options));
+        return this.request(request);
     }
 
     private authenticatedRequest(request: Request): Observable<Response> {
@@ -67,20 +126,12 @@ export class AuthHttp extends Http {
             request.headers.set('Authorization', 'Bearer ' + this.authService.token);
         }
 
-        return super.request(request);
+        return this.http.request(request);
     }
 
     private requestRefresh(): void {
-        let options = new RequestOptions({
-            method: 'post',
-            body: {refresh_token: this.authService.refreshToken}
-        });
-
-        // Request a token refresh and update auth data if successful,
-        // redirect to login if refresh token expired or blacklisted
-        this.authRequest = super
-            .request('/api/auth/refresh', options)
-            .do((response: Response) => this.authService.data = response.json())
+        // Request a token refresh, redirect to login if refresh token expired or blacklisted
+        this.authRequest = this.authService.refresh()
             .catch(err => this.redirectToLogin(err))
             .finally(() => this.authRequest = null);
     }
