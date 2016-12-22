@@ -6,8 +6,7 @@ import {PostService} from "../../shared/post.service";
     moduleId: module.id,
     selector: 'sn-post',
     templateUrl: 'post.component.html',
-    styleUrls: ['post.component.css'],
-    providers: [PostService]
+    styleUrls: ['post.component.css']
 })
 export class PostComponent {
     @Input() post: Post;

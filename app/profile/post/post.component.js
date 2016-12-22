@@ -45,8 +45,7 @@ PostComponent = __decorate([
         moduleId: module.id,
         selector: 'sn-post',
         templateUrl: 'post.component.html',
-        styleUrls: ['post.component.css'],
-        providers: [post_service_1.PostService]
+        styleUrls: ['post.component.css']
     }),
     __metadata("design:paramtypes", [post_service_1.PostService])
 ], PostComponent);

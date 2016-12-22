@@ -9,9 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var auth_service_1 = require("./shared/auth.service");
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(authService) {
+        this.authService = authService;
     }
+    AppComponent.prototype.ngOnInit = function () {
+        this.user = this.authService.user;
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
@@ -21,7 +26,7 @@ AppComponent = __decorate([
         templateUrl: 'app.component.html',
         styleUrls: ['app.component.css']
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [auth_service_1.AuthService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

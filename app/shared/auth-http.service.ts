@@ -20,7 +20,7 @@ export class AuthHttp {
 
     // Case 1
 
-    get(url: string, options?: RequestOptions): Observable<Response> {
+    /*get(url: string, options?: RequestOptions): Observable<Response> {
         return this.http.get(url, this.setAuthHeader(options))
             .catch(err => {
                 // Retry after the token has been refreshed
@@ -62,27 +62,7 @@ export class AuthHttp {
         }
 
         return options;
-    }
-
-    private manageAuthError(err): Observable<Response> {
-        // Rethrow if not authentication error
-        if (err.status != 401) {
-            return Observable.throw(err);
-        }
-
-        // Redirect to login immediately if refresh token not available
-        if (this.authService.refreshToken == null) {
-            return this.redirectToLogin(err);
-        }
-
-        // Request a token refresh if needed.
-        if (this.authRequest == null) {
-            this.requestRefresh();
-        }
-
-        // Retry after the token has been refreshed
-        return this.authRequest;
-    }
+    }*/
 
     // Case 2
 
@@ -112,8 +92,18 @@ export class AuthHttp {
         });
     }
 
-    get2(url: string, options?: RequestOptions): Observable<Response> {
+    get(url: string, options?: RequestOptions): Observable<Response> {
         let request = new Request(new RequestOptions({method: RequestMethod.Get, url: url}).merge(options));
+        return this.request(request);
+    }
+
+    post(url: string, body: any, options?: RequestOptions): Observable<Response> {
+        let request = new Request(new RequestOptions({method: RequestMethod.Post, url: url, body: body}).merge(options));
+        return this.request(request);
+    }
+
+    delete(url: string, options?: RequestOptions): Observable<Response> {
+        let request = new Request(new RequestOptions({method: RequestMethod.Delete, url: url}).merge(options));
         return this.request(request);
     }
 
@@ -129,6 +119,26 @@ export class AuthHttp {
         return this.http.request(request);
     }
 
+    private manageAuthError(err): Observable<Response> {
+        // Rethrow if not authentication error
+        if (err.status != 401) {
+            return Observable.throw(err);
+        }
+
+        // Redirect to login immediately if refresh token not available
+        if (this.authService.refreshToken == null) {
+            return this.redirectToLogin(err);
+        }
+
+        // Request a token refresh if needed.
+        if (this.authRequest == null) {
+            this.requestRefresh();
+        }
+
+        // Retry after the token has been refreshed
+        return this.authRequest;
+    }
+
     private requestRefresh(): void {
         // Request a token refresh, redirect to login if refresh token expired or blacklisted
         this.authRequest = this.authService.refresh()
@@ -138,6 +148,7 @@ export class AuthHttp {
 
     private redirectToLogin(err?: any): Observable<Response> {
         // TODO: maybe do nothing if already in login page?
+        this.authService.logout();
         this.router.navigate(['/login']);
         return Observable.throw(err);
     }

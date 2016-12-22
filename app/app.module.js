@@ -54,8 +54,8 @@ AppModule = __decorate([
             click_outside_directive_1.ClickOutsideDirective
         ],
         providers: [
-            auth_service_1.AuthService,
             auth_http_service_1.AuthHttp,
+            auth_service_1.AuthService,
             user_service_1.UserService,
             post_service_1.PostService
         ],

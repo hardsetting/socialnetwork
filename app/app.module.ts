@@ -20,7 +20,6 @@ import {NewPostComponent} from "./profile/new-post/new-post.component";
 import {PostComponent} from "./profile/post/post.component";
 import {AuthHttp} from "./shared/auth-http.service";
 
-import {Router} from "@angular/router";
 import {UserPicComponent} from "./shared/user-pic/user-pic.component";
 import {ClickOutsideDirective} from "./shared/click-outside.directive";
 import {AuthService} from "./shared/auth.service";
@@ -46,8 +45,8 @@ import {AuthService} from "./shared/auth.service";
         ClickOutsideDirective
     ],
     providers: [
-        AuthService,
         AuthHttp,
+        AuthService,
         UserService,
         PostService
     ],

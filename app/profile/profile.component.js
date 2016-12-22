@@ -22,11 +22,10 @@ var ProfileComponent = (function () {
         this.postService = postService;
     }
     ProfileComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        var x;
-        this.currentUser = this.authService.currentUser;
+        //this.currentUser = this.authService.currentUser;
         /*this.authService.currentUser
             .subscribe((currentUser: User) => this.currentUser = currentUser);*/
+        var _this = this;
         this.route.params.switchMap(function (params) {
             return Observable_1.Observable.forkJoin([
                 _this.userService.getUser(params['username']),
@@ -53,11 +52,7 @@ ProfileComponent = __decorate([
         moduleId: module.id,
         selector: 'sn-profile',
         templateUrl: 'profile.component.html',
-        styleUrls: ['profile.component.css'],
-        providers: [
-            user_service_1.UserService,
-            post_service_1.PostService
-        ]
+        styleUrls: ['profile.component.css']
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute,
         auth_service_1.AuthService,

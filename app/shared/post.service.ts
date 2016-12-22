@@ -4,12 +4,12 @@ import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import {Observable} from 'rxjs/Observable';
 
 import {Post} from "../models/post";
-import {AuthHttp} from "angular2-jwt";
+import {AuthHttp} from "./auth-http.service";
 
 @Injectable()
 export class PostService {
 
-    constructor(private http: Http) {}
+    constructor(private http: AuthHttp) {}
 
     getUserPosts(userId: number|string): Observable<Post[]> {
         return this.http

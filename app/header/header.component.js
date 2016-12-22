@@ -9,9 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var auth_service_1 = require("../shared/auth.service");
 var HeaderComponent = (function () {
-    function HeaderComponent() {
+    function HeaderComponent(authService) {
+        this.authService = authService;
     }
+    HeaderComponent.prototype.ngOnInit = function () {
+        this.currentUser = this.authService.user;
+    };
     return HeaderComponent;
 }());
 HeaderComponent = __decorate([
@@ -21,7 +26,7 @@ HeaderComponent = __decorate([
         templateUrl: 'header.component.html',
         styleUrls: ['header.component.css']
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [auth_service_1.AuthService])
 ], HeaderComponent);
 exports.HeaderComponent = HeaderComponent;
 //# sourceMappingURL=header.component.js.map

@@ -46,8 +46,7 @@ NewPostComponent = __decorate([
         moduleId: module.id,
         selector: 'sn-new-post',
         templateUrl: 'new-post.component.html',
-        styleUrls: ['new-post.component.css'],
-        providers: [post_service_1.PostService]
+        styleUrls: ['new-post.component.css']
     }),
     __metadata("design:paramtypes", [post_service_1.PostService])
 ], NewPostComponent);

@@ -9,8 +9,7 @@ import {Post} from "../../models/post";
     moduleId: module.id,
     selector: 'sn-new-post',
     templateUrl: 'new-post.component.html',
-    styleUrls: ['new-post.component.css'],
-    providers: [PostService]
+    styleUrls: ['new-post.component.css']
 })
 export class NewPostComponent {
 

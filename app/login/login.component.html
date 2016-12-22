@@ -1,3 +1,21 @@
 <div>
-    hey loggati vez
+    <form #loginForm="ngForm" (ngSubmit)="submit()">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username"
+                   [(ngModel)]="data.username" name="username" #username="ngModel"
+                   required>
+            <div [hidden]="username.valid || username.pristine">Username is required</div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password"
+                   [(ngModel)]="data.password" name="password" #password="ngModel"
+                   required>
+            <div [hidden]="password.valid || password.pristine">Password is required.</div>
+        </div>
+
+        <button type="submit" [disabled]="!loginForm.form.valid">Login</button>
+    </form>
 </div>

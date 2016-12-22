@@ -9,12 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var user_service_1 = require("../shared/user.service");
-var post_service_1 = require("../shared/post.service");
+var router_1 = require("@angular/router");
+var auth_service_1 = require("../shared/auth.service");
 var LoginComponent = (function () {
-    function LoginComponent() {
+    function LoginComponent(authService, router) {
+        this.authService = authService;
+        this.router = router;
+        this.data = { username: null, password: null };
+        this.submitting = false;
     }
     LoginComponent.prototype.ngOnInit = function () {
+    };
+    LoginComponent.prototype.submit = function () {
+        var _this = this;
+        console.log('lol');
+        this.submitting = true;
+        this.authService.login(this.data.username, this.data.password)
+            .subscribe(function () {
+            _this.router.navigate(['/profile', _this.authService.userId]);
+        }, function (err) {
+            if (err.status == 401) {
+                alert('Authentication error.');
+            }
+            // TODO: manage server error
+        }, function () {
+            _this.submitting = false;
+        });
     };
     return LoginComponent;
 }());
@@ -23,13 +43,10 @@ LoginComponent = __decorate([
         moduleId: module.id,
         selector: 'sn-profile',
         templateUrl: 'login.component.html',
-        styleUrls: ['login.component.css'],
-        providers: [
-            user_service_1.UserService,
-            post_service_1.PostService
-        ]
+        styleUrls: ['login.component.css']
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [auth_service_1.AuthService,
+        router_1.Router])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map

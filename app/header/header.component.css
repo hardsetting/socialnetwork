@@ -23,10 +23,10 @@
       margin: 0 5px; }
   .header .user {
     padding: 10px 10px; }
-    .header .user img {
+    .header .user sn-user-pic {
+      display: inline-block;
       height: 30px;
       width: 30px;
-      border-radius: 50%;
       vertical-align: middle; }
     .header .user span.name {
       margin-left: 5px;

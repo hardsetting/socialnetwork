@@ -21,59 +21,49 @@ var AuthHttp = (function () {
         this.authRequest = null;
     }
     // Case 1
-    AuthHttp.prototype.get = function (url, options) {
-        var _this = this;
+    /*get(url: string, options?: RequestOptions): Observable<Response> {
         return this.http.get(url, this.setAuthHeader(options))
-            .catch(function (err) {
-            // Retry after the token has been refreshed
-            return _this.manageAuthError(err)
-                .flatMap(function () { return _this.http.get(url, _this.setAuthHeader(options)); });
-            // Notice that no error is caught here, the request had is chance but got a 401.
-            // The failed auth request will take care of redirecting to the login page and the
-            // error is propagated to the caller
-        });
-    };
-    AuthHttp.prototype.post = function (url, body, options) {
-        var _this = this;
+            .catch(err => {
+                // Retry after the token has been refreshed
+                return this.manageAuthError(err)
+                    .flatMap(() => this.http.get(url, this.setAuthHeader(options)));
+
+                // Notice that no error is caught here, the request had is chance but got a 401.
+                // The failed auth request will take care of redirecting to the login page and the
+                // error is propagated to the caller
+            });
+    }
+
+    post(url: string, body: any, options?: RequestOptions): Observable<Response> {
         return this.http.post(url, body, this.setAuthHeader(options))
-            .catch(function (err) {
-            // Retry after the token has been refreshed
-            return _this.manageAuthError(err)
-                .flatMap(function () { return _this.http.post(url, body, _this.setAuthHeader(options)); });
-            // Notice that no error is caught here, the request had is chance but got a 401.
-            // The failed auth request will take care of redirecting to the login page and the
-            // error is propagated to the caller
-        });
-    };
+            .catch(err => {
+                // Retry after the token has been refreshed
+                return this.manageAuthError(err)
+                    .flatMap(() => this.http.post(url, body, this.setAuthHeader(options)));
+
+                // Notice that no error is caught here, the request had is chance but got a 401.
+                // The failed auth request will take care of redirecting to the login page and the
+                // error is propagated to the caller
+            });
+    }
+
     // ecc..
-    AuthHttp.prototype.setAuthHeader = function (options) {
+
+    private setAuthHeader(options?: RequestOptions): RequestOptions {
         if (options == null) {
-            options = new http_1.RequestOptions();
+            options = new RequestOptions();
         }
+
         if (options.headers == null) {
-            options.headers = new http_1.Headers();
+            options.headers = new Headers();
         }
+
         if (this.authService.token != null) {
             options.headers.set('Authorization', 'Bearer ' + this.authService.token);
         }
+
         return options;
-    };
-    AuthHttp.prototype.manageAuthError = function (err) {
-        // Rethrow if not authentication error
-        if (err.status != 401) {
-            return Observable_1.Observable.throw(err);
-        }
-        // Redirect to login immediately if refresh token not available
-        if (this.authService.refreshToken == null) {
-            return this.redirectToLogin(err);
-        }
-        // Request a token refresh if needed.
-        if (this.authRequest == null) {
-            this.requestRefresh();
-        }
-        // Retry after the token has been refreshed
-        return this.authRequest;
-    };
+    }*/
     // Case 2
     AuthHttp.prototype.request = function (url, options) {
         var _this = this;
@@ -98,8 +88,16 @@ var AuthHttp = (function () {
             // error is propagated to the caller
         });
     };
-    AuthHttp.prototype.get2 = function (url, options) {
+    AuthHttp.prototype.get = function (url, options) {
         var request = new http_1.Request(new http_1.RequestOptions({ method: http_1.RequestMethod.Get, url: url }).merge(options));
+        return this.request(request);
+    };
+    AuthHttp.prototype.post = function (url, body, options) {
+        var request = new http_1.Request(new http_1.RequestOptions({ method: http_1.RequestMethod.Post, url: url, body: body }).merge(options));
+        return this.request(request);
+    };
+    AuthHttp.prototype.delete = function (url, options) {
+        var request = new http_1.Request(new http_1.RequestOptions({ method: http_1.RequestMethod.Delete, url: url }).merge(options));
         return this.request(request);
     };
     AuthHttp.prototype.authenticatedRequest = function (request) {
@@ -111,6 +109,22 @@ var AuthHttp = (function () {
         }
         return this.http.request(request);
     };
+    AuthHttp.prototype.manageAuthError = function (err) {
+        // Rethrow if not authentication error
+        if (err.status != 401) {
+            return Observable_1.Observable.throw(err);
+        }
+        // Redirect to login immediately if refresh token not available
+        if (this.authService.refreshToken == null) {
+            return this.redirectToLogin(err);
+        }
+        // Request a token refresh if needed.
+        if (this.authRequest == null) {
+            this.requestRefresh();
+        }
+        // Retry after the token has been refreshed
+        return this.authRequest;
+    };
     AuthHttp.prototype.requestRefresh = function () {
         var _this = this;
         // Request a token refresh, redirect to login if refresh token expired or blacklisted
@@ -120,6 +134,7 @@ var AuthHttp = (function () {
     };
     AuthHttp.prototype.redirectToLogin = function (err) {
         // TODO: maybe do nothing if already in login page?
+        this.authService.logout();
         this.router.navigate(['/login']);
         return Observable_1.Observable.throw(err);
     };

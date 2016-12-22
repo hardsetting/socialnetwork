@@ -13,15 +13,11 @@ import {AuthService} from "../shared/auth.service";
     moduleId: module.id,
     selector: 'sn-profile',
     templateUrl: 'profile.component.html',
-    styleUrls: ['profile.component.css'],
-    providers: [
-        UserService,
-        PostService
-    ]
+    styleUrls: ['profile.component.css']
 })
 export class ProfileComponent implements OnInit {
 
-    currentUser: Observable<User>;
+    //currentUser: Observable<User>;
 
     user: User;
     posts: Post[];
@@ -35,9 +31,7 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit(): void {
 
-        let x: Observable<User>;
-
-        this.currentUser = this.authService.currentUser;
+        //this.currentUser = this.authService.currentUser;
         /*this.authService.currentUser
             .subscribe((currentUser: User) => this.currentUser = currentUser);*/
 

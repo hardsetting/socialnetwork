@@ -15,6 +15,7 @@ var UserService = (function () {
         this.http = http;
     }
     UserService.prototype.getUser = function (id) {
+        // TODO: Cannot use AuthHttp to prevent circular depedency
         return this.http
             .get("api/users/" + id)
             .map(function (r) { return r.json(); });

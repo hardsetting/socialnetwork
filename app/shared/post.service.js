@@ -9,8 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
 var post_1 = require("../models/post");
+var auth_http_service_1 = require("./auth-http.service");
 var PostService = (function () {
     function PostService(http) {
         this.http = http;
@@ -33,7 +33,7 @@ var PostService = (function () {
 }());
 PostService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [auth_http_service_1.AuthHttp])
 ], PostService);
 exports.PostService = PostService;
 //# sourceMappingURL=post.service.js.map
