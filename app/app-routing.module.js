@@ -12,11 +12,20 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var profile_component_1 = require("./profile/profile.component");
 var login_component_1 = require("./login/login.component");
+var site_component_1 = require("./site/site.component");
+var page_not_found_component_1 = require("./page-not-found/page-not-found.component");
+var site_guard_service_1 = require("./site/site-guard.service");
 var routes = [
     //{ path: '', redirectTo: '/profile/:', pathMatch: 'full' },
     { path: 'login', component: login_component_1.LoginComponent },
-    //{ path: 'profile/:id', component: ProfileComponent },
-    { path: 'profile/:username', component: profile_component_1.ProfileComponent }
+    { path: '',
+        component: site_component_1.SiteComponent,
+        canActivate: [site_guard_service_1.SiteGuard],
+        children: [
+            { path: 'profile/:username', component: profile_component_1.ProfileComponent },
+        ]
+    },
+    { path: '**', component: page_not_found_component_1.PageNotFoundComponent }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

@@ -15,7 +15,8 @@ var LoginComponent = (function () {
     function LoginComponent(authService, router) {
         this.authService = authService;
         this.router = router;
-        this.data = { username: null, password: null };
+        this.loginData = { username: null, password: null };
+        this.useLoginForm = true;
         this.submitting = false;
     }
     LoginComponent.prototype.ngOnInit = function () {
@@ -24,7 +25,7 @@ var LoginComponent = (function () {
         var _this = this;
         console.log('lol');
         this.submitting = true;
-        this.authService.login(this.data.username, this.data.password)
+        this.authService.login(this.loginData.username, this.loginData.password)
             .subscribe(function () {
             _this.router.navigate(['/profile', _this.authService.userId]);
         }, function (err) {
@@ -41,7 +42,7 @@ var LoginComponent = (function () {
 LoginComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        selector: 'sn-profile',
+        selector: 'sn-login',
         templateUrl: 'login.component.html',
         styleUrls: ['login.component.css']
     }),

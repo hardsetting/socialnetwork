@@ -12,14 +12,15 @@ import {Response} from "@angular/http";
 
 @Component({
     moduleId: module.id,
-    selector: 'sn-profile',
+    selector: 'sn-login',
     templateUrl: 'login.component.html',
     styleUrls: ['login.component.css']
 })
 export class LoginComponent implements OnInit {
 
-    data = { username: null, password: null };
+    loginData = { username: null, password: null };
 
+    useLoginForm = true;
     submitting = false;
 
     constructor(
@@ -35,7 +36,7 @@ export class LoginComponent implements OnInit {
         console.log('lol');
 
         this.submitting = true;
-        this.authService.login(this.data.username, this.data.password)
+        this.authService.login(this.loginData.username, this.loginData.password)
             .subscribe(() => {
                 this.router.navigate(['/profile', this.authService.userId]);
             }, (err) => {

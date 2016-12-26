@@ -8,6 +8,6 @@
     </div>
     <div class="user">
         <sn-user-pic [user]="currentUser | async"></sn-user-pic>
-        <span class="name">Alex Donovan</span>
+        <span class="name" (click)="logout()">{{(currentUser | async)?.name}} {{(currentUser | async)?.surname}}</span>
     </div>
 </div>

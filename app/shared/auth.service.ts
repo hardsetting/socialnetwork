@@ -34,6 +34,11 @@ export class AuthService {
         }
     }
 
+    isLoggedIn() {
+        let expired = this.expiresAt != null && this.expiresAt < (new Date()).toISOString();
+        return this.token != null && !expired;
+    }
+
     login(username, password): Observable<User> {
         return this.http
             .post('/api/auth', {username: username, password: password})

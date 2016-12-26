@@ -28,6 +28,10 @@ var AuthService = AuthService_1 = (function () {
                 .subscribe(function (user) { return _this.user.next(user); });
         }
     }
+    AuthService.prototype.isLoggedIn = function () {
+        var expired = this.expiresAt != null && this.expiresAt < (new Date()).toISOString();
+        return this.token != null && !expired;
+    };
     AuthService.prototype.login = function (username, password) {
         var _this = this;
         return this.http

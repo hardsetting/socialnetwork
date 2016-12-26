@@ -23,6 +23,9 @@ import {AuthHttp} from "./shared/auth-http.service";
 import {UserPicComponent} from "./shared/user-pic/user-pic.component";
 import {ClickOutsideDirective} from "./shared/click-outside.directive";
 import {AuthService} from "./shared/auth.service";
+import {SiteComponent} from "./site/site.component";
+import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
+import {SiteGuard} from "./site/site-guard.service";
 
 @NgModule({
     imports: [
@@ -34,7 +37,10 @@ import {AuthService} from "./shared/auth.service";
     ],
     declarations: [
         AppComponent,
+        SiteComponent,
         LoginComponent,
+        PageNotFoundComponent,
+
         HeaderComponent,
         SearchBarComponent,
         ProfileComponent,
@@ -48,7 +54,8 @@ import {AuthService} from "./shared/auth.service";
         AuthHttp,
         AuthService,
         UserService,
-        PostService
+        PostService,
+        SiteGuard
     ],
     bootstrap: [AppComponent]
 })

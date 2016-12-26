@@ -28,6 +28,9 @@ var auth_http_service_1 = require("./shared/auth-http.service");
 var user_pic_component_1 = require("./shared/user-pic/user-pic.component");
 var click_outside_directive_1 = require("./shared/click-outside.directive");
 var auth_service_1 = require("./shared/auth.service");
+var site_component_1 = require("./site/site.component");
+var page_not_found_component_1 = require("./page-not-found/page-not-found.component");
+var site_guard_service_1 = require("./site/site-guard.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -44,7 +47,9 @@ AppModule = __decorate([
         ],
         declarations: [
             app_component_1.AppComponent,
+            site_component_1.SiteComponent,
             login_component_1.LoginComponent,
+            page_not_found_component_1.PageNotFoundComponent,
             header_component_1.HeaderComponent,
             search_bar_component_1.SearchBarComponent,
             profile_component_1.ProfileComponent,
@@ -57,7 +62,8 @@ AppModule = __decorate([
             auth_http_service_1.AuthHttp,
             auth_service_1.AuthService,
             user_service_1.UserService,
-            post_service_1.PostService
+            post_service_1.PostService,
+            site_guard_service_1.SiteGuard
         ],
         bootstrap: [app_component_1.AppComponent]
     }),

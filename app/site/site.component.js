@@ -10,30 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var auth_service_1 = require("../shared/auth.service");
-var router_1 = require("@angular/router");
-var HeaderComponent = (function () {
-    function HeaderComponent(authService, router) {
+var SiteComponent = (function () {
+    function SiteComponent(authService) {
         this.authService = authService;
-        this.router = router;
     }
-    HeaderComponent.prototype.ngOnInit = function () {
-        this.currentUser = this.authService.user;
+    SiteComponent.prototype.ngOnInit = function () {
+        this.user = this.authService.user;
     };
-    HeaderComponent.prototype.logout = function () {
-        this.authService.logout();
-        this.router.navigate(['/login']);
-    };
-    return HeaderComponent;
+    return SiteComponent;
 }());
-HeaderComponent = __decorate([
+SiteComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        selector: 'sn-header',
-        templateUrl: 'header.component.html',
-        styleUrls: ['header.component.css']
+        selector: 'sn-site',
+        templateUrl: 'site.component.html',
+        styleUrls: ['site.component.css']
     }),
-    __metadata("design:paramtypes", [auth_service_1.AuthService,
-        router_1.Router])
-], HeaderComponent);
-exports.HeaderComponent = HeaderComponent;
-//# sourceMappingURL=header.component.js.map
+    __metadata("design:paramtypes", [auth_service_1.AuthService])
+], SiteComponent);
+exports.SiteComponent = SiteComponent;
+//# sourceMappingURL=site.component.js.map
