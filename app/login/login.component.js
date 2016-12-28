@@ -18,19 +18,21 @@ var LoginComponent = (function () {
         this.loginData = { username: null, password: null };
         this.useLoginForm = true;
         this.submitting = false;
+        this.error = false;
     }
     LoginComponent.prototype.ngOnInit = function () {
     };
     LoginComponent.prototype.submit = function () {
         var _this = this;
-        console.log('lol');
         this.submitting = true;
+        this.error = false;
         this.authService.login(this.loginData.username, this.loginData.password)
             .subscribe(function () {
-            _this.router.navigate(['/profile', _this.authService.userId]);
+            _this.router.navigate(['/']);
         }, function (err) {
             if (err.status == 401) {
-                alert('Authentication error.');
+                //alert('Authentication error.');
+                _this.error = true;
             }
             // TODO: manage server error
         }, function () {

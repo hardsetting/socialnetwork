@@ -3,7 +3,7 @@ import {CanActivate, Router, CanActivateChild} from '@angular/router';
 import {AuthService} from "../shared/auth.service";
 
 @Injectable()
-export class SiteGuard implements CanActivate, CanActivateChild {
+export class LoginGuard implements CanActivate {
     constructor(
         private authService: AuthService,
         private router: Router
@@ -11,14 +11,10 @@ export class SiteGuard implements CanActivate, CanActivateChild {
 
     canActivate(): boolean {
         if (this.authService.isLoggedIn()) {
-            return true;
+            this.router.navigate(['/profile']);
+            return false;
         }
 
-        this.router.navigate(['/login']);
-        return false;
-    }
-
-    canActivateChild(): boolean {
-        return this.canActivate();
+        return true;
     }
 }

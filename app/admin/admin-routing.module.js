@@ -10,28 +10,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var auth_service_1 = require("../shared/auth.service");
-var SiteGuard = (function () {
-    function SiteGuard(authService, router) {
-        this.authService = authService;
-        this.router = router;
+var admin_component_1 = require("./admin.component");
+var routes = [
+    { path: '', component: admin_component_1.AdminComponent },
+];
+var AdminRoutingModule = (function () {
+    function AdminRoutingModule() {
     }
-    SiteGuard.prototype.canActivate = function () {
-        if (this.authService.isLoggedIn()) {
-            return true;
-        }
-        this.router.navigate(['/login']);
-        return false;
-    };
-    SiteGuard.prototype.canActivateChild = function () {
-        return this.canActivate();
-    };
-    return SiteGuard;
+    return AdminRoutingModule;
 }());
-SiteGuard = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [auth_service_1.AuthService,
-        router_1.Router])
-], SiteGuard);
-exports.SiteGuard = SiteGuard;
-//# sourceMappingURL=site-guard.service.js.map
+AdminRoutingModule = __decorate([
+    core_1.NgModule({
+        imports: [router_1.RouterModule.forChild(routes)],
+        exports: [router_1.RouterModule],
+        providers: []
+    }),
+    __metadata("design:paramtypes", [])
+], AdminRoutingModule);
+exports.AdminRoutingModule = AdminRoutingModule;
+//# sourceMappingURL=admin-routing.module.js.map

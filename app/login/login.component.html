@@ -14,8 +14,12 @@
     <div class="forms">
 
         <div class="form-switch">
-            <button class="login" (click)="useLoginForm = true"></button>
-            <button class="signup" (click)="useLoginForm = false"></button>
+            <button class="login" [class.active]="useLoginForm" (click)="useLoginForm = true">
+                <i class="fa fa-sign-in"></i>
+            </button>
+            <button class="signup" [class.active]="!useLoginForm" (click)="useLoginForm = false">
+                <i class="fa fa-user-plus"></i>
+            </button>
         </div>
 
         <div class="form login-form" *ngIf="useLoginForm">
@@ -28,7 +32,7 @@
                         <input type="text" id="username"
                                [(ngModel)]="loginData.username" name="username" #username="ngModel"
                                required>
-                        <div [hidden]="username.valid || username.pristine">Username is required</div>
+                        <div class="error" [hidden]="username.valid || username.pristine">Username is required</div>
                     </div>
 
                     <div class="form-group">
@@ -36,7 +40,7 @@
                         <input type="password" id="password"
                                [(ngModel)]="loginData.password" name="password" #password="ngModel"
                                required>
-                        <div [hidden]="password.valid || password.pristine">Password is required.</div>
+                        <div class="error" [hidden]="password.valid || password.pristine">Password is required.</div>
                     </div>
 
                     <!-- <div class="form-group">
@@ -45,6 +49,10 @@
                                [(ngModel)]="loginData.rememberMe" name="remember_me" #rememberMe="ngModel"
                         >
                     </div> -->
+
+                    <div class="form-group" *ngIf="error">
+                        <div class="error">Authentication failed.</div>
+                    </div>
 
                     <button type="submit" [disabled]="!loginForm.form.valid">Login</button>
                 </form>

@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {ActivatedRoute, Router, Params} from '@angular/router';
 import {UserService} from "../shared/user.service";
 
 import {User} from "../models/user";
@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
+        private router: Router,
         private authService: AuthService,
         private userService: UserService,
         private postService: PostService

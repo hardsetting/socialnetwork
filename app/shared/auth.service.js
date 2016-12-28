@@ -11,22 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
-var user_service_1 = require("./user.service");
 var _ = require("lodash");
 // TODO: split AuthService into AuthService and CurrentUserService to avoid circular dependency
 var AuthService = AuthService_1 = (function () {
-    function AuthService(http, userService) {
-        var _this = this;
+    function AuthService(http) {
         this.http = http;
-        this.userService = userService;
         this.user = new BehaviorSubject_1.BehaviorSubject(null);
-        // If user is still logged in get user info right away
-        if (this.userId != null) {
-            // TODO: Check also that token is not expired
-            this.userService
-                .getUser(this.userId)
-                .subscribe(function (user) { return _this.user.next(user); });
-        }
     }
     AuthService.prototype.isLoggedIn = function () {
         var expired = this.expiresAt != null && this.expiresAt < (new Date()).toISOString();
@@ -36,12 +26,10 @@ var AuthService = AuthService_1 = (function () {
         var _this = this;
         return this.http
             .post('/api/auth', { username: username, password: password })
-            .do(function (res) { return _this.data = res.json(); })
-            .flatMap(function (res) { return _this.userService.getUser(_this.userId); })
-            .do(function (user) { return _this.user.next(user); });
+            .do(function (res) { return _this.data = res.json(); });
     };
     AuthService.prototype.logout = function () {
-        this.data = {};
+        this.clearData();
         this.user.next(null);
     };
     AuthService.prototype.refresh = function () {
@@ -92,6 +80,12 @@ var AuthService = AuthService_1 = (function () {
         enumerable: true,
         configurable: true
     });
+    AuthService.prototype.clearData = function () {
+        localStorage.removeItem(AuthService_1.KEY_USER_ID);
+        localStorage.removeItem(AuthService_1.KEY_TOKEN);
+        localStorage.removeItem(AuthService_1.KEY_REFRESH_TOKEN);
+        localStorage.removeItem(AuthService_1.KEY_EXPIRES_AT);
+    };
     return AuthService;
 }());
 AuthService.KEY_USER_ID = 'auth_user_id';
@@ -100,7 +94,7 @@ AuthService.KEY_REFRESH_TOKEN = 'auth_refresh_token';
 AuthService.KEY_EXPIRES_AT = 'auth_expires_at';
 AuthService = AuthService_1 = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http, user_service_1.UserService])
+    __metadata("design:paramtypes", [http_1.Http])
 ], AuthService);
 exports.AuthService = AuthService;
 var AuthService_1;

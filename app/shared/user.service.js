@@ -9,14 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
+var auth_http_service_1 = require("./auth-http.service");
 var UserService = (function () {
-    function UserService(http) {
-        this.http = http;
+    function UserService(authHttp) {
+        this.authHttp = authHttp;
     }
     UserService.prototype.getUser = function (id) {
-        // TODO: Cannot use AuthHttp to prevent circular depedency
-        return this.http
+        return this.authHttp
             .get("api/users/" + id)
             .map(function (r) { return r.json(); });
     };
@@ -24,7 +23,7 @@ var UserService = (function () {
 }());
 UserService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [auth_http_service_1.AuthHttp])
 ], UserService);
 exports.UserService = UserService;
 //# sourceMappingURL=user.service.js.map

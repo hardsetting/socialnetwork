@@ -9,29 +9,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
 var auth_service_1 = require("../shared/auth.service");
-var SiteGuard = (function () {
-    function SiteGuard(authService, router) {
+var router_1 = require("@angular/router");
+var HomeComponent = (function () {
+    function HomeComponent(authService, router) {
         this.authService = authService;
         this.router = router;
     }
-    SiteGuard.prototype.canActivate = function () {
-        if (this.authService.isLoggedIn()) {
-            return true;
-        }
-        this.router.navigate(['/login']);
-        return false;
+    HomeComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.userSubscription = this.authService.user
+            .subscribe(function (user) { return _this.router.navigate(['/profile', user.username]); });
     };
-    SiteGuard.prototype.canActivateChild = function () {
-        return this.canActivate();
+    HomeComponent.prototype.ngOnDestroy = function () {
+        this.userSubscription.unsubscribe();
     };
-    return SiteGuard;
+    return HomeComponent;
 }());
-SiteGuard = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [auth_service_1.AuthService,
-        router_1.Router])
-], SiteGuard);
-exports.SiteGuard = SiteGuard;
-//# sourceMappingURL=site-guard.service.js.map
+HomeComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'sn-home',
+        template: ''
+    }),
+    __metadata("design:paramtypes", [auth_service_1.AuthService, router_1.Router])
+], HomeComponent);
+exports.HomeComponent = HomeComponent;
+//# sourceMappingURL=home.component.js.map

@@ -4,37 +4,37 @@ $header-height: 100px
 $padding-hor: 30px
 $padding-ver: 40px
 
-$background-color: #fe5e3a
+$primary-color: #fe5e3a
 
 @mixin control()
-  width: 100%
   height: 50px
-  margin-bottom: 20px
+  width: 100%
   padding: 10px 20px
   font-size: 15px
 
   &:focus
-    outline: 0
-    box-shadow: 0 0 2px 2px darken($border-color, 20)
+    //outline: 0
+    //box-shadow: 0 0 2px 2px darken($border-color, 20)
 
 @mixin button()
   @include control()
+  height: 50px
+  margin-bottom: 20px
   border: none
   border-radius: 6px
   color: white
-  background-color: $background-color
+  background-color: $primary-color
   font-weight: bold
   cursor: pointer
 
   &:disabled
-    background-color: lighten($background-color, 15)
+    background-color: lighten($primary-color, 15)
 
 \:host
   display: block
   width: 100%
   height: 100%
-  background: url('/img/login_bg2.jpg')
-  //background-color: $background-color
+  background: url('/img/login_bg2.jpg') center
 
 .header
   height: $header-height
@@ -43,8 +43,6 @@ $background-color: #fe5e3a
 
   display: flex
   align-items: center
-
-  //background-color: darken($background-color, 20)
 
   .logo
     color: white
@@ -88,9 +86,28 @@ $background-color: #fe5e3a
         display: block
         width: 50px
         height: 50%
-        background: white
-        border: 1px solid $border-color
+
         cursor: pointer
+
+        color: #8f8f8f
+        background: darken(white, 5)
+        border: 1px solid $border-color
+        font-size: 18px
+
+        &.active
+          background: white
+          color: $primary-color
+
+      //.login > i
+        margin: 0 auto
+        display: block
+        width: 24px
+        height: 24px
+        background: url('/img/login-icon.png')
+
+      //.login.active > i
+        background: url('/img/login-icon-active.png')
+
 
     .form
       flex-grow: 1
@@ -108,14 +125,28 @@ $background-color: #fe5e3a
         padding: 25px
 
       form
-        label
-          display: block
-          margin-bottom: 15px
-        input
-          @include control()
+        .form-group
+          margin-bottom: 20px
 
-          border: 1px solid darken($border-color, 20)
-          border-radius: 4px
+          label
+            display: block
+            margin-bottom: 5px
+          input
+            @include control()
+
+
+            border: 1px solid darken($border-color, 20)
+            border-radius: 4px
+
+            &.ng-pristine
+              border-left: 4px solid rgb(179, 179, 179)
+            &.ng-dirty.ng-invalid
+              border-left: 4px solid red
+            &.ng-dirty.ng-valid
+              border-left: 4px solid green
+          .error
+            margin-top: 8px
+            color: red
 
         button
           @include button()

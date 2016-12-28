@@ -23,6 +23,9 @@ var HeaderComponent = (function () {
         this.authService.logout();
         this.router.navigate(['/login']);
     };
+    HeaderComponent.prototype.gotoAdmin = function () {
+        this.router.navigate(['/admin']);
+    };
     return HeaderComponent;
 }());
 HeaderComponent = __decorate([

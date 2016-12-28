@@ -26,4 +26,8 @@ export class HeaderComponent implements OnInit {
         this.authService.logout();
         this.router.navigate(['/login']);
     }
+
+    gotoAdmin() {
+        this.router.navigate(['/admin']);
+    }
 }

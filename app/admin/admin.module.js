@@ -9,29 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var auth_service_1 = require("../shared/auth.service");
-var SiteGuard = (function () {
-    function SiteGuard(authService, router) {
-        this.authService = authService;
-        this.router = router;
+var admin_routing_module_1 = require("./admin-routing.module");
+var admin_component_1 = require("./admin.component");
+var common_1 = require("@angular/common");
+var AdminModule = (function () {
+    function AdminModule() {
     }
-    SiteGuard.prototype.canActivate = function () {
-        if (this.authService.isLoggedIn()) {
-            return true;
-        }
-        this.router.navigate(['/login']);
-        return false;
-    };
-    SiteGuard.prototype.canActivateChild = function () {
-        return this.canActivate();
-    };
-    return SiteGuard;
+    return AdminModule;
 }());
-SiteGuard = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [auth_service_1.AuthService,
-        router_1.Router])
-], SiteGuard);
-exports.SiteGuard = SiteGuard;
-//# sourceMappingURL=site-guard.service.js.map
+AdminModule = __decorate([
+    core_1.NgModule({
+        imports: [
+            common_1.CommonModule,
+            admin_routing_module_1.AdminRoutingModule
+        ],
+        declarations: [
+            admin_component_1.AdminComponent
+        ],
+        providers: []
+    }),
+    __metadata("design:paramtypes", [])
+], AdminModule);
+exports.AdminModule = AdminModule;
+//# sourceMappingURL=admin.module.js.map

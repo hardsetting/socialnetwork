@@ -3,7 +3,7 @@ import './rxjs-extensions';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
-import {HttpModule, Http, XHRBackend, RequestOptions} from '@angular/http';
+import {HttpModule} from '@angular/http';
 import {MomentModule} from "angular2-moment";
 
 import {AppRoutingModule} from "./app-routing.module";
@@ -25,19 +25,23 @@ import {ClickOutsideDirective} from "./shared/click-outside.directive";
 import {AuthService} from "./shared/auth.service";
 import {SiteComponent} from "./site/site.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
-import {SiteGuard} from "./site/site-guard.service";
+import {HomeComponent} from "./site/home.component";
+import {AdminModule} from "./admin/admin.module";
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
-        AppRoutingModule,
-        MomentModule
+        MomentModule,
+
+        //AdminModule, // lazy loaded
+        AppRoutingModule
     ],
     declarations: [
         AppComponent,
         SiteComponent,
+        HomeComponent,
         LoginComponent,
         PageNotFoundComponent,
 
@@ -54,8 +58,7 @@ import {SiteGuard} from "./site/site-guard.service";
         AuthHttp,
         AuthService,
         UserService,
-        PostService,
-        SiteGuard
+        PostService
     ],
     bootstrap: [AppComponent]
 })

@@ -30,7 +30,7 @@ var click_outside_directive_1 = require("./shared/click-outside.directive");
 var auth_service_1 = require("./shared/auth.service");
 var site_component_1 = require("./site/site.component");
 var page_not_found_component_1 = require("./page-not-found/page-not-found.component");
-var site_guard_service_1 = require("./site/site-guard.service");
+var home_component_1 = require("./site/home.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -42,12 +42,14 @@ AppModule = __decorate([
             platform_browser_1.BrowserModule,
             forms_1.FormsModule,
             http_1.HttpModule,
-            app_routing_module_1.AppRoutingModule,
-            angular2_moment_1.MomentModule
+            angular2_moment_1.MomentModule,
+            //AdminModule, // lazy loaded
+            app_routing_module_1.AppRoutingModule
         ],
         declarations: [
             app_component_1.AppComponent,
             site_component_1.SiteComponent,
+            home_component_1.HomeComponent,
             login_component_1.LoginComponent,
             page_not_found_component_1.PageNotFoundComponent,
             header_component_1.HeaderComponent,
@@ -62,8 +64,7 @@ AppModule = __decorate([
             auth_http_service_1.AuthHttp,
             auth_service_1.AuthService,
             user_service_1.UserService,
-            post_service_1.PostService,
-            site_guard_service_1.SiteGuard
+            post_service_1.PostService
         ],
         bootstrap: [app_component_1.AppComponent]
     }),

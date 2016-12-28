@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
 
     useLoginForm = true;
     submitting = false;
+    error = false;
 
     constructor(
         private authService: AuthService,
@@ -33,15 +34,16 @@ export class LoginComponent implements OnInit {
     }
 
     submit(): void {
-        console.log('lol');
-
         this.submitting = true;
+        this.error = false;
+
         this.authService.login(this.loginData.username, this.loginData.password)
             .subscribe(() => {
-                this.router.navigate(['/profile', this.authService.userId]);
+                this.router.navigate(['/']);
             }, (err) => {
                 if (err.status == 401) {
-                    alert('Authentication error.');
+                    //alert('Authentication error.');
+                    this.error = true;
                 }
                 // TODO: manage server error
             }, () => {

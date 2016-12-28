@@ -11,27 +11,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var auth_service_1 = require("../shared/auth.service");
-var SiteGuard = (function () {
-    function SiteGuard(authService, router) {
+var LoginGuard = (function () {
+    function LoginGuard(authService, router) {
         this.authService = authService;
         this.router = router;
     }
-    SiteGuard.prototype.canActivate = function () {
+    LoginGuard.prototype.canActivate = function () {
         if (this.authService.isLoggedIn()) {
-            return true;
+            this.router.navigate(['/profile']);
+            return false;
         }
-        this.router.navigate(['/login']);
-        return false;
+        return true;
     };
-    SiteGuard.prototype.canActivateChild = function () {
-        return this.canActivate();
-    };
-    return SiteGuard;
+    return LoginGuard;
 }());
-SiteGuard = __decorate([
+LoginGuard = __decorate([
     core_1.Injectable(),
     __metadata("design:paramtypes", [auth_service_1.AuthService,
         router_1.Router])
-], SiteGuard);
-exports.SiteGuard = SiteGuard;
-//# sourceMappingURL=site-guard.service.js.map
+], LoginGuard);
+exports.LoginGuard = LoginGuard;
+//# sourceMappingURL=login-guard.service.js.map

@@ -15,8 +15,9 @@ var post_service_1 = require("../shared/post.service");
 var Observable_1 = require("rxjs/Observable");
 var auth_service_1 = require("../shared/auth.service");
 var ProfileComponent = (function () {
-    function ProfileComponent(route, authService, userService, postService) {
+    function ProfileComponent(route, router, authService, userService, postService) {
         this.route = route;
+        this.router = router;
         this.authService = authService;
         this.userService = userService;
         this.postService = postService;
@@ -55,6 +56,7 @@ ProfileComponent = __decorate([
         styleUrls: ['profile.component.css']
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute,
+        router_1.Router,
         auth_service_1.AuthService,
         user_service_1.UserService,
         post_service_1.PostService])
