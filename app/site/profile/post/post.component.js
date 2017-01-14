@@ -9,8 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var post_1 = require("../../models/post");
-var post_service_1 = require("../../shared/post.service");
+var post_1 = require("app/models/post");
+var post_service_1 = require("app/shared/post.service");
+var user_1 = require("app/models/user");
 var PostComponent = (function () {
     function PostComponent(postService) {
         this.postService = postService;
@@ -32,6 +33,10 @@ var PostComponent = (function () {
     };
     return PostComponent;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", user_1.User)
+], PostComponent.prototype, "user", void 0);
 __decorate([
     core_1.Input(),
     __metadata("design:type", post_1.Post)

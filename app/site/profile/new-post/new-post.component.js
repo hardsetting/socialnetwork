@@ -9,8 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var user_1 = require("../../models/user");
-var post_service_1 = require("../../shared/post.service");
+var user_1 = require("../../../models/user");
+var post_service_1 = require("../../../shared/post.service");
 var NewPostComponent = (function () {
     function NewPostComponent(postService) {
         this.postService = postService;

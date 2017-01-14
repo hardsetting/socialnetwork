@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var profile_component_1 = require("./profile/profile.component");
+var profile_component_1 = require("./site/profile/profile.component");
 var login_component_1 = require("./login/login.component");
 var site_component_1 = require("./site/site.component");
 var page_not_found_component_1 = require("./page-not-found/page-not-found.component");

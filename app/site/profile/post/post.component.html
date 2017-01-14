@@ -1,6 +1,6 @@
 <div class="box post">
     <div class="info">
-        <sn-user-pic [user]="post.creator_user"></sn-user-pic>
+        <sn-user-pic [user]="user"></sn-user-pic>
 
         <div class="text">
             <div class="name">Alex Donovan</div>
@@ -15,5 +15,13 @@
         </div>
 
     </div>
-    {{post.content}}
+    <div class="body">
+        {{post.content}}
+    </div>
+    <div class="footer">
+        <i class="fa fa-heart"></i>
+        <span class="counter">3</span>
+
+        <sn-user-pic *ngFor="let reaction of post.reactions | slice:0:5" [user]="reaction.user"></sn-user-pic>
+    </div>
 </div>

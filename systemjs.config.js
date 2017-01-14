@@ -24,6 +24,7 @@
             '@angular/upgrade': 'npm:@angular/upgrade/bundles/upgrade.umd.js',
             '@angular/material': 'npm:@angular/material/bundles/material.umd.js',
             // other libraries
+            'app-module-path': 'npm:app-module-path',
             'rxjs':                      'npm:rxjs',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
             'moment': 'npm:moment',
@@ -34,6 +35,10 @@
         packages: {
             app: {
                 main: './main.js',
+                defaultExtension: 'js'
+            },
+            'app-module-path': {
+                main: 'register.js',
                 defaultExtension: 'js'
             },
             rxjs: {

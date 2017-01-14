@@ -12,12 +12,12 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from "./login/login.component";
 import {SearchBarComponent} from "./header/search-bar/search-bar.component";
 import {HeaderComponent} from "./header/header.component";
-import {ProfileComponent} from "./profile/profile.component";
+import {ProfileComponent} from "./site/profile/profile.component";
 
 import {UserService} from "./shared/user.service";
 import {PostService} from "./shared/post.service";
-import {NewPostComponent} from "./profile/new-post/new-post.component";
-import {PostComponent} from "./profile/post/post.component";
+import {NewPostComponent} from "./site/profile/new-post/new-post.component";
+import {PostComponent} from "./site/profile/post/post.component";
 import {AuthHttp} from "./shared/auth-http.service";
 
 import {UserPicComponent} from "./shared/user-pic/user-pic.component";

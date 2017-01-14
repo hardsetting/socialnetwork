@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 
-import {AuthService} from "../shared/auth.service";
+import {AuthService} from "app/shared/auth.service";
 
 import {Observable} from "rxjs/Observable";
-import {User} from "../models/user";
+import {User} from "app/models/user";
 
 @Component({
     moduleId: module.id,

@@ -10,10 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var user_service_1 = require("../shared/user.service");
-var post_service_1 = require("../shared/post.service");
+var user_service_1 = require("../../shared/user.service");
+var post_service_1 = require("../../shared/post.service");
 var Observable_1 = require("rxjs/Observable");
-var auth_service_1 = require("../shared/auth.service");
+var auth_service_1 = require("../../shared/auth.service");
 var ProfileComponent = (function () {
     function ProfileComponent(route, router, authService, userService, postService) {
         this.route = route;

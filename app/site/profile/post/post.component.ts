@@ -1,6 +1,7 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {Post} from "../../models/post";
-import {PostService} from "../../shared/post.service";
+import {Post} from "app/models/post";
+import {PostService} from "app/shared/post.service";
+import {User} from "app/models/user";
 
 @Component({
     moduleId: module.id,
@@ -9,6 +10,7 @@ import {PostService} from "../../shared/post.service";
     styleUrls: ['post.component.css']
 })
 export class PostComponent {
+    @Input() user: User;
     @Input() post: Post;
     @Output() onDelete = new EventEmitter<Post>();
 

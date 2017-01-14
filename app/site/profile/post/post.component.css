@@ -40,5 +40,21 @@
           cursor: pointer; }
           .post .info .more .options li:last-child {
             border-bottom: none; }
+  .post .body {
+    margin-bottom: 25px; }
+  .post .footer {
+    border-top: 1px solid #e2e6ee;
+    height: 40px;
+    padding-top: 20px;
+    display: flex;
+    align-items: center; }
+    .post .footer .react {
+      font-size: 23px; }
+    .post .footer .counter {
+      padding: 5px;
+      margin-right: 10px; }
+    .post .footer sn-user-pic {
+      height: 30px;
+      width: 30px; }
 
 /*# sourceMappingURL=post.component.css.map */

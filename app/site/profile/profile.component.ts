@@ -1,13 +1,13 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, Params} from '@angular/router';
-import {UserService} from "../shared/user.service";
+import {UserService} from "../../shared/user.service";
 
-import {User} from "../models/user";
-import {Post} from "../models/post";
+import {User} from "../../models/user";
+import {Post} from "../../models/post";
 
-import {PostService} from "../shared/post.service";
+import {PostService} from "../../shared/post.service";
 import {Observable} from "rxjs/Observable";
-import {AuthService} from "../shared/auth.service";
+import {AuthService} from "../../shared/auth.service";
 
 @Component({
     moduleId: module.id,
