@@ -1,5 +1,6 @@
 import {User} from "./user";
 import {Reaction} from "app/models/reaction";
+
 export class Post {
     id: number;
     creator_user_id: number;
@@ -10,7 +11,14 @@ export class Post {
     creator_user?: User;
     reactions?: Reaction[];
 
-    constructor(content: string) {
-        this.content = content;
+    constructor(data: string|any) {
+        if (data instanceof Object) {
+            Object.assign(this, data);
+            if (this.reactions instanceof Array) {
+                this.reactions = this.reactions.map(reaction => new Reaction(reaction));
+            }
+        } else {
+            this.content = data;
+        }
     }
 }

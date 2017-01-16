@@ -26,7 +26,6 @@ import {AuthService} from "./shared/auth.service";
 import {SiteComponent} from "./site/site.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {HomeComponent} from "./site/home.component";
-import {AdminModule} from "./admin/admin.module";
 
 @NgModule({
     imports: [
@@ -35,7 +34,6 @@ import {AdminModule} from "./admin/admin.module";
         HttpModule,
         MomentModule,
 
-        //AdminModule, // lazy loaded
         AppRoutingModule
     ],
     declarations: [

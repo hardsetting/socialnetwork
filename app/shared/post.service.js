@@ -15,19 +15,33 @@ var PostService = (function () {
     function PostService(http) {
         this.http = http;
     }
+    PostService.prototype.get = function (id) {
+        return this.http
+            .get("api/posts/" + id)
+            .map(function (r) { return new post_1.Post(r.json()); });
+    };
     PostService.prototype.getUserPosts = function (userId) {
         return this.http
             .get("api/users/" + userId + "/posts")
-            .map(function (r) { return r.json(); });
+            .map(function (r) { return r.json().map(function (post) { return new post_1.Post(post); }); });
     };
     PostService.prototype.create = function (content) {
         var post = new post_1.Post(content);
         return this.http
             .post("api/posts", post)
-            .map(function (r) { return r.json(); });
+            .map(function (res) { return new post_1.Post(res.json()); });
     };
     PostService.prototype.delete = function (id) {
         return this.http.delete("api/posts/" + id);
+    };
+    PostService.prototype.react = function (post_id, value) {
+        return this.http
+            .post("api/posts/" + post_id + "/react", { value: value })
+            .map(function (res) { return res.json(); });
+    };
+    PostService.prototype.undoReact = function (post_id) {
+        return this.http
+            .delete("api/posts/" + post_id + "/react");
     };
     return PostService;
 }());

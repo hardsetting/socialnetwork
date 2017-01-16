@@ -57,4 +57,9 @@ export class ProfileComponent implements OnInit {
             this.posts.splice(index, 1);
         }
     }
+
+    onReact(post: Post): void {
+        this.postService.getUserPosts(this.user.username)
+            .subscribe(posts => this.posts = posts);
+    }
 }

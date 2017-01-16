@@ -69,14 +69,35 @@ $thumb-size: 40px
     display: flex
     align-items: center
 
-    .react
-      font-size: 23px
-
-    .counter
-      padding: 5px
+    .reaction
       margin-right: 10px
+      color: $bold-color
 
-    sn-user-pic
-      height: 30px
-      width: 30px
+      .btn-react
+        font-size: 18px
 
+        cursor: pointer
+      .counter
+        font-size: 14px
+
+    .reaction.current
+      color: $active-color
+
+    .reactions
+      padding-right: 16px
+      margin-right: 10px
+      li
+        display: inline-block
+        width: 16px
+        sn-user-pic
+          display: inline-block
+          height: 30px
+          width: 30px
+          border: 2px solid white
+          border-radius: 50%
+
+    .users
+      font-size: 11px
+      .names
+        font-weight: bold
+        color: $bold-color

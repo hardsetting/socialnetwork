@@ -43,7 +43,6 @@ AppModule = __decorate([
             forms_1.FormsModule,
             http_1.HttpModule,
             angular2_moment_1.MomentModule,
-            //AdminModule, // lazy loaded
             app_routing_module_1.AppRoutingModule
         ],
         declarations: [

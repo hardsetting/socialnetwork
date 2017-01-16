@@ -46,6 +46,11 @@ var ProfileComponent = (function () {
             this.posts.splice(index, 1);
         }
     };
+    ProfileComponent.prototype.onReact = function (post) {
+        var _this = this;
+        this.postService.getUserPosts(this.user.username)
+            .subscribe(function (posts) { return _this.posts = posts; });
+    };
     return ProfileComponent;
 }());
 ProfileComponent = __decorate([

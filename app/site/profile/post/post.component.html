@@ -6,9 +6,9 @@
             <div class="name">Alex Donovan</div>
             <div class="relative-time">{{ post.created_at | amTimeAgo }}</div>
         </div>
-        <div class="more">
+        <div class="more" (clickOutside)="closeOptions()">
             <span (click)="toggleOptions()"></span>
-            <ul class="options" [class.show]="showOptions">
+            <ul class="options" [class.show]="showOptions" >
                 <li (click)="edit()">Edit</li>
                 <li (click)="delete()">Delete</li>
             </ul>
@@ -19,9 +19,32 @@
         {{post.content}}
     </div>
     <div class="footer">
-        <i class="fa fa-heart"></i>
-        <span class="counter">3</span>
+        <div class="reaction" [class.current]="currentReaction?.isLike">
+            <span class="btn-react" (click)="like()"><i class="fa fa-thumbs-up"></i></span>
+            <span class="counter">{{likesCount}}</span>
+        </div>
 
-        <sn-user-pic *ngFor="let reaction of post.reactions | slice:0:5" [user]="reaction.user"></sn-user-pic>
+        <div class="reaction" [class.current]="currentReaction?.isLove">
+            <span class="btn-react" (click)="love()"><i class="fa fa-heart"></i></span>
+            <span class="counter">{{loveCount}}</span>
+        </div>
+
+        <div class="reaction" [class.current]="currentReaction?.isLaugh">
+            <span class="btn-react" (click)="laugh()"><i class="fa fa-smile-o"></i></span>
+            <span class="counter">{{laughsCount}}</span>
+        </div>
+
+        <ul class="reactions">
+           <li *ngFor="let reaction of post.reactions | slice:0:5">
+               <sn-user-pic [user]="reaction.user"></sn-user-pic>
+           </li>
+        </ul>
+
+        <div class="users" *ngIf="post.reactions.length > 0">
+            <span class="names">{{reactionsUsers(2)}}</span>
+            <span *ngIf="post.reactions.length > 2">and <br/> {{post.reactions.length - 2}} more</span>
+            reacted to this.
+        </div>
+
     </div>
 </div>
