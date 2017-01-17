@@ -8,8 +8,6 @@ import {ReplaySubject} from "rxjs/ReplaySubject";
 
 import {User} from "../models/user";
 
-import * as _ from "lodash";
-
 // TODO: split AuthService into AuthService and CurrentUserService to avoid circular dependency
 
 @Injectable()
@@ -42,13 +40,17 @@ export class AuthService {
         this.user.next(null);
     }
 
-    refresh() {
+    refresh(): Observable<Response> {
         return this.http
             .post('/api/auth/refresh', {refresh_token: this.refreshToken})
             .do((res: Response) => {
                 // Ensures that userId is kept after refresh
-                return _.extend(res.json(), {user_id: this.userId});
-            });
+                this.data = Object.assign(res.json(), {user_id: this.userId});
+            })
+            /*.catch(err => {
+                this.logout();
+                return Observable.throw(err);
+            })*/;
     }
 
     get userId(): number {

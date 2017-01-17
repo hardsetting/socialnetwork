@@ -143,7 +143,7 @@ export class AuthHttp {
         // Request a token refresh, redirect to login if refresh token expired or blacklisted
         this.authRequest = this.authService.refresh()
             .catch(err => this.redirectToLogin(err))
-            .finally(() => this.authRequest = null);
+            .finally(() => {console.log('is this working'); this.authRequest = null;});
     }
 
     private redirectToLogin(err?: any): Observable<Response> {

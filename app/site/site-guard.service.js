@@ -11,17 +11,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var auth_service_1 = require("../shared/auth.service");
+var Observable_1 = require("rxjs/Observable");
 var SiteGuard = (function () {
     function SiteGuard(authService, router) {
         this.authService = authService;
         this.router = router;
     }
     SiteGuard.prototype.canActivate = function () {
+        var _this = this;
         if (this.authService.isLoggedIn()) {
             return true;
         }
-        this.router.navigate(['/login']);
-        return false;
+        var refreshCheck;
+        if (this.authService.refreshToken) {
+            refreshCheck = this.authService.refresh()
+                .map(function () { return _this.authService.isLoggedIn(); })
+                .catch(function () {
+                _this.authService.logout();
+                return Observable_1.Observable.of(false);
+            });
+        }
+        else {
+            refreshCheck = Observable_1.Observable.of(false);
+        }
+        return refreshCheck.do(function (isLoggedIn) {
+            if (!isLoggedIn) {
+                _this.router.navigate(['/login']);
+            }
+        });
     };
     SiteGuard.prototype.canActivateChild = function () {
         return this.canActivate();

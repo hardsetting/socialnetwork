@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
-var _ = require("lodash");
 // TODO: split AuthService into AuthService and CurrentUserService to avoid circular dependency
 var AuthService = AuthService_1 = (function () {
     function AuthService(http) {
@@ -38,7 +37,7 @@ var AuthService = AuthService_1 = (function () {
             .post('/api/auth/refresh', { refresh_token: this.refreshToken })
             .do(function (res) {
             // Ensures that userId is kept after refresh
-            return _.extend(res.json(), { user_id: _this.userId });
+            _this.data = Object.assign(res.json(), { user_id: _this.userId });
         });
     };
     Object.defineProperty(AuthService.prototype, "userId", {
