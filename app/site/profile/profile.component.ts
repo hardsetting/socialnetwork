@@ -17,7 +17,7 @@ import {AuthService} from "../../shared/auth.service";
 })
 export class ProfileComponent implements OnInit {
 
-    //currentUser: Observable<User>;
+    currentUser: User;
 
     user: User;
     posts: Post[];
@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit(): void {
 
-        //this.currentUser = this.authService.currentUser;
+        this.currentUser = this.authService.user.getValue();
         /*this.authService.currentUser
             .subscribe((currentUser: User) => this.currentUser = currentUser);*/
 
@@ -48,6 +48,7 @@ export class ProfileComponent implements OnInit {
     }
 
     onPost(post: Post): void {
+        // TODO: should check for changes
         this.posts.unshift(post);
     }
 

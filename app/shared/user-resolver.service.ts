@@ -16,21 +16,21 @@ export class UserResolver implements Resolve<User> {
     ) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User>|User {
+        console.log('Resolving user.');
         if (!this.authService.isLoggedIn()) {
-            console.error('Trying to resolve not logged in user.');
+            console.error('User not logged in.');
             return null;
         }
 
-
         let user = this.authService.user.getValue();
         if (user != null) {
-            console.log('User was already resolved', user);
+            console.log('User already resolved', user);
             return user;
         }
 
         return this.userService
             .getUser(this.authService.userId)
             .do(user => this.authService.user.next(user))
-            .do((user) => console.log('User resolved', user));
+            .do((user) => console.log('User resolved successfully', user));
     }
 }

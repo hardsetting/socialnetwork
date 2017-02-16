@@ -23,20 +23,26 @@ var AuthService = AuthService_1 = (function () {
     };
     AuthService.prototype.login = function (username, password) {
         var _this = this;
+        console.log("Logging in with username " + username + ".");
         return this.http
             .post('/api/auth', { username: username, password: password })
+            .do(function () { return console.log('Login successful.'); })
             .do(function (res) { return _this.data = res.json(); });
     };
     AuthService.prototype.logout = function () {
+        console.log('Logging out.');
         this.clearData();
+        console.log('Logout successful.');
         this.user.next(null);
     };
     AuthService.prototype.refresh = function () {
         var _this = this;
+        console.log('Refreshing token.');
         return this.http
             .post('/api/auth/refresh', { refresh_token: this.refreshToken })
             .do(function (res) {
             // Ensures that userId is kept after refresh
+            console.log('Refresh token successful.');
             _this.data = Object.assign(res.json(), { user_id: _this.userId });
         });
     };
@@ -69,8 +75,8 @@ var AuthService = AuthService_1 = (function () {
         configurable: true
     });
     Object.defineProperty(AuthService.prototype, "data", {
-        // todo make this private
         set: function (data) {
+            console.log('Setting auth data.');
             localStorage.setItem(AuthService_1.KEY_USER_ID, data.user_id);
             localStorage.setItem(AuthService_1.KEY_TOKEN, data.token);
             localStorage.setItem(AuthService_1.KEY_REFRESH_TOKEN, data.refresh_token);

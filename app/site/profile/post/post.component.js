@@ -27,11 +27,10 @@ var PostComponent = (function () {
         this.showOptions = !this.showOptions;
     };
     PostComponent.prototype.closeOptions = function () {
-        console.log('outside', this.post.content);
         this.showOptions = false;
     };
     PostComponent.prototype.edit = function () {
-        this.toggleOptions();
+        //this.toggleOptions();
     };
     PostComponent.prototype.delete = function () {
         var _this = this;
@@ -68,7 +67,6 @@ var PostComponent = (function () {
     });
     Object.defineProperty(PostComponent.prototype, "likesCount", {
         get: function () {
-            //console.log('requesting likesCount');
             return this.reactionCount(reaction_1.Reaction.VALUE_LIKE);
         },
         enumerable: true,

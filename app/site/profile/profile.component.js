@@ -23,10 +23,10 @@ var ProfileComponent = (function () {
         this.postService = postService;
     }
     ProfileComponent.prototype.ngOnInit = function () {
-        //this.currentUser = this.authService.currentUser;
+        var _this = this;
+        this.currentUser = this.authService.user.getValue();
         /*this.authService.currentUser
             .subscribe((currentUser: User) => this.currentUser = currentUser);*/
-        var _this = this;
         this.route.params.switchMap(function (params) {
             return Observable_1.Observable.forkJoin([
                 _this.userService.getUser(params['username']),
@@ -38,6 +38,7 @@ var ProfileComponent = (function () {
         });
     };
     ProfileComponent.prototype.onPost = function (post) {
+        // TODO: should check for changes
         this.posts.unshift(post);
     };
     ProfileComponent.prototype.onDelete = function (post) {

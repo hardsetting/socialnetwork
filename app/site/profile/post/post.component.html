@@ -3,7 +3,7 @@
         <sn-user-pic [user]="user"></sn-user-pic>
 
         <div class="text">
-            <div class="name">Alex Donovan</div>
+            <div class="name">{{ user.name + " " + user.surname}}</div>
             <div class="relative-time">{{ post.created_at | amTimeAgo }}</div>
         </div>
         <div class="more" (clickOutside)="closeOptions()">

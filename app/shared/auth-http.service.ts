@@ -72,7 +72,7 @@ export class AuthHttp {
         if (url instanceof Request) {
             request = url;
         } else {
-            request = new Request(new RequestOptions({url: url}).merge(options));
+            request = new Request(new RequestOptions({url: url as string}).merge(options));
         }
 
         // Check if there is an token refresh request pending

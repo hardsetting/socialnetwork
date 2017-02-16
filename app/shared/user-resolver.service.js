@@ -18,19 +18,20 @@ var UserResolver = (function () {
     }
     UserResolver.prototype.resolve = function (route, state) {
         var _this = this;
+        console.log('Resolving user.');
         if (!this.authService.isLoggedIn()) {
-            console.error('Trying to resolve not logged in user.');
+            console.error('User not logged in.');
             return null;
         }
         var user = this.authService.user.getValue();
         if (user != null) {
-            console.log('User was already resolved', user);
+            console.log('User already resolved', user);
             return user;
         }
         return this.userService
             .getUser(this.authService.userId)
             .do(function (user) { return _this.authService.user.next(user); })
-            .do(function (user) { return console.log('User resolved', user); });
+            .do(function (user) { return console.log('User resolved successfully', user); });
     };
     return UserResolver;
 }());

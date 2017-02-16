@@ -17,7 +17,7 @@ var ClickOutsideDirective = (function () {
     ClickOutsideDirective.prototype.onClick = function (targetElement) {
         var clickedInside = this.elementRef.nativeElement.contains(targetElement);
         if (!clickedInside) {
-            this.clickOutside.emit({ target: 'test' });
+            this.clickOutside.emit(targetElement);
         }
     };
     return ClickOutsideDirective;

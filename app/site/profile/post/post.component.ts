@@ -32,12 +32,11 @@ export class PostComponent {
     }
 
     closeOptions(): void {
-        console.log('outside', this.post.content);
         this.showOptions = false;
     }
 
     edit(): void {
-        this.toggleOptions();
+        //this.toggleOptions();
     }
 
     delete(): void {
@@ -68,7 +67,6 @@ export class PostComponent {
     }
 
     get likesCount(): number {
-        //console.log('requesting likesCount');
         return this.reactionCount(Reaction.VALUE_LIKE);
     }
 
