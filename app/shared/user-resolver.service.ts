@@ -29,7 +29,7 @@ export class UserResolver implements Resolve<User> {
         }
 
         return this.userService
-            .getUser(this.authService.userId)
+            .get(this.authService.userId)
             .do(user => this.authService.user.next(user))
             .do((user) => console.log('User resolved successfully', user));
     }

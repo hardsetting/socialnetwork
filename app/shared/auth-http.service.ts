@@ -92,17 +92,17 @@ export class AuthHttp {
         });
     }
 
-    get(url: string, options?: RequestOptions): Observable<Response> {
+    get(url: string, options?: RequestOptionsArgs): Observable<Response> {
         let request = new Request(new RequestOptions({method: RequestMethod.Get, url: url}).merge(options));
         return this.request(request);
     }
 
-    post(url: string, body: any, options?: RequestOptions): Observable<Response> {
+    post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
         let request = new Request(new RequestOptions({method: RequestMethod.Post, url: url, body: body}).merge(options));
         return this.request(request);
     }
 
-    delete(url: string, options?: RequestOptions): Observable<Response> {
+    delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
         let request = new Request(new RequestOptions({method: RequestMethod.Delete, url: url}).merge(options));
         return this.request(request);
     }

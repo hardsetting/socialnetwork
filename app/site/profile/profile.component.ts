@@ -22,6 +22,8 @@ export class ProfileComponent implements OnInit {
     user: User;
     posts: Post[];
 
+    postsRequest: Observable<Post[]>;
+
     constructor(
         private route: ActivatedRoute,
         private router: Router,
@@ -38,8 +40,8 @@ export class ProfileComponent implements OnInit {
 
         this.route.params.switchMap((params: Params) => {
             return Observable.forkJoin([
-                this.userService.getUser(params['username']),
-                this.postService.getUserPosts(params['username'])
+                this.userService.get(params['username']),
+                this.userService.getPosts(params['username'])
             ]);
         }).subscribe(results => {
             this.user = results[0];
@@ -60,7 +62,26 @@ export class ProfileComponent implements OnInit {
     }
 
     onReact(post: Post): void {
-        this.postService.getUserPosts(this.user.username)
+        this.userService.getPosts(this.user.username)
             .subscribe(posts => this.posts = posts);
+    }
+
+    loadMore(): void {
+        if (this.postsRequest != null) {
+            return;
+        }
+
+        // TODO: maybe use unix timestamp
+        let lastTimestamp = this.posts[this.posts.length - 1].created_at;
+
+        console.log('Loading more posts..');
+        this.postsRequest = this.userService
+            .getPosts(this.user.id, lastTimestamp)
+            .finally(() => this.postsRequest = null);
+
+        this.postsRequest .subscribe(posts => {
+            this.posts = this.posts.concat(posts);
+            console.log('More posts loaded');
+        });
     }
 }

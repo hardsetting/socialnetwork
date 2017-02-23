@@ -29,7 +29,7 @@ var UserResolver = (function () {
             return user;
         }
         return this.userService
-            .getUser(this.authService.userId)
+            .get(this.authService.userId)
             .do(function (user) { return _this.authService.user.next(user); })
             .do(function (user) { return console.log('User resolved successfully', user); });
     };

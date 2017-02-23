@@ -31,6 +31,7 @@ var auth_service_1 = require("./shared/auth.service");
 var site_component_1 = require("./site/site.component");
 var page_not_found_component_1 = require("./page-not-found/page-not-found.component");
 var home_component_1 = require("./site/home.component");
+var visible_directive_1 = require("app/shared/visible.directive");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -57,7 +58,8 @@ AppModule = __decorate([
             new_post_component_1.NewPostComponent,
             post_component_1.PostComponent,
             user_pic_component_1.UserPicComponent,
-            click_outside_directive_1.ClickOutsideDirective
+            click_outside_directive_1.ClickOutsideDirective,
+            visible_directive_1.VisibleDirective
         ],
         providers: [
             auth_http_service_1.AuthHttp,

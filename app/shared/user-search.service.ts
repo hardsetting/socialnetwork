@@ -12,7 +12,7 @@ export class UserSearchService {
 
     search(term: string): Observable<User[]> {
         return this.http
-            .get(`api/users/search?name=${term}`)
+            .get(`api/users?name=${term}`)
             .map((r: Response) => r.json() as User[]);
     }
 }

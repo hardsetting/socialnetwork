@@ -33,7 +33,7 @@ export class AuthService {
             .post('/api/auth', {username: username, password: password})
             .do(() => console.log('Login successful.'))
             .do((res: Response) => this.data = res.json())
-            /*.flatMap((res: Response) => this.userService.getUser(this.userId))
+            /*.flatMap((res: Response) => this.userService.get(this.userId))
             .do((user: User) => this.user.next(user))*/;
     }
 

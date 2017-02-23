@@ -16,7 +16,7 @@ var UserSearchService = (function () {
     }
     UserSearchService.prototype.search = function (term) {
         return this.http
-            .get("api/users/search?name=" + term)
+            .get("api/users?name=" + term)
             .map(function (r) { return r.json(); });
     };
     return UserSearchService;

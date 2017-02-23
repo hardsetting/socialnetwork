@@ -29,8 +29,8 @@ var ProfileComponent = (function () {
             .subscribe((currentUser: User) => this.currentUser = currentUser);*/
         this.route.params.switchMap(function (params) {
             return Observable_1.Observable.forkJoin([
-                _this.userService.getUser(params['username']),
-                _this.postService.getUserPosts(params['username'])
+                _this.userService.get(params['username']),
+                _this.userService.getPosts(params['username'])
             ]);
         }).subscribe(function (results) {
             _this.user = results[0];
@@ -49,8 +49,24 @@ var ProfileComponent = (function () {
     };
     ProfileComponent.prototype.onReact = function (post) {
         var _this = this;
-        this.postService.getUserPosts(this.user.username)
+        this.userService.getPosts(this.user.username)
             .subscribe(function (posts) { return _this.posts = posts; });
+    };
+    ProfileComponent.prototype.loadMore = function () {
+        var _this = this;
+        if (this.postsRequest != null) {
+            return;
+        }
+        // TODO: maybe use unix timestamp
+        var lastTimestamp = this.posts[this.posts.length - 1].created_at;
+        console.log('Loading more posts..');
+        this.postsRequest = this.userService
+            .getPosts(this.user.id, lastTimestamp)
+            .finally(function () { return _this.postsRequest = null; });
+        this.postsRequest.subscribe(function (posts) {
+            _this.posts = _this.posts.concat(posts);
+            console.log('More posts loaded');
+        });
     };
     return ProfileComponent;
 }());

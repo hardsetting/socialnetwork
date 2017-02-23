@@ -26,6 +26,7 @@ import {AuthService} from "./shared/auth.service";
 import {SiteComponent} from "./site/site.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {HomeComponent} from "./site/home.component";
+import {VisibleDirective} from "app/shared/visible.directive";
 
 @NgModule({
     imports: [
@@ -50,7 +51,8 @@ import {HomeComponent} from "./site/home.component";
         PostComponent,
 
         UserPicComponent,
-        ClickOutsideDirective
+        ClickOutsideDirective,
+        VisibleDirective
     ],
     providers: [
         AuthHttp,
