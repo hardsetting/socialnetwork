@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
@@ -94,6 +95,14 @@ var AuthHttp = (function () {
     };
     AuthHttp.prototype.post = function (url, body, options) {
         var request = new http_1.Request(new http_1.RequestOptions({ method: http_1.RequestMethod.Post, url: url, body: body }).merge(options));
+        return this.request(request);
+    };
+    AuthHttp.prototype.put = function (url, body, options) {
+        var request = new http_1.Request(new http_1.RequestOptions({ method: http_1.RequestMethod.Put, url: url, body: body }).merge(options));
+        return this.request(request);
+    };
+    AuthHttp.prototype.patch = function (url, body, options) {
+        var request = new http_1.Request(new http_1.RequestOptions({ method: http_1.RequestMethod.Patch, url: url, body: body }).merge(options));
         return this.request(request);
     };
     AuthHttp.prototype.delete = function (url, options) {

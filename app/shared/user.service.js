@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var auth_http_service_1 = require("./auth-http.service");
@@ -30,6 +31,13 @@ var UserService = (function () {
             .map(function (r) { return r.json(); })
             .map(function (posts) { return posts.map(function (post) { return new post_1.Post(post); }); });
         //.map((r: Response) => (r.json() as Post[]).map(post => new Post(post)));
+    };
+    UserService.prototype.getFriends = function (userId) {
+        return this.http
+            .get("api/users/" + userId + "/friends")
+            .map(function (r) { return r.json(); })
+            .map(function (friends) { return friends.map(function (friend) { return friend; }); });
+        // TODO: user constructor
     };
     return UserService;
 }());

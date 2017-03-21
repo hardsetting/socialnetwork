@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var user_service_1 = require("../../shared/user.service");
@@ -25,8 +26,6 @@ var ProfileComponent = (function () {
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.currentUser = this.authService.user.getValue();
-        /*this.authService.currentUser
-            .subscribe((currentUser: User) => this.currentUser = currentUser);*/
         this.route.params.switchMap(function (params) {
             return Observable_1.Observable.forkJoin([
                 _this.userService.get(params['username']),

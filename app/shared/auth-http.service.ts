@@ -102,6 +102,16 @@ export class AuthHttp {
         return this.request(request);
     }
 
+    put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+        let request = new Request(new RequestOptions({method: RequestMethod.Put, url: url, body: body}).merge(options));
+        return this.request(request);
+    }
+
+    patch(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+        let request = new Request(new RequestOptions({method: RequestMethod.Patch, url: url, body: body}).merge(options));
+        return this.request(request);
+    }
+
     delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
         let request = new Request(new RequestOptions({method: RequestMethod.Delete, url: url}).merge(options));
         return this.request(request);

@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var reaction_1 = require("app/models/reaction");
 var Post = (function () {
     function Post(data) {

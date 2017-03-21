@@ -25,13 +25,20 @@ export class PostService {
             .map((res: Response) => new Post(res.json()));
     }
 
+    edit(id: number, content: string): Observable<Post> {
+        let post = new Post(content);
+        return this.http
+            .put(`api/posts/${id}`, post)
+            .map((res: Response) => new Post(res.json()));
+    }
+
     delete(id: number): Observable<Response> {
         return this.http.delete(`api/posts/${id}`);
     }
 
     react(post_id: number, value: string): Observable<Reaction> {
         return this.http
-            .post(`api/posts/${post_id}/react`, {value: value})
+            .put(`api/posts/${post_id}/react`, {value: value})
             .map((res: Response) => res.json() as Reaction);
     }
 

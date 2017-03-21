@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var user_1 = require("../../models/user");
 var UserPicComponent = (function () {
@@ -25,8 +26,7 @@ UserPicComponent = __decorate([
         selector: 'sn-user-pic',
         templateUrl: 'user-pic.component.html',
         styleUrls: ['user-pic.component.css']
-    }),
-    __metadata("design:paramtypes", [])
+    })
 ], UserPicComponent);
 exports.UserPicComponent = UserPicComponent;
 //# sourceMappingURL=user-pic.component.js.map

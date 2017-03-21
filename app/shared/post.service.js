@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var post_1 = require("../models/post");
 var auth_http_service_1 = require("./auth-http.service");
@@ -26,12 +27,18 @@ var PostService = (function () {
             .post("api/posts", post)
             .map(function (res) { return new post_1.Post(res.json()); });
     };
+    PostService.prototype.edit = function (id, content) {
+        var post = new post_1.Post(content);
+        return this.http
+            .put("api/posts/" + id, post)
+            .map(function (res) { return new post_1.Post(res.json()); });
+    };
     PostService.prototype.delete = function (id) {
         return this.http.delete("api/posts/" + id);
     };
     PostService.prototype.react = function (post_id, value) {
         return this.http
-            .post("api/posts/" + post_id + "/react", { value: value })
+            .put("api/posts/" + post_id + "/react", { value: value })
             .map(function (res) { return res.json(); });
     };
     PostService.prototype.undoReact = function (post_id) {

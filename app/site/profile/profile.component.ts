@@ -35,8 +35,6 @@ export class ProfileComponent implements OnInit {
     ngOnInit(): void {
 
         this.currentUser = this.authService.user.getValue();
-        /*this.authService.currentUser
-            .subscribe((currentUser: User) => this.currentUser = currentUser);*/
 
         this.route.params.switchMap((params: Params) => {
             return Observable.forkJoin([

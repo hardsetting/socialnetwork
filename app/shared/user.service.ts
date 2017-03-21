@@ -29,4 +29,12 @@ export class UserService {
             .map(posts => posts.map(post => new Post(post)));
             //.map((r: Response) => (r.json() as Post[]).map(post => new Post(post)));
     }
+
+    getFriends(userId: number): Observable<User[]> {
+        return this.http
+            .get(`api/users/${userId}/friends`)
+            .map(r => r.json())
+            .map(friends => friends.map(friend => friend));
+        // TODO: user constructor
+    }
 }

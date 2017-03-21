@@ -30,7 +30,7 @@ export class AuthService {
     login(username, password): Observable<any> {
         console.log(`Logging in with username ${username}.`);
         return this.http
-            .post('/api/auth', {username: username, password: password})
+            .post('/api/auth/login', {username: username, password: password})
             .do(() => console.log('Login successful.'))
             .do((res: Response) => this.data = res.json())
             /*.flatMap((res: Response) => this.userService.get(this.userId))

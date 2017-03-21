@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Reaction = (function () {
     function Reaction(data) {
         Object.assign(this, data);

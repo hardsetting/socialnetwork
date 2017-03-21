@@ -9,7 +9,9 @@
             <div class="name">{{ user?.name }} {{ user?.surname }}</div>
             <div class="city">San Francisco, CA</div>
         </div>
-        <div class=""></div>
+        <div class="menu-right">
+            <button *ngIf="user?.id == currentUser?.id" class="btn-friend">{{isFriend ? 'Friend' : ''}}</button>
+        </div>
     </div>
 
 </div>

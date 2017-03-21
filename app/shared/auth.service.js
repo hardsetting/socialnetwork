@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
@@ -25,7 +26,7 @@ var AuthService = AuthService_1 = (function () {
         var _this = this;
         console.log("Logging in with username " + username + ".");
         return this.http
-            .post('/api/auth', { username: username, password: password })
+            .post('/api/auth/login', { username: username, password: password })
             .do(function () { return console.log('Login successful.'); })
             .do(function (res) { return _this.data = res.json(); });
     };
