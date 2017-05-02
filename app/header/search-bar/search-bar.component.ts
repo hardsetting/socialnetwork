@@ -1,11 +1,11 @@
-import {Component, OnInit, HostListener} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 
 import {Subject} from "rxjs/Subject";
 import {Observable} from "rxjs/Observable";
 
-import {User} from "../../models/user";
-import {UserSearchService} from "../../shared/user-search.service";
-import {Router} from "@angular/router";
+import {User} from "app/models/user";
+import {UserSearchService} from "app/shared/user-search.service";
 
 @Component({
     moduleId: module.id,

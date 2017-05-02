@@ -4,9 +4,10 @@ import {Directive, ElementRef, Output, EventEmitter, HostListener} from '@angula
     selector: '[clickOutside]'
 })
 export class ClickOutsideDirective {
-    @Output() public clickOutside = new EventEmitter();
+    // Dunno why should @Output be commented out..
+    /*@Output() */public clickOutside = new EventEmitter();
 
-    constructor(private elementRef : ElementRef) {}
+    constructor(private elementRef : ElementRef) { }
 
     @HostListener('document:click', ['$event.target'])
     private onClick(targetElement) {

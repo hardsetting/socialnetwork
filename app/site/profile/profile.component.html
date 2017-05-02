@@ -4,38 +4,16 @@
         <div class=""></div>
         <div class="info">
             <!-- div class="face"><div class="inner-face"><img src="/img/face.jpg" /></div></div -->
-            <sn-user-pic [user]="user"></sn-user-pic>
+            <sn-user-pic [user]="user" (click)="gotoTimeline()"></sn-user-pic>
 
-            <div class="name">{{ user?.name }} {{ user?.surname }}</div>
+            <div class="name" (click)="gotoTimeline()">{{ user?.name }} {{ user?.surname }}</div>
             <div class="city">San Francisco, CA</div>
         </div>
         <div class="menu-right">
-            <button *ngIf="user?.id == currentUser?.id" class="btn-friend">{{isFriend ? 'Friend' : ''}}</button>
+            <button (click)="friend()" *ngIf="user?.id == currentUser?.id" class="btn-friend">Friend</button>
         </div>
     </div>
 
 </div>
 
-<div class="content">
-    <div class="box info">
-        <div class="head">Profile Info</div>
-        <div class="body">
-            <span class="title">About me:</span>
-            <p>Hi, I'm James. I'm 36 and i work as a digital designer for the "DayDreams" Agency in Pier 56</p>
-
-            <span class="title">Favourite TV Shows:</span>
-            <p>Hi, I'm James. I'm 36 and i work as a digital designer for the "DayDreams" Agency in Pier 56</p>
-
-            <span class="title">Favourite Music Bands / Artists:</span>
-            <p>Hi, I'm James. I'm 36 and i work as a digital designer for the "DayDreams" Agency in Pier 56</p>
-        </div>
-    </div>
-
-    <div class="posts">
-        <sn-new-post *ngIf="user?.id == currentUser?.id" [user]="user" (onPost)="onPost($event)"></sn-new-post>
-        <sn-post *ngFor="let post of posts" [user]="user" [post]="post" (onDelete)="onDelete($event)" (onReact)="onReact($event)"></sn-post>
-        <div class="post-loader" (visible)="loadMore()">
-            <div *ngIf="postsRequest" class="spinner">Loading..</div>
-        </div>
-    </div>
-</div>
+<router-outlet></router-outlet>

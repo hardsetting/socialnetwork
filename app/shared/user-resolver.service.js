@@ -10,8 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var auth_service_1 = require("./auth.service");
-var user_service_1 = require("./user.service");
+var auth_service_1 = require("app/shared/auth.service");
+var user_service_1 = require("app/shared/user.service");
 var UserResolver = (function () {
     function UserResolver(authService, userService) {
         this.authService = authService;
@@ -29,6 +29,8 @@ var UserResolver = (function () {
             console.log('User already resolved', user);
             return user;
         }
+        // Here, the UserResolver takes care of updating the current user
+        // this might not be ideal.
         return this.userService
             .get(this.authService.userId)
             .do(function (user) { return _this.authService.user.next(user); })

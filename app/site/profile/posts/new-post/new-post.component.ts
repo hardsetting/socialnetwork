@@ -1,9 +1,9 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 
-import {User} from "../../../models/user";
+import {User} from "app/models/user";
 
-import {PostService} from "../../../shared/post.service";
-import {Post} from "../../../models/post";
+import {PostService} from "app/shared/post.service";
+import {Post} from "app/models/post";
 
 @Component({
     moduleId: module.id,

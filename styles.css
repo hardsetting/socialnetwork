@@ -6,6 +6,9 @@ html {
 
 body {
   background-color: #edf2f6;
+  overflow-y: scroll; }
+
+* {
   font-family: "Ubuntu", serif; }
 
 .box {
@@ -15,5 +18,8 @@ body {
   overflow: hidden;
   color: #b6bac2;
   margin-bottom: 30px; }
+
+.vex-open {
+  margin-right: 15px; }
 
 /*# sourceMappingURL=styles.css.map */

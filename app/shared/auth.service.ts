@@ -2,13 +2,12 @@ import {Injectable} from '@angular/core';
 import {Response, Http} from "@angular/http";
 
 import {Observable} from "rxjs/Observable";
-import {Subject} from "rxjs/Subject";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {ReplaySubject} from "rxjs/ReplaySubject";
 
 import {User} from "../models/user";
 
 // TODO: split AuthService into AuthService and CurrentUserService to avoid circular dependency
+// Current solution: user is updated from outside
 
 @Injectable()
 export class AuthService {
@@ -59,6 +58,7 @@ export class AuthService {
             })*/;
     }
 
+    //region Auth data management
     get userId(): number {
         return Number(localStorage.getItem(AuthService.KEY_USER_ID));
     }
@@ -89,4 +89,5 @@ export class AuthService {
         localStorage.removeItem(AuthService.KEY_REFRESH_TOKEN);
         localStorage.removeItem(AuthService.KEY_EXPIRES_AT);
     }
+    //endregion
 }

@@ -1,0 +1,36 @@
+
+<div class="header">
+    <h3 class="title">{{user?.name}}'s Friends ({{friends?.length}})</h3>
+    <input type="search" class="search" placeholder="Search friends..">
+</div>
+
+<div class="friends">
+    <div *ngFor="let friend of friends" class="friend">
+
+        <img class="cover" src="/img/skyline.jpg" />
+
+        <div class="info">
+            <sn-user-pic [user]="friend"></sn-user-pic>
+
+            <div class="names">
+                <span>{{friend.name}} {{friend.surname}}</span>
+                <span>{{friend.username}}</span>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <span>52</span>
+                    <span>Friends</span>
+                </div>
+
+                <div class="stat">
+                    <span>240</span>
+                    <span>Posts</span>
+                </div>
+            </div>
+
+            <button class="btn-unfriend">Unfriend</button>
+        </div>
+
+    </div>
+</div>

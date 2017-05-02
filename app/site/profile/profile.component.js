@@ -11,17 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var user_service_1 = require("../../shared/user.service");
-var post_service_1 = require("../../shared/post.service");
 var Observable_1 = require("rxjs/Observable");
-var auth_service_1 = require("../../shared/auth.service");
+var vex_1 = require("angular2-modal/plugins/vex");
+var auth_service_1 = require("app/shared/auth.service");
+var user_service_1 = require("app/shared/user.service");
 var ProfileComponent = (function () {
-    function ProfileComponent(route, router, authService, userService, postService) {
+    function ProfileComponent(route, router, authService, userService, modal) {
         this.route = route;
         this.router = router;
         this.authService = authService;
         this.userService = userService;
-        this.postService = postService;
+        this.modal = modal;
     }
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -36,36 +36,14 @@ var ProfileComponent = (function () {
             _this.posts = results[1];
         });
     };
-    ProfileComponent.prototype.onPost = function (post) {
-        // TODO: should check for changes
-        this.posts.unshift(post);
+    ProfileComponent.prototype.gotoTimeline = function () {
+        var username = this.currentUser.username;
+        this.router.navigate(["/profile/" + username]);
     };
-    ProfileComponent.prototype.onDelete = function (post) {
-        var index = this.posts.indexOf(post);
-        if (index >= 0) {
-            this.posts.splice(index, 1);
-        }
-    };
-    ProfileComponent.prototype.onReact = function (post) {
-        var _this = this;
-        this.userService.getPosts(this.user.username)
-            .subscribe(function (posts) { return _this.posts = posts; });
-    };
-    ProfileComponent.prototype.loadMore = function () {
-        var _this = this;
-        if (this.postsRequest != null) {
-            return;
-        }
-        // TODO: maybe use unix timestamp
-        var lastTimestamp = this.posts[this.posts.length - 1].created_at;
-        console.log('Loading more posts..');
-        this.postsRequest = this.userService
-            .getPosts(this.user.id, lastTimestamp)
-            .finally(function () { return _this.postsRequest = null; });
-        this.postsRequest.subscribe(function (posts) {
-            _this.posts = _this.posts.concat(posts);
-            console.log('More posts loaded');
-        });
+    ProfileComponent.prototype.friend = function () {
+        this.modal.alert()
+            .message('Hello world')
+            .open();
     };
     return ProfileComponent;
 }());
@@ -75,12 +53,13 @@ ProfileComponent = __decorate([
         selector: 'sn-profile',
         templateUrl: 'profile.component.html',
         styleUrls: ['profile.component.css']
+        //providers: [Modal]
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute,
         router_1.Router,
         auth_service_1.AuthService,
         user_service_1.UserService,
-        post_service_1.PostService])
+        vex_1.Modal])
 ], ProfileComponent);
 exports.ProfileComponent = ProfileComponent;
 //# sourceMappingURL=profile.component.js.map

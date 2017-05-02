@@ -15,10 +15,12 @@ var post_service_1 = require("app/shared/post.service");
 var user_1 = require("app/models/user");
 var reaction_1 = require("app/models/reaction");
 var auth_service_1 = require("app/shared/auth.service");
+var vex_1 = require("angular2-modal/plugins/vex");
 var PostComponent = (function () {
-    function PostComponent(postService, authService) {
+    function PostComponent(postService, authService, modal) {
         this.postService = postService;
         this.authService = authService;
+        this.modal = modal;
         this.onDelete = new core_1.EventEmitter();
         this.onReact = new core_1.EventEmitter();
         this.showOptions = false;
@@ -35,9 +37,16 @@ var PostComponent = (function () {
     };
     PostComponent.prototype.delete = function () {
         var _this = this;
-        this.toggleOptions();
-        this.postService.delete(this.post.id).subscribe(function () {
-            _this.onDelete.emit(_this.post);
+        var modal = this.modal.confirm()
+            .overlayClosesOnClick(true)
+            .message('Are you sure you want to delete your message?');
+        modal.open()
+            .then(function (dialog) { return dialog.result; })
+            .then(function () {
+            _this.toggleOptions();
+            _this.postService.delete(_this.post.id).subscribe(function () {
+                _this.onDelete.emit(_this.post);
+            });
         });
     };
     Object.defineProperty(PostComponent.prototype, "reactions", {
@@ -138,7 +147,8 @@ PostComponent = __decorate([
         changeDetection: core_1.ChangeDetectionStrategy.OnPush
     }),
     __metadata("design:paramtypes", [post_service_1.PostService,
-        auth_service_1.AuthService])
+        auth_service_1.AuthService,
+        vex_1.Modal])
 ], PostComponent);
 exports.PostComponent = PostComponent;
 //# sourceMappingURL=post.component.js.map

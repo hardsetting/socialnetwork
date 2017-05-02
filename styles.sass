@@ -6,9 +6,11 @@ html
 *, *:before, *:after
   box-sizing: inherit
 
-
 body
   background-color: $page-background-color
+  overflow-y: scroll
+
+*
   font-family: "Ubuntu", serif
 
 // todo make mixin
@@ -20,3 +22,9 @@ body
   overflow: hidden
   color: $text-color
   margin-bottom: $box-margin
+
+
+// vex overlay scrollbar fix
+.vex-open
+  margin-right: 15px
+

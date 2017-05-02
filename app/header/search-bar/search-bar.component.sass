@@ -6,14 +6,20 @@ $user-pic-size: 40px
 $result-vertical-padding: ($result-height - $user-pic-size) / 2
 $result-horizontal-padding: 20px
 
+$background-color: #4a4c63
+$color: lighten(#7c819f, 20)
+$placeholder-color: darken($color, 20)
+
 input
   width: 100%
   height: 100%
   padding: 0 20px
+  font-size: 15px
 
   border: none
-  background-color: #4a4c63
-  color: #686c87
+  background-color: $background-color
+  color: $color
+  @include placeholder-color($placeholder-color)
 
 .search-results
   position: absolute

@@ -2,9 +2,14 @@ input {
   width: 100%;
   height: 100%;
   padding: 0 20px;
+  font-size: 15px;
   border: none;
   background-color: #4a4c63;
-  color: #686c87; }
+  color: #b7baca; }
+  input::-webkit-input-placeholder {
+    color: #7c819f; }
+  input::-moz-placeholder {
+    color: #7c819f; }
 
 .search-results {
   position: absolute;

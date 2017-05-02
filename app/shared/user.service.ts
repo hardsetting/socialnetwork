@@ -7,11 +7,16 @@ import {AuthHttp} from "./auth-http.service";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {AuthService} from "./auth.service";
 import {Post} from "app/models/post";
+import {Friendship} from "app/models/friendship";
 
 @Injectable()
 export class UserService {
 
-    constructor(private authHttp: AuthHttp, private http: Http) { }
+    constructor(
+        private authHttp: AuthHttp,
+        private authService: AuthService,
+        private http: Http
+    ) { }
 
     get(id: number|string): Observable<User> {
         return this.authHttp
@@ -31,10 +36,19 @@ export class UserService {
     }
 
     getFriends(userId: number): Observable<User[]> {
-        return this.http
+        return this.authHttp
             .get(`api/users/${userId}/friends`)
             .map(r => r.json())
             .map(friends => friends.map(friend => friend));
-        // TODO: user constructor
+        // TODO: use User constructor
+    }
+
+    getFriendship(userId: number): Observable<Friendship> {
+        // TODO: Move status logic to the server, not requiring currUser to be passed to constructor
+        let currUserId = this.authService.userId;
+
+        return this.authHttp.get(`api/users/${userId}/friendship`)
+            .map(r => r.json())
+            .map(friendship => new Friendship(friendship, currUserId));
     }
 }

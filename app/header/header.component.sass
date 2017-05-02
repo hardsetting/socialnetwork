@@ -1,8 +1,16 @@
-$header-height: 50px
+@import ../../variables
+
+$header-height: 60px
 $header-margin: 25px
 
 $header-text-color: white
 $header-bg-color: #404257
+
+$username-color: #868aa7
+
+@mixin hoverable()
+  &:hover
+    background-color: lighten($header-bg-color, 10)
 
 .header
   width: 100%
@@ -14,9 +22,13 @@ $header-bg-color: #404257
 
   display: flex
 
-  .page-name
-    padding: 0 20px
+  .site-name
+    @include hoverable()
+    padding: 0 30px
     line-height: $header-height
+    font-weight: bold
+    font-size: 18px
+    cursor: pointer
 
   sn-search-bar
     position: relative
@@ -24,23 +36,74 @@ $header-bg-color: #404257
     flex: 1 1
 
   .find-friends
+    @include no-highlight()
+    color: $header-bg-color
     padding: 0 20px
     line-height: $header-height
 
   .buttons
-    padding: 10px 20px
-    button
-      width: 30px
-      height: 30px
+    @include flex-row()
+    padding: 0 20px
+
+    span
+      width: 40px
+      height: 40px
       margin: 0 5px
+      cursor: pointer
+
+      i
+        font-size: 18px
+        display: block
+        width: 100%
+        height: 100%
+        line-height: 40px
+        text-align: center
+        vertical-align: middle
+
+        &:hover
+          color: darken($header-text-color, 15)
 
   .user
-    padding: 10px 10px
+    position: relative
+
+  .user-info
+    @include hoverable()
+    @include flex-row()
+    padding: 0 30px
+    height: 100%
+    cursor: pointer
+
     sn-user-pic
       display: inline-block
       height: 30px
       width: 30px
-      vertical-align: middle
-    span.name
-      margin-left: 5px
-      vertical-align: middle
+      margin-right: 10px
+
+    .names
+      @include flex-column()
+      margin-right: 20px
+
+    .fullname
+      @include no-highlight()
+      font-size: 14px
+      font-weight: bold
+
+    .username
+      @include no-highlight()
+      font-size: 10px
+      color: $username-color
+
+  .user-menu
+    background-color: $header-bg-color
+    position: absolute
+    width: calc(100% + #{$header-margin})
+
+    li
+      @include flex-row()
+      @include hoverable()
+      justify-content: space-between
+
+      padding: 0 20px
+      height: 50px
+      line-height: 50px
+      cursor: pointer

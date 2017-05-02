@@ -1,5 +1,6 @@
 import {Upload} from "./upload";
 import {Post} from "./post";
+import {Friendship} from "app/models/friendship";
 
 export class User {
     id: number;
@@ -18,5 +19,7 @@ export class User {
     profile_picture_id: number;
 
     profile_picture?: Upload;
-    posts?: Post[]
+    posts?: Post[];
+
+    friendship?: Friendship;
 }

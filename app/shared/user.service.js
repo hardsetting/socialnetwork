@@ -12,10 +12,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var auth_http_service_1 = require("./auth-http.service");
+var auth_service_1 = require("./auth.service");
 var post_1 = require("app/models/post");
+var friendship_1 = require("app/models/friendship");
 var UserService = (function () {
-    function UserService(authHttp, http) {
+    function UserService(authHttp, authService, http) {
         this.authHttp = authHttp;
+        this.authService = authService;
         this.http = http;
     }
     UserService.prototype.get = function (id) {
@@ -33,17 +36,26 @@ var UserService = (function () {
         //.map((r: Response) => (r.json() as Post[]).map(post => new Post(post)));
     };
     UserService.prototype.getFriends = function (userId) {
-        return this.http
+        return this.authHttp
             .get("api/users/" + userId + "/friends")
             .map(function (r) { return r.json(); })
             .map(function (friends) { return friends.map(function (friend) { return friend; }); });
-        // TODO: user constructor
+        // TODO: use User constructor
+    };
+    UserService.prototype.getFriendship = function (userId) {
+        // TODO: Move status logic to the server, not requiring currUser to be passed to constructor
+        var currUserId = this.authService.userId;
+        return this.authHttp.get("api/users/" + userId + "/friendship")
+            .map(function (r) { return r.json(); })
+            .map(function (friendship) { return new friendship_1.Friendship(friendship, currUserId); });
     };
     return UserService;
 }());
 UserService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [auth_http_service_1.AuthHttp, http_1.Http])
+    __metadata("design:paramtypes", [auth_http_service_1.AuthHttp,
+        auth_service_1.AuthService,
+        http_1.Http])
 ], UserService);
 exports.UserService = UserService;
 //# sourceMappingURL=user.service.js.map

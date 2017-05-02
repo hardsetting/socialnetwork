@@ -13,6 +13,7 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
 // TODO: split AuthService into AuthService and CurrentUserService to avoid circular dependency
+// Current solution: user is updated from outside
 var AuthService = AuthService_1 = (function () {
     function AuthService(http) {
         this.http = http;
@@ -48,6 +49,7 @@ var AuthService = AuthService_1 = (function () {
         });
     };
     Object.defineProperty(AuthService.prototype, "userId", {
+        //region Auth data management
         get: function () {
             return Number(localStorage.getItem(AuthService_1.KEY_USER_ID));
         },

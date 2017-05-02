@@ -1,17 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../shared/auth.service";
-import {Observable} from "rxjs/Observable";
-import {User} from "../models/user";
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+
+import {User} from "app/models/user";
+import {AuthService} from "app/shared/auth.service";
 
 @Component({
     moduleId: module.id,
     selector: 'sn-header',
+    //changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: 'header.component.html',
     styleUrls: ['header.component.css']
 })
 export class HeaderComponent implements OnInit {
-    currentUser: Observable<User>;
+    currentUser: User;
+
+    isUserMenuOpen: boolean;
 
     constructor(
         private authService: AuthService,
@@ -19,7 +22,7 @@ export class HeaderComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.currentUser = this.authService.user;
+        this.currentUser = this.authService.user.getValue();
     }
 
     logout() {
@@ -27,7 +30,29 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['/login']);
     }
 
-    gotoAdmin() {
-        this.router.navigate(['/admin']);
+    //region UserMenu
+    toggleUserMenu() {
+        this.isUserMenuOpen = !this.isUserMenuOpen;
+    }
+
+    closeUserMenu() {
+        console.log('closeUserMenu');
+        this.isUserMenuOpen = false;
+    }
+    //endregion
+
+    //region Notification
+    toggleNotifications() {
+
+    }
+
+    closeNotifications() {
+
+    }
+    //endregion
+
+    gotoFriends() {
+        let username = this.currentUser.username;
+        this.router.navigate([`/profile/${username}/friends`]);
     }
 }

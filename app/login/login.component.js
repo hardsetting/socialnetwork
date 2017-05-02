@@ -19,24 +19,27 @@ var LoginComponent = (function () {
         this.loginData = { username: null, password: null };
         this.useLoginForm = true;
         this.submitting = false;
-        this.error = false;
+        this.error = null;
     }
-    LoginComponent.prototype.ngOnInit = function () {
-    };
     LoginComponent.prototype.submit = function () {
         var _this = this;
+        // Set as "submitting", preventing further submissions.
         this.submitting = true;
-        this.error = false;
+        // Clears previous errors, if any
+        this.error = null;
         this.authService.login(this.loginData.username, this.loginData.password)
             .subscribe(function () {
             _this.router.navigate(['/']);
         }, function (err) {
+            // TODO: use error description from server
             if (err.status == 401) {
-                //alert('Authentication error.');
-                _this.error = true;
+                _this.error = 'Authentication failed.';
             }
-            // TODO: manage server error
+            else {
+                _this.error = 'Unexpected server error.';
+            }
         }, function () {
+            // Set as submitted, releasing the form's lock.
             _this.submitting = false;
         });
     };

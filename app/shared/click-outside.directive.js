@@ -13,7 +13,8 @@ var core_1 = require("@angular/core");
 var ClickOutsideDirective = (function () {
     function ClickOutsideDirective(elementRef) {
         this.elementRef = elementRef;
-        this.clickOutside = new core_1.EventEmitter();
+        // Dunno why should @Output be commented out..
+        /*@Output() */ this.clickOutside = new core_1.EventEmitter();
     }
     ClickOutsideDirective.prototype.onClick = function (targetElement) {
         var clickedInside = this.elementRef.nativeElement.contains(targetElement);
@@ -23,10 +24,6 @@ var ClickOutsideDirective = (function () {
     };
     return ClickOutsideDirective;
 }());
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], ClickOutsideDirective.prototype, "clickOutside", void 0);
 __decorate([
     core_1.HostListener('document:click', ['$event.target']),
     __metadata("design:type", Function),

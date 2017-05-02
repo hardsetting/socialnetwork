@@ -10,22 +10,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var auth_service_1 = require("../shared/auth.service");
 var router_1 = require("@angular/router");
+var auth_service_1 = require("app/shared/auth.service");
 var HeaderComponent = (function () {
     function HeaderComponent(authService, router) {
         this.authService = authService;
         this.router = router;
     }
     HeaderComponent.prototype.ngOnInit = function () {
-        this.currentUser = this.authService.user;
+        this.currentUser = this.authService.user.getValue();
     };
     HeaderComponent.prototype.logout = function () {
         this.authService.logout();
         this.router.navigate(['/login']);
     };
-    HeaderComponent.prototype.gotoAdmin = function () {
-        this.router.navigate(['/admin']);
+    //region UserMenu
+    HeaderComponent.prototype.toggleUserMenu = function () {
+        this.isUserMenuOpen = !this.isUserMenuOpen;
+    };
+    HeaderComponent.prototype.closeUserMenu = function () {
+        console.log('closeUserMenu');
+        this.isUserMenuOpen = false;
+    };
+    //endregion
+    //region Notification
+    HeaderComponent.prototype.toggleNotifications = function () {
+    };
+    HeaderComponent.prototype.closeNotifications = function () {
+    };
+    //endregion
+    HeaderComponent.prototype.gotoFriends = function () {
+        var username = this.currentUser.username;
+        this.router.navigate(["/profile/" + username + "/friends"]);
     };
     return HeaderComponent;
 }());
@@ -33,6 +49,7 @@ HeaderComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: 'sn-header',
+        //changeDetection: ChangeDetectionStrategy.OnPush,
         templateUrl: 'header.component.html',
         styleUrls: ['header.component.css']
     }),

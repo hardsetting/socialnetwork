@@ -8,14 +8,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var profile_component_1 = require("./site/profile/profile.component");
-var login_component_1 = require("./login/login.component");
-var site_component_1 = require("./site/site.component");
+var user_resolver_service_1 = require("app/shared/user-resolver.service");
+var login_guard_service_1 = require("app/login/login-guard.service");
+var site_guard_service_1 = require("app/site/site-guard.service");
+var login_component_1 = require("app/login/login.component");
+var site_component_1 = require("app/site/site.component");
+var home_component_1 = require("app/site/home.component");
+var profile_component_1 = require("app/site/profile/profile.component");
+var posts_component_1 = require("app/site/profile/posts/posts.component");
+var friends_component_1 = require("app/site/profile/friends/friends.component");
 var page_not_found_component_1 = require("./page-not-found/page-not-found.component");
-var site_guard_service_1 = require("./site/site-guard.service");
-var login_guard_service_1 = require("./login/login-guard.service");
-var user_resolver_service_1 = require("./shared/user-resolver.service");
-var home_component_1 = require("./site/home.component");
 var routes = [
     { path: 'login', component: login_component_1.LoginComponent, canActivate: [login_guard_service_1.LoginGuard] },
     { path: '',
@@ -24,7 +26,13 @@ var routes = [
         canActivateChild: [site_guard_service_1.SiteGuard],
         children: [
             { path: '', component: home_component_1.HomeComponent },
-            { path: 'profile/:username', component: profile_component_1.ProfileComponent },
+            { path: 'profile/:username',
+                component: profile_component_1.ProfileComponent,
+                children: [
+                    { path: '', component: posts_component_1.PostsComponent },
+                    { path: 'friends', component: friends_component_1.FriendsComponent }
+                ]
+            },
         ]
     },
     { path: 'admin', resolve: [user_resolver_service_1.UserResolver], loadChildren: 'app/admin/admin.module#AdminModule' },

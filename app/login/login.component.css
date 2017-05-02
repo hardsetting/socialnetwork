@@ -4,18 +4,18 @@
   height: 100%;
   background: url("/img/login_bg2.jpg") center; }
 
-.header {
+.login-header {
   height: 100px;
   width: 100%;
   padding: 0 60px;
   display: flex;
   align-items: center; }
-  .header .logo {
+  .login-header .logo {
     color: white;
     font-size: 30px;
     font-weight: bold; }
 
-.body {
+.login-body {
   max-width: 1280px;
   height: calc(100% - 100px);
   margin: 0 auto;
@@ -23,16 +23,16 @@
   display: flex;
   justify-content: space-around;
   align-items: center; }
-  .body .description {
+  .login-body .description {
     width: 50%;
     color: white; }
-    .body .description h1 {
+    .login-body .description h1 {
       font-size: 40px;
       margin-bottom: 30px; }
-    .body .description p {
+    .login-body .description p {
       font-size: 16px;
       margin-bottom: 60px; }
-    .body .description button {
+    .login-body .description button {
       height: 50px;
       width: 100%;
       padding: 10px 20px;
@@ -47,13 +47,13 @@
       cursor: pointer;
       width: 200px;
       border: 2px solid white; }
-      .body .description button:disabled {
+      .login-body .description button:disabled {
         background-color: #fe9c86; }
-  .body .forms {
+  .login-body .forms {
     width: 500px;
     height: 620px;
     display: flex; }
-    .body .forms .form-switch button {
+    .login-body .forms .form-switch button {
       display: block;
       width: 50px;
       height: 50%;
@@ -62,43 +62,43 @@
       background: #f2f2f2;
       border: 1px solid #e2e6ee;
       font-size: 18px; }
-      .body .forms .form-switch button.active {
+      .login-body .forms .form-switch button.active {
         background: white;
         color: #fe5e3a; }
-    .body .forms .form {
+    .login-body .forms .form {
       flex-grow: 1;
       height: 100%;
       background: white;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px; }
-      .body .forms .form .form-header {
+      .login-body .forms .form .form-header {
         padding: 22px;
         font-weight: bold;
         border-bottom: 1px solid #e2e6ee; }
-      .body .forms .form .form-body {
+      .login-body .forms .form .form-body {
         padding: 25px; }
-      .body .forms .form form .form-group {
+      .login-body .forms .form form .form-group {
         margin-bottom: 20px; }
-        .body .forms .form form .form-group label {
+        .login-body .forms .form form .form-group label {
           display: block;
           margin-bottom: 5px; }
-        .body .forms .form form .form-group input {
+        .login-body .forms .form form .form-group input {
           height: 50px;
           width: 100%;
           padding: 10px 20px;
           font-size: 15px;
           border: 1px solid #a2afc8;
           border-radius: 4px; }
-          .body .forms .form form .form-group input.ng-pristine {
+          .login-body .forms .form form .form-group input.ng-pristine {
             border-left: 4px solid #b3b3b3; }
-          .body .forms .form form .form-group input.ng-dirty.ng-invalid {
+          .login-body .forms .form form .form-group input.ng-dirty.ng-invalid {
             border-left: 4px solid red; }
-          .body .forms .form form .form-group input.ng-dirty.ng-valid {
+          .login-body .forms .form form .form-group input.ng-dirty.ng-valid {
             border-left: 4px solid green; }
-        .body .forms .form form .form-group .error {
+        .login-body .forms .form form .form-group .error {
           margin-top: 8px;
           color: red; }
-      .body .forms .form form button {
+      .login-body .forms .form form button {
         height: 50px;
         width: 100%;
         padding: 10px 20px;
@@ -111,7 +111,7 @@
         background-color: #fe5e3a;
         font-weight: bold;
         cursor: pointer; }
-        .body .forms .form form button:disabled {
+        .login-body .forms .form form button:disabled {
           background-color: #fe9c86; }
 
 /*# sourceMappingURL=login.component.css.map */

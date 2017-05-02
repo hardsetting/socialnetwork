@@ -12,24 +12,28 @@ var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
 var angular2_moment_1 = require("angular2-moment");
-var app_routing_module_1 = require("./app-routing.module");
-var app_component_1 = require("./app.component");
-var login_component_1 = require("./login/login.component");
-var search_bar_component_1 = require("./header/search-bar/search-bar.component");
-var header_component_1 = require("./header/header.component");
-var profile_component_1 = require("./site/profile/profile.component");
-var user_service_1 = require("./shared/user.service");
-var post_service_1 = require("./shared/post.service");
-var new_post_component_1 = require("./site/profile/new-post/new-post.component");
-var post_component_1 = require("./site/profile/post/post.component");
-var auth_http_service_1 = require("./shared/auth-http.service");
-var user_pic_component_1 = require("./shared/user-pic/user-pic.component");
+var app_routing_module_1 = require("app/app-routing.module");
+var app_component_1 = require("app/app.component");
+var login_component_1 = require("app/login/login.component");
+var search_bar_component_1 = require("app/header/search-bar/search-bar.component");
+var header_component_1 = require("app/header/header.component");
+var profile_component_1 = require("app/site/profile/profile.component");
+var user_service_1 = require("app/shared/user.service");
+var post_service_1 = require("app/shared/post.service");
+var new_post_component_1 = require("app/site/profile/posts/new-post/new-post.component");
+var post_component_1 = require("app/site/profile/posts/post/post.component");
+var auth_http_service_1 = require("app/shared/auth-http.service");
+var user_pic_component_1 = require("app/shared/user-pic/user-pic.component");
 var click_outside_directive_1 = require("./shared/click-outside.directive");
-var auth_service_1 = require("./shared/auth.service");
-var site_component_1 = require("./site/site.component");
-var page_not_found_component_1 = require("./page-not-found/page-not-found.component");
-var home_component_1 = require("./site/home.component");
+var auth_service_1 = require("app/shared/auth.service");
+var site_component_1 = require("app/site/site.component");
+var page_not_found_component_1 = require("app/page-not-found/page-not-found.component");
+var home_component_1 = require("app/site/home.component");
 var visible_directive_1 = require("app/shared/visible.directive");
+var angular2_modal_1 = require("angular2-modal");
+var vex_1 = require("angular2-modal/plugins/vex");
+var friends_component_1 = require("app/site/profile/friends/friends.component");
+var posts_component_1 = require("app/site/profile/posts/posts.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -42,13 +46,17 @@ AppModule = __decorate([
             forms_1.FormsModule,
             http_1.HttpModule,
             angular2_moment_1.MomentModule,
+            angular2_modal_1.ModalModule.forRoot(),
+            vex_1.VexModalModule,
             app_routing_module_1.AppRoutingModule
         ],
         declarations: [
             app_component_1.AppComponent,
+            login_component_1.LoginComponent,
             site_component_1.SiteComponent,
             home_component_1.HomeComponent,
-            login_component_1.LoginComponent,
+            posts_component_1.PostsComponent,
+            friends_component_1.FriendsComponent,
             page_not_found_component_1.PageNotFoundComponent,
             header_component_1.HeaderComponent,
             search_bar_component_1.SearchBarComponent,

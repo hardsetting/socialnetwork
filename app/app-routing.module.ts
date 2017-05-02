@@ -1,13 +1,19 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {ProfileComponent} from "./site/profile/profile.component";
-import {LoginComponent} from "./login/login.component";
-import {SiteComponent} from "./site/site.component";
+
+import {UserResolver} from "app/shared/user-resolver.service";
+import {LoginGuard} from "app/login/login-guard.service";
+import {SiteGuard} from "app/site/site-guard.service";
+
+import {LoginComponent} from "app/login/login.component";
+
+import {SiteComponent} from "app/site/site.component";
+import {HomeComponent} from "app/site/home.component";
+import {ProfileComponent} from "app/site/profile/profile.component";
+import {PostsComponent} from "app/site/profile/posts/posts.component";
+import {FriendsComponent} from "app/site/profile/friends/friends.component";
+
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
-import {SiteGuard} from "./site/site-guard.service";
-import {LoginGuard} from "./login/login-guard.service";
-import {UserResolver} from "./shared/user-resolver.service";
-import {HomeComponent} from "./site/home.component";
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent, canActivate:[LoginGuard]},
@@ -17,7 +23,13 @@ const routes: Routes = [
         canActivateChild: [SiteGuard],
         children: [
             { path: '', component: HomeComponent },
-            { path: 'profile/:username', component: ProfileComponent },
+            { path: 'profile/:username',
+                component: ProfileComponent,
+                children: [
+                    { path: '', component: PostsComponent },
+                    { path: 'friends', component: FriendsComponent }
+                ]
+            },
         ]
     },
     { path: 'admin', resolve: [UserResolver], loadChildren: 'app/admin/admin.module#AdminModule' },
@@ -33,4 +45,5 @@ const routes: Routes = [
         UserResolver
     ]
 })
+
 export class AppRoutingModule { }

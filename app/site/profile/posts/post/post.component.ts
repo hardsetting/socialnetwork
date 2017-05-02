@@ -5,6 +5,7 @@ import {User} from "app/models/user";
 import {Reaction} from "app/models/reaction";
 import {AuthService} from "app/shared/auth.service";
 import {Observable} from "rxjs/Observable";
+import {Modal,} from "angular2-modal/plugins/vex";
 
 @Component({
     moduleId: module.id,
@@ -23,7 +24,8 @@ export class PostComponent {
 
     constructor(
         private postService: PostService,
-        private authService: AuthService
+        private authService: AuthService,
+        private modal: Modal
     ) {}
 
     //region Post
@@ -40,10 +42,18 @@ export class PostComponent {
     }
 
     delete(): void {
-        this.toggleOptions();
-        this.postService.delete(this.post.id).subscribe(() => {
-            this.onDelete.emit(this.post);
-        });
+        let modal = this.modal.confirm()
+            .overlayClosesOnClick(true)
+            .message('Are you sure you want to delete your message?');
+
+        modal.open()
+            .then(dialog => dialog.result)
+            .then(() => {
+                this.toggleOptions();
+                this.postService.delete(this.post.id).subscribe(() => {
+                    this.onDelete.emit(this.post);
+                });
+            });
     }
     //endregion
 

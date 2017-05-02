@@ -16,37 +16,38 @@ import {Response} from "@angular/http";
     templateUrl: 'login.component.html',
     styleUrls: ['login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
     loginData = { username: null, password: null };
 
     useLoginForm = true;
     submitting = false;
-    error = false;
+    error: string = null;
 
     constructor(
         private authService: AuthService,
         private router: Router
     ) {}
 
-    ngOnInit(): void {
-
-    }
-
     submit(): void {
+        // Set as "submitting", preventing further submissions.
         this.submitting = true;
-        this.error = false;
+
+        // Clears previous errors, if any
+        this.error = null;
 
         this.authService.login(this.loginData.username, this.loginData.password)
             .subscribe(() => {
                 this.router.navigate(['/']);
             }, (err) => {
+                // TODO: use error description from server
                 if (err.status == 401) {
-                    //alert('Authentication error.');
-                    this.error = true;
+                    this.error = 'Authentication failed.';
+                } else {
+                    this.error = 'Unexpected server error.';
                 }
-                // TODO: manage server error
             }, () => {
+                // Set as submitted, releasing the form's lock.
                 this.submitting = false;
             });
     }

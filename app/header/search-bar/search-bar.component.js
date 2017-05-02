@@ -10,10 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var Subject_1 = require("rxjs/Subject");
 var Observable_1 = require("rxjs/Observable");
-var user_search_service_1 = require("../../shared/user-search.service");
-var router_1 = require("@angular/router");
+var user_search_service_1 = require("app/shared/user-search.service");
 var SearchBarComponent = (function () {
     function SearchBarComponent(userSearchService, router) {
         this.userSearchService = userSearchService;
