@@ -1,7 +1,7 @@
 .header {
   width: 100%;
   height: 60px;
-  padding: 0 25px;
+  padding: 0 60px;
   color: white;
   background-color: #404257;
   display: flex; }
@@ -89,7 +89,8 @@
   .header .user-menu {
     background-color: #404257;
     position: absolute;
-    width: calc(100% + 25px); }
+    width: calc(100% + 60px);
+    left: -60px; }
     .header .user-menu li {
       display: flex;
       flex-direction: row;

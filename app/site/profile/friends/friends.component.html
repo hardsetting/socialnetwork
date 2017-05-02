@@ -10,22 +10,22 @@
         <img class="cover" src="/img/skyline.jpg" />
 
         <div class="info">
-            <sn-user-pic [user]="friend"></sn-user-pic>
+            <sn-user-pic [user]="friend" (click)="gotoUserProfile(friend)"></sn-user-pic>
 
-            <div class="names">
-                <span>{{friend.name}} {{friend.surname}}</span>
-                <span>{{friend.username}}</span>
+            <div class="names" (click)="gotoUserProfile(friend)">
+                <span class="name">{{friend.name}} {{friend.surname}}</span>
+                <span class="username">{{friend.username}}</span>
             </div>
 
             <div class="stats">
                 <div class="stat">
-                    <span>52</span>
-                    <span>Friends</span>
+                    <span class="stat-amount">{{friend.friends_count}}</span>
+                    <span class="stat-descr">Friends</span>
                 </div>
 
                 <div class="stat">
-                    <span>240</span>
-                    <span>Posts</span>
+                    <span class="stat-amount">{{friend.posts_count}}</span>
+                    <span class="stat-descr">Posts</span>
                 </div>
             </div>
 

@@ -18,6 +18,9 @@ export class User {
 
     profile_picture_id: number;
 
+    posts_count: number;
+    friends_count: number;
+
     profile_picture?: Upload;
     posts?: Post[];
 

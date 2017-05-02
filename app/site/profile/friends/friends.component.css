@@ -3,15 +3,22 @@
   border-radius: 4px;
   border: 1px solid #e2e6ee;
   overflow: hidden;
-  color: #b6bac2;
+  color: #9aa0ab;
   margin-bottom: 30px;
   padding: 25px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between; }
+  .header .title {
+    color: #6d6e7e;
+    font-weight: bold; }
   .header .search-input {
     width: 400px; }
+    .header .search-input::-webkit-input-placeholder {
+      color: #d2d4d9; }
+    .header .search-input::-moz-placeholder {
+      color: #d2d4d9; }
 
 .friends {
   display: flex;
@@ -24,24 +31,78 @@
     border-radius: 4px;
     border: 1px solid #e2e6ee;
     overflow: hidden;
-    color: #b6bac2;
+    color: #9aa0ab;
     margin-bottom: 30px;
+    width: calc((100% - 90px)/4);
+    height: 400px; }
+    .friends .friend:not(:nth-child(4n-3)) {
+      margin-left: 30px; }
+  .friends .cover {
+    width: 100%;
+    height: 125px;
+    object-fit: cover;
+    object-position: 50% 100%; }
+  .friends .info {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    width: calc((100% - 75px)/4);
-    height: 300px; }
-    .friends .friend:not(:nth-child(4n-3)) {
-      margin-left: 25px; }
-
-sn-user-pic {
-  height: 150px;
-  width: 150px;
-  margin: 20px; }
-
-.names {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; }
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    padding-top: 60px;
+    padding-bottom: 15px;
+    height: 275px; }
+  .friends sn-user-pic {
+    display: block;
+    position: absolute;
+    height: 120px;
+    width: 120px;
+    top: -60px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer; }
+  .friends .names {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer; }
+  .friends .name {
+    color: #6d6e7e;
+    font-weight: bold;
+    font-size: 18px; }
+  .friends .username {
+    color: #9aa0ab;
+    font-size: 14px; }
+  .friends .stats {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: calc(100% - 60px); }
+  .friends .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+  .friends .stat-amount {
+    color: #6d6e7e;
+    font-weight: bold; }
+  .friends .stat-descr {
+    font-size: 14px; }
+  .friends .btn-unfriend {
+    width: 100px;
+    height: 30px;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #fe5e3a;
+    color: white;
+    cursor: pointer;
+    user-select: none; }
+    .friends .btn-unfriend:focus {
+      outline: none; }
+    .friends .btn-unfriend:disabled {
+      background-color: #ffb19f;
+      color: white;
+      cursor: auto; }
 
 /*# sourceMappingURL=friends.component.css.map */

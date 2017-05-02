@@ -22,9 +22,9 @@ input {
     display: flex;
     flex-direction: row;
     align-items: center;
-    color: #878897;
+    color: #6d6e7e;
     background-color: white;
-    border: 1px solid #878897;
+    border: 1px solid #6d6e7e;
     border-top: none;
     cursor: pointer; }
     .search-results li sn-user-pic {

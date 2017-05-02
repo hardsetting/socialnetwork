@@ -33,6 +33,10 @@ var FriendsComponent = (function () {
             _this.friends = friends;
         });
     };
+    FriendsComponent.prototype.gotoUserProfile = function (user) {
+        var username = user.username;
+        this.router.navigate(["/profile/" + username]);
+    };
     return FriendsComponent;
 }());
 FriendsComponent = __decorate([

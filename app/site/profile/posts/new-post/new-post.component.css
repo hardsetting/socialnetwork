@@ -7,12 +7,17 @@
     width: 50px;
     height: 50px; }
   .body textarea {
+    color: #9aa0ab;
     padding: 15px;
     display: inline-block;
     width: calc(100% - 75px);
     min-height: 100px;
     border: 1px solid #e2e6ee;
     resize: none; }
+    .body textarea::-webkit-input-placeholder {
+      color: #d2d4d9; }
+    .body textarea::-moz-placeholder {
+      color: #d2d4d9; }
     .body textarea:focus {
       outline: none; }
 

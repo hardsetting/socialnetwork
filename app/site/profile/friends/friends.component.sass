@@ -1,11 +1,17 @@
 @import '../../../../_variables'
 
-
-$thumb-size: 150px
-$thumb-margin: 20px
-
-$friend-margin: 25px
+$friend-height: 400px
+$friend-margin: 30px
 $friends-per-row: 4
+
+$cover-height: 125px
+
+$thumb-size: 120px
+$thumb-offset: -60px
+$thumb-border: 5px
+
+$btn-color: #fe5e3a
+$btn-text-color: white
 
 .header
   @include padded-box()
@@ -13,7 +19,12 @@ $friends-per-row: 4
 
   justify-content: space-between
 
+  .title
+    color: $bold-color
+    font-weight: bold
+
   .search-input
+    @include placeholder-color($placeholder-color)
     width: 400px
 
 .friends
@@ -26,18 +37,81 @@ $friends-per-row: 4
 
   .friend
     @include box()
-    @include flex-column()
 
     width: calc((100% - #{($friends-per-row - 1)*$friend-margin})/#{$friends-per-row})
-    height: 300px
+    height: $friend-height
 
     &:not(:nth-child(#{$friends-per-row}n-#{$friends-per-row - 1}))
       margin-left: $friend-margin
 
-sn-user-pic
-  height: $thumb-size
-  width: $thumb-size
-  margin: $thumb-margin
+  .cover
+    width: 100%
+    height: $cover-height
+    object-fit: cover
+    object-position: 50% 100%
 
-.names
-  @include flex-column()
+  .info
+    @include flex-column(center)
+    justify-content: space-around
+    position: relative
+    padding-top: -$thumb-offset
+    padding-bottom: 15px
+    height: #{$friend-height - $cover-height}
+
+  sn-user-pic
+    display: block
+    position: absolute
+    height: $thumb-size
+    width: $thumb-size
+    top: $thumb-offset
+
+    background-color: white
+    padding: $thumb-border
+    border-radius: 50%
+
+    // navigates to user profile
+    cursor: pointer
+
+  .names
+    @include flex-column(center)
+    // navigates to user profile
+    cursor: pointer
+  .name
+    color: $bold-color
+    font-weight: bold
+    font-size: 18px
+  .username
+    color: $text-color
+    font-size: 14px
+
+  .stats
+    @include flex-row()
+    justify-content: space-around
+    width: calc(100% - 60px)
+  .stat
+    @include flex-column(center)
+  .stat-amount
+    color: $bold-color
+    font-weight: bold
+  .stat-descr
+    font-size: 14px
+
+  .btn-unfriend
+    width: 100px
+    height: 30px
+    padding: 0
+
+    border: none
+    border-radius: 5px
+    background-color: $btn-color
+    color: $btn-text-color
+    cursor: pointer
+    user-select: none
+
+    &:focus
+      outline: none
+
+    &:disabled
+      background-color: lighten($btn-color, 20)
+      color: lighten($btn-text-color, 20)
+      cursor: auto

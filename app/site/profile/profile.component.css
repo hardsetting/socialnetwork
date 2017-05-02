@@ -32,12 +32,12 @@
         font-weight: bold;
         font-size: 20px;
         padding: 4px 0;
-        color: #878897;
+        color: #6d6e7e;
         text-align: center;
         cursor: pointer; }
       .cover .menu .info .city {
         font-size: 12px;
-        color: #b6bac2;
+        color: #9aa0ab;
         text-align: center; }
     .cover .menu .menu-right {
       display: flex;

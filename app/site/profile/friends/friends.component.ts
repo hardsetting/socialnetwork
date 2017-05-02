@@ -43,4 +43,9 @@ export class FriendsComponent implements OnInit {
             this.friends = friends;
         });
     }
+
+    gotoUserProfile(user: User): void {
+        let username = user.username;
+        this.router.navigate([`/profile/${username}`]);
+    }
 }
