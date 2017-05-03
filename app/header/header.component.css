@@ -27,13 +27,14 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    position: relative;
     padding: 0 10px; }
-    .header .buttons span {
+    .header .buttons .friends, .header .buttons .notifications {
       width: 40px;
       height: 40px;
       margin: 0 5px;
       cursor: pointer; }
-      .header .buttons span i {
+      .header .buttons .friends i, .header .buttons .notifications i {
         font-size: 18px;
         display: block;
         width: 100%;
@@ -41,8 +42,37 @@
         line-height: 40px;
         text-align: center;
         vertical-align: middle; }
-        .header .buttons span i:hover {
+        .header .buttons .friends i:hover, .header .buttons .notifications i:hover {
           color: #d9d9d9; }
+  .header .notifications-menu {
+    background-color: #464960;
+    position: absolute;
+    width: 300px;
+    top: 100%;
+    right: 0; }
+    .header .notifications-menu .notification {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 10px 20px 10px 15px;
+      height: 50px;
+      line-height: 50px;
+      cursor: pointer; }
+      .header .notifications-menu .notification:hover {
+        background-color: #565874; }
+    .header .notifications-menu sn-user-pic {
+      display: inline-block;
+      flex: 0 0 30px;
+      height: 30px;
+      width: 30px;
+      margin-right: 15px; }
+    .header .notifications-menu .content {
+      display: inline-block;
+      flex-grow: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 14px; }
   .header .user {
     position: relative; }
   .header .user-info {
@@ -86,6 +116,7 @@
     background-color: #404257;
     position: absolute;
     width: calc(100% + 60px);
+    top: 100%;
     left: -60px; }
     .header .user-menu li {
       display: flex;

@@ -25,6 +25,9 @@ var PostComponent = (function () {
         this.onReact = new core_1.EventEmitter();
         this.showOptions = false;
     }
+    PostComponent.prototype.ngOnInit = function () {
+        this.currUser = this.authService.user.getValue();
+    };
     //region Post
     PostComponent.prototype.toggleOptions = function () {
         this.showOptions = !this.showOptions;
@@ -33,7 +36,20 @@ var PostComponent = (function () {
         this.showOptions = false;
     };
     PostComponent.prototype.edit = function () {
-        //this.toggleOptions();
+        var _this = this;
+        var modal = this.modal.prompt()
+            .overlayClosesOnClick(true)
+            .message('Enter the edited post.')
+            .placeholder('Post content');
+        modal.open()
+            .then(function (dialog) { return dialog.result; })
+            .then(function (content) {
+            _this.toggleOptions();
+            _this.postService.edit(_this.post.id, content).subscribe(function () {
+                _this.post.content = content;
+            });
+            _this.showOptions = false;
+        }, function () { });
     };
     PostComponent.prototype.delete = function () {
         var _this = this;
@@ -47,7 +63,8 @@ var PostComponent = (function () {
             _this.postService.delete(_this.post.id).subscribe(function () {
                 _this.onDelete.emit(_this.post);
             });
-        });
+            _this.showOptions = false;
+        }, function () { });
     };
     Object.defineProperty(PostComponent.prototype, "reactions", {
         //endregion
@@ -144,7 +161,6 @@ PostComponent = __decorate([
         selector: 'sn-post',
         templateUrl: 'post.component.html',
         styleUrls: ['post.component.css'],
-        changeDetection: core_1.ChangeDetectionStrategy.OnPush
     }),
     __metadata("design:paramtypes", [post_service_1.PostService,
         auth_service_1.AuthService,

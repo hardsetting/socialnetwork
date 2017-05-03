@@ -35,6 +35,7 @@ import {PostsComponent} from "app/site/profile/posts/posts.component";
 import {FriendsSearchPipe} from "app/site/profile/friends-search.pipe";
 import {SuggestionsComponent} from "app/site/profile/suggestions/suggestions.component";
 import {BtnFriendComponent} from "app/shared/btn-friend/btn-friend.component";
+import {NotificationService} from "app/shared/notification.service";
 
 @NgModule({
     imports: [
@@ -76,7 +77,8 @@ import {BtnFriendComponent} from "app/shared/btn-friend/btn-friend.component";
         AuthHttp,
         AuthService,
         UserService,
-        PostService
+        PostService,
+        NotificationService
     ],
     bootstrap: [AppComponent]
 })

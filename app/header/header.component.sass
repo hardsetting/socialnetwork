@@ -47,9 +47,10 @@ $username-color: #868aa7
 
   .buttons
     @include flex-row()
+    position: relative
     padding: 0 10px
 
-    span
+    .friends, .notifications
       width: 40px
       height: 40px
       margin: 0 5px
@@ -66,6 +67,39 @@ $username-color: #868aa7
 
         &:hover
           color: darken($header-text-color, 15)
+
+  .notifications-menu
+    background-color: lighten($header-bg-color, 3)
+    position: absolute
+    width: 300px
+    top: 100%
+    right: 0
+
+    .notification
+      @include flex-row()
+      @include hoverable()
+
+      padding: 10px 20px 10px 15px
+      height: 50px
+      line-height: 50px
+      cursor: pointer
+
+    sn-user-pic
+      display: inline-block
+      flex: 0 0 30px
+      height: 30px
+      width: 30px
+      margin-right: 15px
+
+    .content
+      display: inline-block
+      flex-grow: 1
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+      //text-align: right
+
+      font-size: 14px
 
   .user
     position: relative
@@ -101,6 +135,7 @@ $username-color: #868aa7
     background-color: $header-bg-color
     position: absolute
     width: calc(100% + #{$header-margin})
+    top: 100%
     left: -$header-margin
 
     li

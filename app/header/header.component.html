@@ -4,7 +4,17 @@
     <div class="find-friends" (click)="gotoSuggestions()">Find Friends</div>
     <div class="buttons">
         <span class="friends" (click)="gotoFriends()"><i class="fa fa-users"></i></span>
-        <span class="notification" (click)="toggleNotifications()"><i class="fa fa-bell"></i></span>
+        <span class="notifications" (click)="toggleNotificationsMenu()"><i class="fa fa-bell"></i></span>
+
+        <ul class="notifications-menu" *ngIf="isNotificationMenuOpen" (clickOutside)="closeNotificationsMenu()">
+            <li class="notification"
+                *ngFor="let notification of notifications"
+                (click)="gotoUserProfile(currentUser)">
+
+                <sn-user-pic [user]="currentUser"></sn-user-pic>
+                <span class="content">{{notification.data.description}}</span>
+            </li>
+        </ul>
     </div>
     <div class="user">
         <div class="user-info" (click)="toggleUserMenu()">

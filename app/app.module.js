@@ -37,6 +37,7 @@ var posts_component_1 = require("app/site/profile/posts/posts.component");
 var friends_search_pipe_1 = require("app/site/profile/friends-search.pipe");
 var suggestions_component_1 = require("app/site/profile/suggestions/suggestions.component");
 var btn_friend_component_1 = require("app/shared/btn-friend/btn-friend.component");
+var notification_service_1 = require("app/shared/notification.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -77,7 +78,8 @@ AppModule = __decorate([
             auth_http_service_1.AuthHttp,
             auth_service_1.AuthService,
             user_service_1.UserService,
-            post_service_1.PostService
+            post_service_1.PostService,
+            notification_service_1.NotificationService
         ],
         bootstrap: [app_component_1.AppComponent]
     })

@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
+import {Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit} from '@angular/core';
 import {Post} from "app/models/post";
 import {PostService} from "app/shared/post.service";
 import {User} from "app/models/user";
@@ -12,13 +12,15 @@ import {Modal,} from "angular2-modal/plugins/vex";
     selector: 'sn-post',
     templateUrl: 'post.component.html',
     styleUrls: ['post.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    //changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PostComponent {
+export class PostComponent implements OnInit {
     @Input() user: User;
     @Input() post: Post;
     @Output() onDelete = new EventEmitter<Post>();
     @Output() onReact = new EventEmitter<Post>();
+
+    currUser: User;
 
     showOptions: boolean = false;
 
@@ -27,6 +29,10 @@ export class PostComponent {
         private authService: AuthService,
         private modal: Modal
     ) {}
+
+    ngOnInit(): void {
+        this.currUser = this.authService.user.getValue();
+    }
 
     //region Post
     toggleOptions(): void {
@@ -38,7 +44,20 @@ export class PostComponent {
     }
 
     edit(): void {
-        //this.toggleOptions();
+        let modal = this.modal.prompt()
+            .overlayClosesOnClick(true)
+            .message('Enter the edited post.')
+            .placeholder('Post content');
+
+        modal.open()
+            .then(dialog => dialog.result)
+            .then((content) => {
+                this.toggleOptions();
+                this.postService.edit(this.post.id, content).subscribe(() => {
+                    this.post.content = content;
+                });
+                this.showOptions = false;
+            }, () => {});
     }
 
     delete(): void {
@@ -53,7 +72,8 @@ export class PostComponent {
                 this.postService.delete(this.post.id).subscribe(() => {
                     this.onDelete.emit(this.post);
                 });
-            });
+                this.showOptions = false;
+            }, () => {});
     }
     //endregion
 

@@ -107,7 +107,7 @@ export class AuthHttp {
         return this.request(request);
     }
 
-    patch(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+    patch(url: string, body?: any, options?: RequestOptionsArgs): Observable<Response> {
         let request = new Request(new RequestOptions({method: RequestMethod.Patch, url: url, body: body}).merge(options));
         return this.request(request);
     }

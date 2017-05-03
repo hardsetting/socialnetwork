@@ -6,7 +6,8 @@
             <div class="name">{{ user.name + " " + user.surname}}</div>
             <div class="relative-time">{{ post.created_at | amTimeAgo }}</div>
         </div>
-        <div class="more" (clickOutside)="closeOptions()">
+
+        <div *ngIf="currUser.id === user.id" class="more" (clickOutside)="closeOptions()">
             <span (click)="toggleOptions()"></span>
             <ul class="options" [class.show]="showOptions" >
                 <li (click)="edit()">Edit</li>
