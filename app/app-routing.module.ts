@@ -13,7 +13,8 @@ import {ProfileComponent} from "app/site/profile/profile.component";
 import {PostsComponent} from "app/site/profile/posts/posts.component";
 import {FriendsComponent} from "app/site/profile/friends/friends.component";
 
-import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
+import {PageNotFoundComponent} from "app/page-not-found/page-not-found.component";
+import {SuggestionsComponent} from "app/site/profile/suggestions/suggestions.component";
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent, canActivate:[LoginGuard]},
@@ -27,9 +28,11 @@ const routes: Routes = [
                 component: ProfileComponent,
                 children: [
                     { path: '', component: PostsComponent },
-                    { path: 'friends', component: FriendsComponent }
+                    { path: 'friends', component: FriendsComponent },
+                    { path: 'suggestions', component: SuggestionsComponent }
                 ]
             },
+
         ]
     },
     { path: 'admin', resolve: [UserResolver], loadChildren: 'app/admin/admin.module#AdminModule' },

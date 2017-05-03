@@ -5,6 +5,7 @@ import {Directive, ElementRef, Output, EventEmitter, HostListener} from '@angula
 })
 export class VisibleDirective {
     @Output() public visible = new EventEmitter();
+    @Output() public nonVisible = new EventEmitter();
 
     private wasVisible: boolean;
 
@@ -19,6 +20,8 @@ export class VisibleDirective {
         let isVisible = this.isVisible();
         if (!this.wasVisible && isVisible) {
             this.visible.emit();
+        } else if (this.wasVisible && !isVisible) {
+            this.nonVisible.emit();
         }
 
         this.wasVisible = isVisible;

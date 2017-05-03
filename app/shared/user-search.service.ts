@@ -1,4 +1,6 @@
-import {Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';                if (this.shouldLoad) {
+                    this.loadMore();
+                }
 import {Http, Response} from "@angular/http";
 
 import {Observable} from 'rxjs/Observable';

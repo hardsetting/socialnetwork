@@ -34,6 +34,9 @@ var angular2_modal_1 = require("angular2-modal");
 var vex_1 = require("angular2-modal/plugins/vex");
 var friends_component_1 = require("app/site/profile/friends/friends.component");
 var posts_component_1 = require("app/site/profile/posts/posts.component");
+var friends_search_pipe_1 = require("app/site/profile/friends-search.pipe");
+var suggestions_component_1 = require("app/site/profile/suggestions/suggestions.component");
+var btn_friend_component_1 = require("app/shared/btn-friend/btn-friend.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -63,9 +66,12 @@ AppModule = __decorate([
             profile_component_1.ProfileComponent,
             new_post_component_1.NewPostComponent,
             post_component_1.PostComponent,
+            suggestions_component_1.SuggestionsComponent,
+            btn_friend_component_1.BtnFriendComponent,
             user_pic_component_1.UserPicComponent,
             click_outside_directive_1.ClickOutsideDirective,
-            visible_directive_1.VisibleDirective
+            visible_directive_1.VisibleDirective,
+            friends_search_pipe_1.FriendsSearchPipe
         ],
         providers: [
             auth_http_service_1.AuthHttp,

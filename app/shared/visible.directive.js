@@ -14,12 +14,16 @@ var VisibleDirective = (function () {
     function VisibleDirective(elementRef) {
         this.elementRef = elementRef;
         this.visible = new core_1.EventEmitter();
+        this.nonVisible = new core_1.EventEmitter();
         this.wasVisible = this.isVisible();
     }
     VisibleDirective.prototype.onScroll = function () {
         var isVisible = this.isVisible();
         if (!this.wasVisible && isVisible) {
             this.visible.emit();
+        }
+        else if (this.wasVisible && !isVisible) {
+            this.nonVisible.emit();
         }
         this.wasVisible = isVisible;
     };
@@ -38,6 +42,10 @@ __decorate([
     core_1.Output(),
     __metadata("design:type", Object)
 ], VisibleDirective.prototype, "visible", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], VisibleDirective.prototype, "nonVisible", void 0);
 __decorate([
     core_1.HostListener('document:scroll'),
     __metadata("design:type", Function),

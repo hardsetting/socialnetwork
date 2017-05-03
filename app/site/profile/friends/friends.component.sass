@@ -10,22 +10,30 @@ $thumb-size: 120px
 $thumb-offset: -60px
 $thumb-border: 5px
 
-$btn-color: #fe5e3a
-$btn-text-color: white
-
 .header
-  @include padded-box()
+  @include box()
   @include flex-row()
 
+  height: 80px
+  padding: 15px
   justify-content: space-between
 
   .title
     color: $bold-color
     font-weight: bold
+    margin-left: 15px
 
-  .search-input
+  .search
     @include placeholder-color($placeholder-color)
     width: 400px
+    color: $text-color
+    padding: 15px
+    display: inline-block
+    border: 1px solid $border-color
+    resize: none
+    &:focus
+      outline: none
+
 
 .friends
   display: flex
@@ -95,23 +103,3 @@ $btn-text-color: white
     font-weight: bold
   .stat-descr
     font-size: 14px
-
-  .btn-unfriend
-    width: 100px
-    height: 30px
-    padding: 0
-
-    border: none
-    border-radius: 5px
-    background-color: $btn-color
-    color: $btn-text-color
-    cursor: pointer
-    user-select: none
-
-    &:focus
-      outline: none
-
-    &:disabled
-      background-color: lighten($btn-color, 20)
-      color: lighten($btn-text-color, 20)
-      cursor: auto

@@ -39,25 +39,12 @@
         font-size: 12px;
         color: #9aa0ab;
         text-align: center; }
-    .cover .menu .menu-right {
+    .cover .menu .menu-left, .cover .menu .menu-right {
       display: flex;
       align-items: center;
-      margin-right: 20px; }
-      .cover .menu .menu-right .btn-friend {
-        width: 100px;
-        height: 30px;
-        padding: 0;
-        border: none;
-        border-radius: 5px;
-        background-color: #fe5e3a;
-        color: white;
-        cursor: pointer;
-        user-select: none; }
-        .cover .menu .menu-right .btn-friend:focus {
-          outline: none; }
-        .cover .menu .menu-right .btn-friend:disabled {
-          background-color: #ffb19f;
-          color: white;
-          cursor: auto; }
+      min-width: 200px;
+      margin: 0 20px; }
+    .cover .menu .menu-right {
+      flex-direction: row-reverse; }
 
 /*# sourceMappingURL=profile.component.css.map */

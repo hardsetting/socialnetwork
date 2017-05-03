@@ -19,9 +19,13 @@ export class UserService {
     ) { }
 
     get(id: number|string): Observable<User> {
+        // TODO: Move status logic to the server, not requiring currUser to be passed to constructor
+        let currUserId = this.authService.userId;
+
         return this.authHttp
             .get(`api/users/${id}`)
-            .map((r: Response) => r.json() as User);
+            .map(r => r.json())
+            .map(user => new User(user, currUserId));
     }
 
     getPosts(userId: number|string, before?: string): Observable<Post[]> {
@@ -35,12 +39,15 @@ export class UserService {
             //.map((r: Response) => (r.json() as Post[]).map(post => new Post(post)));
     }
 
-    getFriends(userId: number): Observable<User[]> {
+    //region Friends
+    getFriends(userId: number, offset: number = 0, limit: number = 10): Observable<User[]> {
+        // TODO: Move status logic to the server, not requiring currUser to be passed to constructor
+        let currUserId = this.authService.userId;
+
         return this.authHttp
-            .get(`api/users/${userId}/friends`)
+            .get(`api/users/${userId}/friends?offset=${offset}&limit=${limit}`)
             .map(r => r.json())
-            .map(friends => friends.map(friend => friend));
-        // TODO: use User constructor
+            .map(friends => friends.map(friend => new User(friend, currUserId)));
     }
 
     getFriendship(userId: number): Observable<Friendship> {
@@ -50,5 +57,30 @@ export class UserService {
         return this.authHttp.get(`api/users/${userId}/friendship`)
             .map(r => r.json())
             .map(friendship => new Friendship(friendship, currUserId));
+    }
+
+    befriend(userId: number): Observable<Friendship> {
+        // TODO: Move status logic to the server, not requiring currUser to be passed to constructor
+        let currUserId = this.authService.userId;
+
+        return this.authHttp.put(`api/users/${userId}/friendship`)
+            .map(r => r.json())
+            .map(friendship => new Friendship(friendship, currUserId));
+    }
+
+    unfriend(userId: number): Observable<void> {
+        return this.authHttp.delete(`api/users/${userId}/friendship`)
+            .map(r => r.json());
+    }
+    //endregion
+
+    getSuggestions(userId: number, limit: number = 16): Observable<User[]> {
+        // TODO: Move status logic to the server, not requiring currUser to be passed to constructor
+        let currUserId = this.authService.userId;
+
+        return this.authHttp
+            .get(`api/users/${userId}/suggestions?limit=${limit}`)
+            .map(r => r.json())
+            .map(friends => friends.map(friend => new User(friend, currUserId)));
     }
 }

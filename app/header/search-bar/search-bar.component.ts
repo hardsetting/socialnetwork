@@ -52,13 +52,10 @@ export class SearchBarComponent implements OnInit {
 
     gotoUser(user: User): void {
         this.searchTerm = '';
+        this.search();
+
         this.router.navigate(['/profile', user.username]);
 
         this.close();
     }
-
-    /*@HostListener('clickOutside', ['$event.target'])
-    public onClickOutside(test) {
-        console.log('clickedoutside', test);
-    }*/
 }

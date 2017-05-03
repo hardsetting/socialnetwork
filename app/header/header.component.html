@@ -1,7 +1,7 @@
 <div class="header">
     <div class="site-name" [routerLink]="['/']">Social Network</div>
     <sn-search-bar></sn-search-bar>
-    <div class="find-friends">Find Friends</div>
+    <div class="find-friends" (click)="gotoSuggestions()">Find Friends</div>
     <div class="buttons">
         <span class="friends" (click)="gotoFriends()"><i class="fa fa-users"></i></span>
         <span class="notification" (click)="toggleNotifications()"><i class="fa fa-bell"></i></span>

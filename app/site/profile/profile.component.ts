@@ -50,7 +50,7 @@ export class ProfileComponent implements OnInit {
     }
 
     gotoTimeline(): void {
-        let username = this.currentUser.username;
+        let username = this.user.username;
         this.router.navigate([`/profile/${username}`]);
     }
 

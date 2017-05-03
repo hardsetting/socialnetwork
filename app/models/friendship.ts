@@ -28,7 +28,7 @@ export class Friendship {
         return Friendship.STATUS_NOT_FRIENDS;
     }
 
-    get isFriends(): boolean {
+    get isFriend(): boolean {
         return this.status == Friendship.STATUS_FRIENDS;
     }
 
@@ -38,5 +38,9 @@ export class Friendship {
 
     get isReceived(): boolean {
         return this.status == Friendship.STATUS_RECEIVED;
+    }
+
+    get isNotFriend(): boolean {
+        return this.status == Friendship.STATUS_NOT_FRIENDS;
     }
 }

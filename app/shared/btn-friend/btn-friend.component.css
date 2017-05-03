@@ -1,0 +1,28 @@
+.btn {
+  width: 100px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none; }
+  .btn:focus {
+    outline: none; }
+  .btn:disabled {
+    cursor: auto; }
+
+.btn-unfriend {
+  background-color: #fe5e3a;
+  color: white; }
+  .btn-unfriend:disabled {
+    background-color: #ffb19f;
+    color: white; }
+
+.btn-befriend {
+  background-color: #4ccc00;
+  color: white; }
+  .btn-befriend:disabled {
+    background-color: #7fff33;
+    color: white; }
+
+/*# sourceMappingURL=btn-friend.component.css.map */

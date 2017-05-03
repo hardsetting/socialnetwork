@@ -1,7 +1,7 @@
 <div class="box cover">
     <img src="/img/skyline.jpg" />
     <div class="menu">
-        <div class=""></div>
+        <div class="menu-left"></div>
         <div class="info">
             <!-- div class="face"><div class="inner-face"><img src="/img/face.jpg" /></div></div -->
             <sn-user-pic [user]="user" (click)="gotoTimeline()"></sn-user-pic>
@@ -10,7 +10,7 @@
             <div class="city">San Francisco, CA</div>
         </div>
         <div class="menu-right">
-            <!-- <button (click)="friend()" *ngIf="user?.id == currentUser?.id" class="btn-friend">Friend</button> -->
+            <sn-btn-friend *ngIf="currentUser.id != user?.id" [user]="user"></sn-btn-friend>
         </div>
     </div>
 

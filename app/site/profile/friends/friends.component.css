@@ -5,20 +5,29 @@
   overflow: hidden;
   color: #9aa0ab;
   margin-bottom: 30px;
-  padding: 25px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  height: 80px;
+  padding: 15px;
   justify-content: space-between; }
   .header .title {
     color: #6d6e7e;
-    font-weight: bold; }
-  .header .search-input {
-    width: 400px; }
-    .header .search-input::-webkit-input-placeholder {
+    font-weight: bold;
+    margin-left: 15px; }
+  .header .search {
+    width: 400px;
+    color: #9aa0ab;
+    padding: 15px;
+    display: inline-block;
+    border: 1px solid #e2e6ee;
+    resize: none; }
+    .header .search::-webkit-input-placeholder {
       color: #d2d4d9; }
-    .header .search-input::-moz-placeholder {
+    .header .search::-moz-placeholder {
       color: #d2d4d9; }
+    .header .search:focus {
+      outline: none; }
 
 .friends {
   display: flex;
@@ -88,21 +97,5 @@
     font-weight: bold; }
   .friends .stat-descr {
     font-size: 14px; }
-  .friends .btn-unfriend {
-    width: 100px;
-    height: 30px;
-    padding: 0;
-    border: none;
-    border-radius: 5px;
-    background-color: #fe5e3a;
-    color: white;
-    cursor: pointer;
-    user-select: none; }
-    .friends .btn-unfriend:focus {
-      outline: none; }
-    .friends .btn-unfriend:disabled {
-      background-color: #ffb19f;
-      color: white;
-      cursor: auto; }
 
 /*# sourceMappingURL=friends.component.css.map */

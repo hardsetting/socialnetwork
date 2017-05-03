@@ -21,7 +21,7 @@ var Friendship = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Friendship.prototype, "isFriends", {
+    Object.defineProperty(Friendship.prototype, "isFriend", {
         get: function () {
             return this.status == Friendship.STATUS_FRIENDS;
         },
@@ -38,6 +38,13 @@ var Friendship = (function () {
     Object.defineProperty(Friendship.prototype, "isReceived", {
         get: function () {
             return this.status == Friendship.STATUS_RECEIVED;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Friendship.prototype, "isNotFriend", {
+        get: function () {
+            return this.status == Friendship.STATUS_NOT_FRIENDS;
         },
         enumerable: true,
         configurable: true

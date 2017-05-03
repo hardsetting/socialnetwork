@@ -43,6 +43,10 @@ var HeaderComponent = (function () {
         var username = this.currentUser.username;
         this.router.navigate(["/profile/" + username + "/friends"]);
     };
+    HeaderComponent.prototype.gotoSuggestions = function () {
+        var username = this.currentUser.username;
+        this.router.navigate(["/profile/" + username + "/suggestions"]);
+    };
     return HeaderComponent;
 }());
 HeaderComponent = __decorate([

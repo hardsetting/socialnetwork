@@ -11,13 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var auth_service_1 = require("app/shared/auth.service");
+var Observable_1 = require("rxjs/Observable");
 var user_service_1 = require("app/shared/user.service");
 var FriendsComponent = (function () {
-    function FriendsComponent(route, router, authService, userService) {
+    function FriendsComponent(route, router, userService) {
         this.route = route;
         this.router = router;
-        this.authService = authService;
         this.userService = userService;
     }
     FriendsComponent.prototype.ngOnInit = function () {
@@ -32,7 +31,43 @@ var FriendsComponent = (function () {
             _this.user = tmpUser;
             _this.friends = friends;
         });
+        this.shouldLoad = false;
     };
+    //region Data management
+    FriendsComponent.prototype.loadMore = function () {
+        var _this = this;
+        if (this.friendsRequest != null) {
+            return;
+        }
+        console.log('Loading more friends..');
+        this.friendsRequest = this.userService
+            .getFriends(this.user.id, this.friends.length)
+            .do(function () {
+            _this.friendsRequest = null;
+        })
+            .catch(function (err) {
+            _this.friendsRequest = null;
+            return Observable_1.Observable.throw(err);
+        });
+        this.friendsRequest.subscribe(function (friends) {
+            _this.friends = _this.friends.concat(friends);
+            console.log('More friends loaded.');
+            if (_this.shouldLoad) {
+                _this.loadMore();
+            }
+        });
+    };
+    FriendsComponent.prototype.startLoading = function () {
+        console.log('start loading');
+        this.shouldLoad = true;
+        this.loadMore();
+    };
+    FriendsComponent.prototype.stopLoading = function () {
+        console.log('stop loading');
+        this.shouldLoad = false;
+    };
+    //endregions
+    //region Navigation
     FriendsComponent.prototype.gotoUserProfile = function (user) {
         var username = user.username;
         this.router.navigate(["/profile/" + username]);
@@ -48,7 +83,6 @@ FriendsComponent = __decorate([
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute,
         router_1.Router,
-        auth_service_1.AuthService,
         user_service_1.UserService])
 ], FriendsComponent);
 exports.FriendsComponent = FriendsComponent;

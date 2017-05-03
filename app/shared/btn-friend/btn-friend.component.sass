@@ -1,0 +1,39 @@
+@import ../../../variables
+
+$unfriend-color: #fe5e3a
+$unfriend-text-color: white
+
+$befriend-color: #4ccc00
+$befriend-text-color: white
+
+.btn
+  width: 100px
+  height: 30px
+  padding: 0
+
+  border: none
+  border-radius: 5px
+
+  cursor: pointer
+  user-select: none
+
+  &:focus
+    outline: none
+  &:disabled
+    cursor: auto
+
+.btn-unfriend
+  background-color: $unfriend-color
+  color: $unfriend-text-color
+
+  &:disabled
+    background-color: lighten($unfriend-color, 20)
+    color: lighten($unfriend-text-color, 20)
+
+.btn-befriend
+  background-color: $befriend-color
+  color: $befriend-text-color
+
+  &:disabled
+    background-color: lighten($befriend-color, 20)
+    color: lighten($befriend-text-color, 20)

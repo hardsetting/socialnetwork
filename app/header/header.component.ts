@@ -55,4 +55,9 @@ export class HeaderComponent implements OnInit {
         let username = this.currentUser.username;
         this.router.navigate([`/profile/${username}/friends`]);
     }
+
+    gotoSuggestions() {
+        let username = this.currentUser.username;
+        this.router.navigate([`/profile/${username}/suggestions`]);
+    }
 }

@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
+var user_1 = require("../models/user");
 var auth_http_service_1 = require("./auth-http.service");
 var auth_service_1 = require("./auth.service");
 var post_1 = require("app/models/post");
@@ -22,9 +23,12 @@ var UserService = (function () {
         this.http = http;
     }
     UserService.prototype.get = function (id) {
+        // TODO: Move status logic to the server, not requiring currUser to be passed to constructor
+        var currUserId = this.authService.userId;
         return this.authHttp
             .get("api/users/" + id)
-            .map(function (r) { return r.json(); });
+            .map(function (r) { return r.json(); })
+            .map(function (user) { return new user_1.User(user, currUserId); });
     };
     UserService.prototype.getPosts = function (userId, before) {
         var params = new http_1.URLSearchParams();
@@ -35,12 +39,16 @@ var UserService = (function () {
             .map(function (posts) { return posts.map(function (post) { return new post_1.Post(post); }); });
         //.map((r: Response) => (r.json() as Post[]).map(post => new Post(post)));
     };
-    UserService.prototype.getFriends = function (userId) {
+    //region Friends
+    UserService.prototype.getFriends = function (userId, offset, limit) {
+        if (offset === void 0) { offset = 0; }
+        if (limit === void 0) { limit = 10; }
+        // TODO: Move status logic to the server, not requiring currUser to be passed to constructor
+        var currUserId = this.authService.userId;
         return this.authHttp
-            .get("api/users/" + userId + "/friends")
+            .get("api/users/" + userId + "/friends?offset=" + offset + "&limit=" + limit)
             .map(function (r) { return r.json(); })
-            .map(function (friends) { return friends.map(function (friend) { return friend; }); });
-        // TODO: use User constructor
+            .map(function (friends) { return friends.map(function (friend) { return new user_1.User(friend, currUserId); }); });
     };
     UserService.prototype.getFriendship = function (userId) {
         // TODO: Move status logic to the server, not requiring currUser to be passed to constructor
@@ -48,6 +56,27 @@ var UserService = (function () {
         return this.authHttp.get("api/users/" + userId + "/friendship")
             .map(function (r) { return r.json(); })
             .map(function (friendship) { return new friendship_1.Friendship(friendship, currUserId); });
+    };
+    UserService.prototype.befriend = function (userId) {
+        // TODO: Move status logic to the server, not requiring currUser to be passed to constructor
+        var currUserId = this.authService.userId;
+        return this.authHttp.put("api/users/" + userId + "/friendship")
+            .map(function (r) { return r.json(); })
+            .map(function (friendship) { return new friendship_1.Friendship(friendship, currUserId); });
+    };
+    UserService.prototype.unfriend = function (userId) {
+        return this.authHttp.delete("api/users/" + userId + "/friendship")
+            .map(function (r) { return r.json(); });
+    };
+    //endregion
+    UserService.prototype.getSuggestions = function (userId, limit) {
+        if (limit === void 0) { limit = 16; }
+        // TODO: Move status logic to the server, not requiring currUser to be passed to constructor
+        var currUserId = this.authService.userId;
+        return this.authHttp
+            .get("api/users/" + userId + "/suggestions?limit=" + limit)
+            .map(function (r) { return r.json(); })
+            .map(function (friends) { return friends.map(function (friend) { return new user_1.User(friend, currUserId); }); });
     };
     return UserService;
 }());

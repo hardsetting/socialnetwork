@@ -32,6 +32,9 @@ import {ModalModule} from 'angular2-modal';
 import {VexModalModule} from 'angular2-modal/plugins/vex';
 import {FriendsComponent} from "app/site/profile/friends/friends.component";
 import {PostsComponent} from "app/site/profile/posts/posts.component";
+import {FriendsSearchPipe} from "app/site/profile/friends-search.pipe";
+import {SuggestionsComponent} from "app/site/profile/suggestions/suggestions.component";
+import {BtnFriendComponent} from "app/shared/btn-friend/btn-friend.component";
 
 @NgModule({
     imports: [
@@ -59,9 +62,15 @@ import {PostsComponent} from "app/site/profile/posts/posts.component";
         NewPostComponent,
         PostComponent,
 
+        SuggestionsComponent,
+
+        BtnFriendComponent,
+
         UserPicComponent,
         ClickOutsideDirective,
-        VisibleDirective
+        VisibleDirective,
+
+        FriendsSearchPipe
     ],
     providers: [
         AuthHttp,

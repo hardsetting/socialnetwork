@@ -36,14 +36,18 @@ $username-color: #868aa7
     flex: 1 1
 
   .find-friends
-    @include no-highlight()
-    color: $header-bg-color
-    padding: 0 20px
+    @include hoverable()
+    //@include no-highlight()
+    //color: $header-bg-color
+    padding: 0 30px
     line-height: $header-height
+
+    //navigates to suggestions
+    cursor: pointer
 
   .buttons
     @include flex-row()
-    padding: 0 20px
+    padding: 0 10px
 
     span
       width: 40px

@@ -1,0 +1,11 @@
+<button *ngIf="user?.friendship?.isFriend" class="btn btn-unfriend"
+        (click)="unfriend()" [disabled]="loading">Unfriend</button>
+
+<button *ngIf="user?.friendship?.isRequested" class="btn btn-unfriend"
+        (click)="cancel()" [disabled]="loading">Cancel</button>
+
+<button *ngIf="user?.friendship?.isReceived" class="btn btn-befriend"
+        (click)="befriend()" [disabled]="loading">Accept</button>
+
+<button *ngIf="!(user?.friendship)" class="btn btn-befriend"
+        (click)="befriend()" [disabled]="loading">Request</button>

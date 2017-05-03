@@ -1,0 +1,37 @@
+
+<div class="header">
+    <h3 class="title">Suggested connections</h3>
+    <!-- <input [(ngModel)]="search" type="search" class="search" placeholder="Search people.."> -->
+</div>
+
+<div class="friends">
+    <div *ngFor="let suggestion of suggestions | friendsSearch: search" class="friend">
+
+        <img class="cover" src="/img/skyline.jpg" />
+
+        <div class="info">
+            <sn-user-pic [user]="suggestion" (click)="gotoUserProfile(suggestion)"></sn-user-pic>
+
+            <div class="names" (click)="gotoUserProfile(suggestion)">
+                <span class="name">{{suggestion.name}} {{suggestion.surname}}</span>
+                <span class="username">{{suggestion.username}}</span>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-amount">{{suggestion.friends_count}}</span>
+                    <span class="stat-descr">Friends</span>
+                </div>
+
+                <div class="stat">
+                    <span class="stat-amount">{{suggestion.posts_count}}</span>
+                    <span class="stat-descr">Posts</span>
+                </div>
+            </div>
+
+            <sn-btn-friend [user]="suggestion"></sn-btn-friend>
+        </div>
+
+    </div>
+
+</div>

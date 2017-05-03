@@ -1,11 +1,11 @@
 
 <div class="header">
-    <h3 class="title">{{user?.name}}'s Friends ({{friends?.length}})</h3>
-    <input type="search" class="search" placeholder="Search friends..">
+    <h3 class="title">{{user?.name}}'s Friends ({{user?.friends_count}})</h3>
+    <input [(ngModel)]="search" type="search" class="search" placeholder="Search friends..">
 </div>
 
 <div class="friends">
-    <div *ngFor="let friend of friends" class="friend">
+    <div *ngFor="let friend of friends | friendsSearch: search" class="friend">
 
         <img class="cover" src="/img/skyline.jpg" />
 
@@ -29,8 +29,12 @@
                 </div>
             </div>
 
-            <button class="btn-unfriend">Unfriend</button>
+            <sn-btn-friend [user]="friend"></sn-btn-friend>
         </div>
 
+    </div>
+
+    <div class="friend-loader" (visible)="startLoading()" (nonVisible)="stopLoading()">
+        <div *ngIf="loading" class="spinner">Loading..</div>
     </div>
 </div>

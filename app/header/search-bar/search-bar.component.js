@@ -43,6 +43,7 @@ var SearchBarComponent = (function () {
     };
     SearchBarComponent.prototype.gotoUser = function (user) {
         this.searchTerm = '';
+        this.search();
         this.router.navigate(['/profile', user.username]);
         this.close();
     };

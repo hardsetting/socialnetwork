@@ -25,4 +25,11 @@ export class User {
     posts?: Post[];
 
     friendship?: Friendship;
+
+    constructor(data: any, currUserId: number) {
+        Object.assign(this, data);
+        if (this.friendship) {
+            this.friendship = new Friendship(this.friendship, currUserId);
+        }
+    }
 }

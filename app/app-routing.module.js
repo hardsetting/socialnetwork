@@ -17,7 +17,8 @@ var home_component_1 = require("app/site/home.component");
 var profile_component_1 = require("app/site/profile/profile.component");
 var posts_component_1 = require("app/site/profile/posts/posts.component");
 var friends_component_1 = require("app/site/profile/friends/friends.component");
-var page_not_found_component_1 = require("./page-not-found/page-not-found.component");
+var page_not_found_component_1 = require("app/page-not-found/page-not-found.component");
+var suggestions_component_1 = require("app/site/profile/suggestions/suggestions.component");
 var routes = [
     { path: 'login', component: login_component_1.LoginComponent, canActivate: [login_guard_service_1.LoginGuard] },
     { path: '',
@@ -30,7 +31,8 @@ var routes = [
                 component: profile_component_1.ProfileComponent,
                 children: [
                     { path: '', component: posts_component_1.PostsComponent },
-                    { path: 'friends', component: friends_component_1.FriendsComponent }
+                    { path: 'friends', component: friends_component_1.FriendsComponent },
+                    { path: 'suggestions', component: suggestions_component_1.SuggestionsComponent }
                 ]
             },
         ]

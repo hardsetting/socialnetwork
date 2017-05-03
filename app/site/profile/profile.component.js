@@ -37,7 +37,7 @@ var ProfileComponent = (function () {
         });
     };
     ProfileComponent.prototype.gotoTimeline = function () {
-        var username = this.currentUser.username;
+        var username = this.user.username;
         this.router.navigate(["/profile/" + username]);
     };
     ProfileComponent.prototype.friend = function () {

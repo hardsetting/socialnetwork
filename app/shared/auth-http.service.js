@@ -139,7 +139,7 @@ var AuthHttp = (function () {
         // Request a token refresh, redirect to login if refresh token expired or blacklisted
         this.authRequest = this.authService.refresh()
             .catch(function (err) { return _this.redirectToLogin(err); })
-            .finally(function () { console.log('is this working'); _this.authRequest = null; });
+            .finally(function () { _this.authRequest = null; });
     };
     AuthHttp.prototype.redirectToLogin = function (err) {
         // TODO: maybe do nothing if already in login page?

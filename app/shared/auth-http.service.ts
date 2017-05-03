@@ -102,7 +102,7 @@ export class AuthHttp {
         return this.request(request);
     }
 
-    put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+    put(url: string, body?: any, options?: RequestOptionsArgs): Observable<Response> {
         let request = new Request(new RequestOptions({method: RequestMethod.Put, url: url, body: body}).merge(options));
         return this.request(request);
     }
@@ -153,7 +153,7 @@ export class AuthHttp {
         // Request a token refresh, redirect to login if refresh token expired or blacklisted
         this.authRequest = this.authService.refresh()
             .catch(err => this.redirectToLogin(err))
-            .finally(() => {console.log('is this working'); this.authRequest = null;});
+            .finally(() => { this.authRequest = null });
     }
 
     private redirectToLogin(err?: any): Observable<Response> {
