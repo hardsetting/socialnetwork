@@ -1,6 +1,12 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: calc(100vh - 60px); }
+
 .page {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 40px 30px; }
+  padding: 40px 30px;
+  flex-grow: 1;
+  overflow-y: scroll; }
 
 /*# sourceMappingURL=admin.component.css.map */

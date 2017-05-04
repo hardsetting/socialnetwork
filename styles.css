@@ -5,8 +5,7 @@ html {
   box-sizing: inherit; }
 
 body {
-  background-color: #edf2f6;
-  overflow-y: scroll; }
+  background-color: #edf2f6; }
 
 * {
   font-family: "Ubuntu", serif; }

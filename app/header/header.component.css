@@ -33,7 +33,8 @@
       width: 40px;
       height: 40px;
       margin: 0 5px;
-      cursor: pointer; }
+      cursor: pointer;
+      position: relative; }
       .header .buttons .friends i, .header .buttons .notifications i {
         font-size: 18px;
         display: block;
@@ -44,6 +45,18 @@
         vertical-align: middle; }
         .header .buttons .friends i:hover, .header .buttons .notifications i:hover {
           color: #d9d9d9; }
+          .header .buttons .friends i:hover .badge, .header .buttons .notifications i:hover .badge {
+            background-color: #ea2c01; }
+      .header .buttons .friends .badge, .header .buttons .notifications .badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background-color: #fe5e3a;
+        border-radius: 50% 50%;
+        width: 6px;
+        height: 6px; }
+        .header .buttons .friends .badge:not(.show), .header .buttons .notifications .badge:not(.show) {
+          display: none; }
   .header .notifications-menu {
     background-color: #464960;
     position: absolute;
@@ -54,12 +67,23 @@
       display: flex;
       flex-direction: row;
       align-items: center;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
       padding: 10px 20px 10px 15px;
       height: 50px;
-      line-height: 50px;
-      cursor: pointer; }
-      .header .notifications-menu .notification:hover {
-        background-color: #565874; }
+      line-height: 50px; }
+      .header .notifications-menu .notification:not(.placeholder) {
+        cursor: pointer; }
+        .header .notifications-menu .notification:not(.placeholder):hover {
+          background-color: #565874; }
+        .header .notifications-menu .notification:not(.placeholder).unread {
+          background-color: #51546f; }
+          .header .notifications-menu .notification:not(.placeholder).unread:hover {
+            background-color: #5c5f7d; }
     .header .notifications-menu sn-user-pic {
       display: inline-block;
       flex: 0 0 30px;

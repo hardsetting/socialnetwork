@@ -1,0 +1,30 @@
+<h3 class="title">Communities</h3>
+
+<span class="loading" [hidden]="!loading">Loading..</span>
+
+<div class="user-list">
+    <div class="community" *ngFor="let community of communities">
+        <h4 class="hub-title">Community hub:</h4>
+        <div class="user" [routerLink]="['/profile/' + community.hub_user.username]">
+            <sn-user-pic [user]="community.hub_user"></sn-user-pic>
+            <div class="names">
+                <span class="full-name">{{community.hub_user.name}} {{community.hub_user?.surname}}</span>
+                <span class="username">{{community.hub_user.username}}</span>
+            </div>
+
+            <div class="property">
+                <span class="descr">Community size</span>
+                <span class="value">{{community.friends.length}}</span>
+            </div>
+        </div>
+
+        <h4 class="friends-title">Members preview:</h4>
+        <div class="friends">
+            <div class="friend" [routerLink]="['/profile/' + friend.username]"
+                 *ngFor="let friend of community.friends.slice(0, 4)">
+                <sn-user-pic [user]="friend"></sn-user-pic>
+                <span class="name">{{friend.username}}</span>
+            </div>
+        </div>
+    </div>
+</div>

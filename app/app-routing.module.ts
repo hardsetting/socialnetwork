@@ -15,6 +15,7 @@ import {FriendsComponent} from "app/site/profile/friends/friends.component";
 
 import {PageNotFoundComponent} from "app/page-not-found/page-not-found.component";
 import {SuggestionsComponent} from "app/site/profile/suggestions/suggestions.component";
+import {SharedModule} from "app/shared/shared.module";
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent, canActivate:[LoginGuard]},
@@ -35,12 +36,15 @@ const routes: Routes = [
 
         ]
     },
-    { path: 'admin', resolve: [UserResolver], loadChildren: 'app/admin/admin.module#AdminModule' },
+    { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule' },
     { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [
+        RouterModule.forRoot(routes),
+        SharedModule
+    ],
     exports: [RouterModule],
     providers: [
         SiteGuard,

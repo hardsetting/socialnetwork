@@ -1,0 +1,24 @@
+<h3 class="title">Network Distribution</h3>
+
+<div class="chart">
+    <canvas baseChart width="1280" height="720"
+            [datasets]="datasets"
+            [labels]="labels"
+            [options]="options"
+            [colors]="colors"
+            [legend]="legend"
+            [chartType]="type"></canvas>
+</div>
+
+<div class="description">
+    <h4 class="title">Description:</h4>
+    <p>
+        The chart shows the distribution of the degrees of the nodes in the network
+        over a scaled zipfian distribution.
+    </p>
+    <p>
+        In a real world social network the degree distribution
+        should closely match the reference zipfian distribution, because as many processes in nature,
+        the probability of an event depends is proportional to the distribution of the previous events.
+    </p>
+</div>

@@ -1,7 +1,18 @@
+@import ../../variables
+
 $padding-hor: 30px
 $padding-ver: 40px
 
+// Copied from header.component.class
+// TODO: put in _variables
+$header-height: 60px
+
+.container
+  @include flex-row(stretch)
+  height: calc(100vh - #{$header-height})
+  //position: relative
+
 .page
-  max-width: 1280px
-  margin: 0 auto
   padding: $padding-ver $padding-hor
+  flex-grow: 1
+  overflow-y: scroll

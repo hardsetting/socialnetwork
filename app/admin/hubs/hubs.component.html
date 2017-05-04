@@ -1,0 +1,19 @@
+<h3 class="title">Hub nodes</h3>
+
+<div class="user-list">
+    <span class="loading" [hidden]="!loading">Loading..</span>
+
+    <div class="user" *ngFor="let hub of hubs" [routerLink]="['/profile/' + hub.user.username]">
+        <sn-user-pic [user]="hub.user"></sn-user-pic>
+        <div class="names">
+            <span class="full-name">{{hub.user.name}} {{hub.user?.surname}}</span>
+            <span class="username">{{hub.user.username}}</span>
+        </div>
+
+        <div class="property">
+            <span class="descr">Hubbiness score</span>
+            <span class="value">{{hub.hubbiness}}</span>
+        </div>
+
+    </div>
+</div>

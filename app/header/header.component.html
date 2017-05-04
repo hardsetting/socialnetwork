@@ -4,15 +4,21 @@
     <div class="find-friends" (click)="gotoSuggestions()">Find Friends</div>
     <div class="buttons">
         <span class="friends" (click)="gotoFriends()"><i class="fa fa-users"></i></span>
-        <span class="notifications" (click)="toggleNotificationsMenu()"><i class="fa fa-bell"></i></span>
+        <span class="notifications" (click)="toggleNotificationsMenu()">
+            <i class="fa fa-bell"></i>
+            <i class="badge" [class.show]="unread_notification_count > 0"></i>
+        </span>
 
         <ul class="notifications-menu" *ngIf="isNotificationMenuOpen" (clickOutside)="closeNotificationsMenu()">
-            <li class="notification"
+            <li class="notification" [class.unread]="!notification.read_at"
                 *ngFor="let notification of notifications"
-                (click)="gotoUserProfile(currentUser)">
+                (click)="readNotification(notification)">
 
-                <sn-user-pic [user]="currentUser"></sn-user-pic>
+                <sn-user-pic [user]="notification.data.user"></sn-user-pic>
                 <span class="content">{{notification.data.description}}</span>
+            </li>
+            <li class="placeholder notification" *ngIf="notifications.length == 0">
+                <span class="content">No notifications.</span>
             </li>
         </ul>
     </div>

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 
 import {User} from "app/models/user";
@@ -6,6 +6,7 @@ import {AuthService} from "app/shared/auth.service";
 import {Notification} from "app/models/notification";
 import {NotificationService} from "app/shared/notification.service";
 import {Observable} from "rxjs/Observable";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
     moduleId: module.id,
@@ -14,7 +15,7 @@ import {Observable} from "rxjs/Observable";
     templateUrl: 'header.component.html',
     styleUrls: ['header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
     currentUser: User;
 
     isUserMenuOpen: boolean;
@@ -22,26 +23,42 @@ export class HeaderComponent implements OnInit {
 
     notifications: Notification[];
 
+    notificationCheckTimer: Subscription;
+
+    get unread_notification_count(): number {
+        if (this.notifications) {
+            return this.notifications.filter(n => n.read_at == null).length;
+        }
+        return 0;
+    }
+
     constructor(
         private authService: AuthService,
         private notificationService: NotificationService,
         private router: Router
     ) {}
 
+    //region Lifecycle
     ngOnInit() {
         this.currentUser = this.authService.user.getValue();
         this.isUserMenuOpen = false;
         this.isNotificationMenuOpen = false;
 
-        this.notificationService
-            .getLatests()
-            .subscribe(notifications => {
-                this.notifications = notifications;
-            }, (err) => {
-                console.warn('Could not fetch notifications.', err);
-            });
+        this.notificationCheckTimer = Observable.timer(0, 5000).switchMap(() => {
+            return this.notificationService
+                .getLatests();
+        }).subscribe(notifications => {
+            this.notifications = notifications;
+        }, (err) => {
+            console.warn('Could not fetch notifications.', err);
+        });
 
     }
+
+    ngOnDestroy() {
+        this.notificationCheckTimer.unsubscribe();
+    }
+    //endregion
 
     logout() {
         this.authService.logout();
@@ -68,6 +85,14 @@ export class HeaderComponent implements OnInit {
         this.isNotificationMenuOpen = false;
     }
 
+    readNotification(notification: Notification) {
+        this.notificationService
+            .read(notification.id)
+            .subscribe(() => {
+                notification.read_at = (new Date()).toISOString();
+                this.gotoUserProfile(notification.data.user);
+            });
+    }
 
     //endregion
 

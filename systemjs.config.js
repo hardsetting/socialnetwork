@@ -31,7 +31,8 @@
             'lodash': 'npm:lodash',
             'angular2-moment': 'npm:angular2-moment',
             'angular2-modal': 'npm:angular2-modal',
-            'angular2-modal/plugins/vex': 'npm:angular2-modal/bundles'
+            'angular2-modal/plugins/vex': 'npm:angular2-modal/bundles',
+            'ng2-charts': 'npm:ng2-charts'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -64,6 +65,10 @@
             },
             'angular2-modal/plugins/vex': {
                 main: 'angular2-modal.vex.umd',
+                defaultExtension: 'js'
+            },
+            'ng2-charts': {
+                main: 'bundles/ng2-charts.umd.js',
                 defaultExtension: 'js'
             }
         }

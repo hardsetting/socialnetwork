@@ -13,25 +13,42 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var auth_service_1 = require("app/shared/auth.service");
 var notification_service_1 = require("app/shared/notification.service");
+var Observable_1 = require("rxjs/Observable");
 var HeaderComponent = (function () {
     function HeaderComponent(authService, notificationService, router) {
         this.authService = authService;
         this.notificationService = notificationService;
         this.router = router;
     }
+    Object.defineProperty(HeaderComponent.prototype, "unread_notification_count", {
+        get: function () {
+            if (this.notifications) {
+                return this.notifications.filter(function (n) { return n.read_at == null; }).length;
+            }
+            return 0;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    //region Lifecycle
     HeaderComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.currentUser = this.authService.user.getValue();
         this.isUserMenuOpen = false;
         this.isNotificationMenuOpen = false;
-        this.notificationService
-            .getLatests()
-            .subscribe(function (notifications) {
+        this.notificationCheckTimer = Observable_1.Observable.timer(0, 5000).switchMap(function () {
+            return _this.notificationService
+                .getLatests();
+        }).subscribe(function (notifications) {
             _this.notifications = notifications;
         }, function (err) {
             console.warn('Could not fetch notifications.', err);
         });
     };
+    HeaderComponent.prototype.ngOnDestroy = function () {
+        this.notificationCheckTimer.unsubscribe();
+    };
+    //endregion
     HeaderComponent.prototype.logout = function () {
         this.authService.logout();
         this.router.navigate(['/login']);
@@ -51,6 +68,15 @@ var HeaderComponent = (function () {
     };
     HeaderComponent.prototype.closeNotificationsMenu = function () {
         this.isNotificationMenuOpen = false;
+    };
+    HeaderComponent.prototype.readNotification = function (notification) {
+        var _this = this;
+        this.notificationService
+            .read(notification.id)
+            .subscribe(function () {
+            notification.read_at = (new Date()).toISOString();
+            _this.gotoUserProfile(notification.data.user);
+        });
     };
     //endregion
     //region Navigation

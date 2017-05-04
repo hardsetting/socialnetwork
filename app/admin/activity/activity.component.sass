@@ -1,0 +1,49 @@
+@import ../variables
+
+$thumb-size: 50px
+$user-margin: 20px
+
+.user-list
+  @include padded-box()
+  display: flex
+  flex-wrap: wrap
+  padding-bottom: 0
+
+  .user
+    @include padded-box()
+    @include flex-row()
+    height: 100px
+    width: calc((100% - #{$user-margin})/2)
+    cursor: pointer
+
+    &:not(:nth-of-type(2n-1))
+      margin-left: $user-margin
+
+    &:hover
+      background-color: lighten($page-background-color, 2)
+
+    sn-user-pic
+      display: inline-block
+      width: $thumb-size
+      height: $thumb-size
+
+    .names
+      @include flex-column()
+      margin-left: 20px
+
+      .full-name
+        color: $bold-color
+        font-weight: bold
+
+      .username
+        font-size: 14px
+
+    .property
+      @include flex-column(center)
+      align-items: flex-end
+      margin-left: 20px
+      flex-grow: 1
+
+      .descr
+        color: $bold-color
+        font-weight: bold

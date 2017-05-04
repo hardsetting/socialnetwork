@@ -19,6 +19,7 @@ var posts_component_1 = require("app/site/profile/posts/posts.component");
 var friends_component_1 = require("app/site/profile/friends/friends.component");
 var page_not_found_component_1 = require("app/page-not-found/page-not-found.component");
 var suggestions_component_1 = require("app/site/profile/suggestions/suggestions.component");
+var shared_module_1 = require("app/shared/shared.module");
 var routes = [
     { path: 'login', component: login_component_1.LoginComponent, canActivate: [login_guard_service_1.LoginGuard] },
     { path: '',
@@ -37,7 +38,7 @@ var routes = [
             },
         ]
     },
-    { path: 'admin', resolve: [user_resolver_service_1.UserResolver], loadChildren: 'app/admin/admin.module#AdminModule' },
+    { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule' },
     { path: '**', component: page_not_found_component_1.PageNotFoundComponent }
 ];
 var AppRoutingModule = (function () {
@@ -47,7 +48,10 @@ var AppRoutingModule = (function () {
 }());
 AppRoutingModule = __decorate([
     core_1.NgModule({
-        imports: [router_1.RouterModule.forRoot(routes)],
+        imports: [
+            router_1.RouterModule.forRoot(routes),
+            shared_module_1.SharedModule
+        ],
         exports: [router_1.RouterModule],
         providers: [
             site_guard_service_1.SiteGuard,

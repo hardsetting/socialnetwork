@@ -21,6 +21,6 @@ export class NotificationService {
     read(id: number): Observable<void> {
         return this.authHttp
             .patch(`api/notifications/${id}`)
-            .map(r => r.json());
+            .map(() => null);
     }
 }

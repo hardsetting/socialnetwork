@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
     moduleId: module.id,
@@ -6,4 +6,4 @@ import {Component, OnInit} from '@angular/core';
     templateUrl: 'admin.component.html',
     styleUrls: ['admin.component.css']
 })
-export class AdminComponent { }
+export class AdminComponent {}

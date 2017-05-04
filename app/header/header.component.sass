@@ -6,6 +6,8 @@ $header-margin: 60px
 $header-text-color: white
 $header-bg-color: #404257
 
+$badge-color: #fe5e3a
+
 $username-color: #868aa7
 
 @mixin hoverable()
@@ -55,6 +57,7 @@ $username-color: #868aa7
       height: 40px
       margin: 0 5px
       cursor: pointer
+      position: relative
 
       i
         font-size: 18px
@@ -68,6 +71,22 @@ $username-color: #868aa7
         &:hover
           color: darken($header-text-color, 15)
 
+          .badge
+            background-color: darken($badge-color, 15)
+
+      .badge
+        position: absolute
+        top: 12px
+        right: 12px
+        background-color: $badge-color
+        border-radius: 50% 50%
+        width: 6px
+        height: 6px
+
+        &:not(.show)
+          display: none
+
+
   .notifications-menu
     background-color: lighten($header-bg-color, 3)
     position: absolute
@@ -77,12 +96,20 @@ $username-color: #868aa7
 
     .notification
       @include flex-row()
-      @include hoverable()
-
+      @include no-highlight()
       padding: 10px 20px 10px 15px
       height: 50px
       line-height: 50px
-      cursor: pointer
+
+      &:not(.placeholder)
+        @include hoverable()
+        cursor: pointer
+        &.unread
+          background-color: lighten($header-bg-color, 8)
+          &:hover
+            background-color: lighten($header-bg-color, 13)
+
+
 
     sn-user-pic
       display: inline-block

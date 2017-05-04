@@ -1,0 +1,94 @@
+@import ../variables
+
+$thumb-size: 50px
+$user-margin: 20px
+$friend-margin: 10px
+
+.user-list
+  //@include padded-box()
+  display: flex
+  flex-wrap: wrap
+  padding-bottom: 0
+
+  .hub-title
+    margin-bottom: 10px
+
+  .community
+    @include padded-box()
+    width: calc((100% - #{$user-margin})/2)
+    &:not(:nth-child(2n-1))
+      margin-left: $user-margin
+
+  .user
+    @include padded-box()
+    @include flex-row()
+    height: 100px
+    cursor: pointer
+    margin-bottom: 15px
+
+    &:hover
+      background-color: lighten($page-background-color, 2)
+
+    sn-user-pic
+      display: inline-block
+      width: $thumb-size
+      height: $thumb-size
+
+    .names
+      @include flex-column()
+      margin-left: 20px
+
+      .full-name
+        color: $bold-color
+        font-weight: bold
+
+      .username
+        font-size: 14px
+
+    .property
+      @include flex-column(center)
+      align-items: flex-end
+      margin-left: 20px
+      flex-grow: 1
+
+      .descr
+        color: $bold-color
+        font-weight: bold
+
+  .friends-title
+    margin-bottom: 10px
+
+  .friends
+    display: flex
+    flex-wrap: wrap
+    padding-bottom: 0
+
+    .friend
+      @include padded-box()
+      @include flex-column(center)
+      width: calc((100% - #{3*$friend-margin})/4)
+      margin-bottom: 0
+
+      cursor: pointer
+
+      &:hover
+        background-color: lighten($page-background-color, 2)
+
+      &:not(:nth-child(5n-4))
+        margin-left: $friend-margin
+
+      sn-user-pic
+        display: block
+        width: $thumb-size
+        height: $thumb-size
+        margin-bottom: 10px
+
+      .name
+        //color: $bold-color
+        //font-weight: bold
+        font-size: 14px
+        text-overflow: ellipsis
+        overflow: hidden
+        max-width: 100%
+        white-space: nowrap
+

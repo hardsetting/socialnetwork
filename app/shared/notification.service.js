@@ -26,7 +26,7 @@ var NotificationService = (function () {
     NotificationService.prototype.read = function (id) {
         return this.authHttp
             .patch("api/notifications/" + id)
-            .map(function (r) { return r.json(); });
+            .map(function () { return null; });
     };
     return NotificationService;
 }());

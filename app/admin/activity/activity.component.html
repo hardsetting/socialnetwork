@@ -1,0 +1,19 @@
+<h3 class="title">Most active users</h3>
+
+<div class="user-list">
+    <span class="loading" [hidden]="!loading">Loading..</span>
+
+    <div class="user" *ngFor="let entry of activity" [routerLink]="['/profile/' + entry.user.username]">
+        <sn-user-pic [user]="entry.user"></sn-user-pic>
+        <div class="names">
+            <span class="full-name">{{entry.user.name}} {{entry.user?.surname}}</span>
+            <span class="username">{{entry.user.username}}</span>
+        </div>
+
+        <div class="property">
+            <span class="descr">Activity score</span>
+            <span class="value">{{entry.activity}}</span>
+        </div>
+
+    </div>
+</div>

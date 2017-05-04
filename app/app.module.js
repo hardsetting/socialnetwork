@@ -18,18 +18,12 @@ var login_component_1 = require("app/login/login.component");
 var search_bar_component_1 = require("app/header/search-bar/search-bar.component");
 var header_component_1 = require("app/header/header.component");
 var profile_component_1 = require("app/site/profile/profile.component");
-var user_service_1 = require("app/shared/user.service");
 var post_service_1 = require("app/shared/post.service");
 var new_post_component_1 = require("app/site/profile/posts/new-post/new-post.component");
 var post_component_1 = require("app/site/profile/posts/post/post.component");
-var auth_http_service_1 = require("app/shared/auth-http.service");
-var user_pic_component_1 = require("app/shared/user-pic/user-pic.component");
-var click_outside_directive_1 = require("./shared/click-outside.directive");
-var auth_service_1 = require("app/shared/auth.service");
 var site_component_1 = require("app/site/site.component");
 var page_not_found_component_1 = require("app/page-not-found/page-not-found.component");
 var home_component_1 = require("app/site/home.component");
-var visible_directive_1 = require("app/shared/visible.directive");
 var angular2_modal_1 = require("angular2-modal");
 var vex_1 = require("angular2-modal/plugins/vex");
 var friends_component_1 = require("app/site/profile/friends/friends.component");
@@ -38,6 +32,10 @@ var friends_search_pipe_1 = require("app/site/profile/friends-search.pipe");
 var suggestions_component_1 = require("app/site/profile/suggestions/suggestions.component");
 var btn_friend_component_1 = require("app/shared/btn-friend/btn-friend.component");
 var notification_service_1 = require("app/shared/notification.service");
+var shared_module_1 = require("app/shared/shared.module");
+var user_service_1 = require("app/shared/user.service");
+var auth_service_1 = require("app/shared/auth.service");
+var auth_http_service_1 = require("app/shared/auth-http.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -52,6 +50,7 @@ AppModule = __decorate([
             angular2_moment_1.MomentModule,
             angular2_modal_1.ModalModule.forRoot(),
             vex_1.VexModalModule,
+            shared_module_1.SharedModule,
             app_routing_module_1.AppRoutingModule
         ],
         declarations: [
@@ -69,9 +68,6 @@ AppModule = __decorate([
             post_component_1.PostComponent,
             suggestions_component_1.SuggestionsComponent,
             btn_friend_component_1.BtnFriendComponent,
-            user_pic_component_1.UserPicComponent,
-            click_outside_directive_1.ClickOutsideDirective,
-            visible_directive_1.VisibleDirective,
             friends_search_pipe_1.FriendsSearchPipe
         ],
         providers: [

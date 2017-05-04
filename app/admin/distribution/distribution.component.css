@@ -1,0 +1,30 @@
+h3.title {
+  font-size: 18px;
+  color: #6d6e7e;
+  font-weight: bold;
+  margin-bottom: 20px; }
+
+.chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0 50px; }
+
+.description {
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid #e2e6ee;
+  overflow: hidden;
+  color: #9aa0ab;
+  margin-bottom: 30px;
+  padding: 25px;
+  margin-top: 20px; }
+  .description .title {
+    color: #6d6e7e;
+    font-weight: bold;
+    margin-bottom: 15px; }
+  .description p:first-of-type {
+    margin-bottom: 15px; }
+
+/*# sourceMappingURL=distribution.component.css.map */

@@ -1,0 +1,82 @@
+@import ../../../variables
+
+$header-height: 60px
+$header-margin: 60px
+
+$header-text-color: white
+$header-bg-color: #404257
+
+$username-color: #868aa7
+
+@mixin hoverable()
+  &:hover
+    background-color: lighten($header-bg-color, 10)
+
+.header
+  @include flex-row(stretch)
+  justify-content: space-between
+  width: 100%
+  height: $header-height
+  padding: 0 $header-margin
+
+  color: $header-text-color
+  background-color: $header-bg-color
+
+  .site-name
+    @include hoverable()
+    @include flex-column()
+    justify-content: center
+    padding: 0 30px
+    cursor: pointer
+    .title
+      font-weight: bold
+      font-size: 18px
+    .subtitle
+      font-size: 14px
+
+  .user
+    position: relative
+
+  .user-info
+    @include hoverable()
+    @include flex-row()
+    padding: 0 30px
+    height: 100%
+    cursor: pointer
+
+    sn-user-pic
+      display: inline-block
+      height: 30px
+      width: 30px
+      margin-right: 10px
+
+    .names
+      @include flex-column()
+      margin-right: 20px
+
+    .fullname
+      @include no-highlight()
+      font-size: 14px
+      font-weight: bold
+
+    .username
+      @include no-highlight()
+      font-size: 10px
+      color: $username-color
+
+  .user-menu
+    background-color: $header-bg-color
+    position: absolute
+    width: calc(100% + #{$header-margin})
+    top: 100%
+    left: -$header-margin
+
+    li
+      @include flex-row()
+      @include hoverable()
+      justify-content: space-between
+
+      padding: 0 20px
+      height: 50px
+      line-height: 50px
+      cursor: pointer

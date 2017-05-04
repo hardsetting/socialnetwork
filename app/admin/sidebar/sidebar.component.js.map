@@ -1,0 +1,1 @@
+{"version":3,"file":"sidebar.component.js","sourceRoot":"","sources":["sidebar.component.ts"],"names":[],"mappings":";;;;;;;;AAAA,sCAAwC;AAQxC,IAAa,qBAAqB;IAAlC;IAEA,CAAC;IAAD,4BAAC;AAAD,CAAC,AAFD,IAEC;AAFY,qBAAqB;IANjC,gBAAS,CAAC;QACP,QAAQ,EAAE,MAAM,CAAC,EAAE;QACnB,QAAQ,EAAE,kBAAkB;QAC5B,WAAW,EAAE,wBAAwB;QACrC,SAAS,EAAE,CAAC,uBAAuB,CAAC;KACvC,CAAC;GACW,qBAAqB,CAEjC;AAFY,sDAAqB"}
